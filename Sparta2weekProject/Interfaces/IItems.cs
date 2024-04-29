@@ -5,6 +5,6 @@ namespace Sparta2weekProject.Interfaces
 {
     internal interface IItems
     {
-        public string ItemInfo(Items item);
+        public string ItemInfo(Items _item);
     }
 }

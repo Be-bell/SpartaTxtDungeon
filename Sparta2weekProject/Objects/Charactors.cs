@@ -6,52 +6,59 @@ namespace Sparta2weekProject.Objects
     public class Charactors
     {
         // 각종 스텟
-        public int level;
-        public Chad chad;
-        public int attack;
-        public int defend;
-        public int fullHealth { get; protected set; }
-        public int health;
-        public int gold;
-        public int exp;
-        public int plusAttack = 0;
-        public int plusDefend = 0;
+        public int Level;
+        public CharactorClass Class;
+        public int Attack;
+        public int Defend;
+        public int FullHealth;
+        public int Health;
+        public int Gold;
+        public int Exp;
+        public int PlusAttack = 0;
+        public int PlusDefend = 0;
 
         // 인벤토리
-        public List<Items> inven;
+        public List<Items> Inven;
 
         // 장착 무기
-        public Items? armor;
-        public Items? weapon;
+        public Items? Armor;
+        public Items? Weapon;
 
         // 직업 생성 시 lv. 1, gold 1000부터 시작, 인벤토리 제작.
-        public Charactors(Chad chad)
+        public Charactors(CharactorClass _charactorClass)
         {
-            level = 1;
-            gold = 1000;
-            exp = 0;
+            Class = _charactorClass;
+            Level = 1;
+            Gold = 1000;
+            Exp = 0;
 
-            switch (chad)
+            switch (_charactorClass)
             {
-                case Chad.전사:
-                    attack = 10;
-                    defend = 20;
-                    fullHealth = 150;
-                    health = 150;
+                case CharactorClass.전사:
+                    Attack = 10;
+                    Defend = 20;
+                    FullHealth = 150;
+                    Health = 150;
                     break;
-                case Chad.궁수:
-                    attack = 15;
-                    defend = 15;
-                    fullHealth = 100;
-                    health = 100;
+                case CharactorClass.궁수:
+                    Attack = 15;
+                    Defend = 15;
+                    FullHealth = 100;
+                    Health = 100;
                     break;
             }
 
-            inven = new List<Items>();
+            Inven = new List<Items>();
         }
+        
+        public void ItemUse(Items _item)
+        {
+            
+        }
+        
     }
 
-    public enum Chad
+    public enum CharactorClass
     {
         전사, 궁수
     }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using Sparta2weekProject.Menu;
+﻿using Sparta2weekProject.Menu;
 using Sparta2weekProject.Objects;
 
 internal class QuestInfo : MenuHandler
@@ -27,10 +25,10 @@ internal class QuestInfo : MenuHandler
     public bool rewardCheck = false; // 보상 획득 여부
 
 	// 퀘스트 정보 보여주기
-	public void QuestShow(Charactors chad, List<Items> shopitems)
+	public void QuestShow(Charactors charactor, List<Items> shopitems)
 	{
         // 퀘스트 클리어 여부 확인
-        QuestClear(chad);
+        QuestClear(charactor);
         // 해당 퀘스트의 정보 출력
         Console.WriteLine("Quest");
 		Console.WriteLine($"{questName}\n\n{questDescription}\n");
@@ -49,7 +47,7 @@ internal class QuestInfo : MenuHandler
 		// 보상 아이템이 있다면
 		if (rewardItem != null)
 		{
-            Console.WriteLine(rewardItem.itemName + " X 1 ");
+            Console.WriteLine(rewardItem.ItemName + " X 1 ");
         }
 		Console.WriteLine(clearGold + "G\n");
 
@@ -67,20 +65,20 @@ internal class QuestInfo : MenuHandler
                 Console.WriteLine("퀘스트 보상을 획득하셨습니다.");
                 rewardCheck = true;
                 // 클리어 골드 획득
-                chad.gold += clearGold;
+                charactor.Gold += clearGold;
                 // 아이템이 존재하면
                 if (rewardItem != null)
                 {
                     bool cheack = false; // 아이템 골드 변환 여부
                                          // 해당 아이템을 이미 습득했다면
-                    foreach (Items item in chad.inven)
+                    foreach (Items item in charactor.Inven)
                     {
                         // 플레이어의 장비 목록에 보상 장비가 있다면)
-                        if (item.itemName == rewardItem.itemName)
+                        if (item.ItemName == rewardItem.ItemName)
                         {
                             Console.WriteLine("해당 아이템을 이미 습득 하셨기 때문에 골드로 지급합니다.");
                             // 보상 장비의 상점 금액으로 지급
-                            chad.gold += item.price;
+                            charactor.Gold += item.Price;
                             cheack = true;
                         }
                     }
@@ -89,14 +87,14 @@ internal class QuestInfo : MenuHandler
                     {
                         foreach(Items items in shopitems)
                         {
-                            if(items.itemName == rewardItem.itemName)
+                            if(items.ItemName == rewardItem.ItemName)
                             {
                                 // 플레이어 장비에 아이템 추가
-                                rewardItem.isPurchase = true;
-                                chad.inven.Add(rewardItem);
+                                rewardItem.IsPurchase = true;
+                                charactor.Inven.Add(rewardItem);
 
                                 // 상점에서 해당 아이템 구매 완료로 변경
-                                items.isPurchase = true;
+                                items.IsPurchase = true;
                             }
                         }
                     }
@@ -128,7 +126,7 @@ internal class QuestInfo : MenuHandler
         }
     }
 
-    public void QuestClear(Charactors chad)
+    public void QuestClear(Charactors _charactor)
     {
         // 최대 횟수가 0이 아니고 currentCount가 maxCount가 아니라면
         if(maxCount <= currentCount)
@@ -136,14 +134,14 @@ internal class QuestInfo : MenuHandler
             clearCheak = true;
         }
         // 무기와 방어구를 모두 장착 중이라면
-        else if (chad.weapon != null && chad.armor != null)
+        else if (_charactor.Weapon != null && _charactor.Armor != null)
         {
-            if(chad.weapon.isEquiped && chad.armor.isEquiped)
+            if(_charactor.Weapon.IsEquiped && _charactor.Armor.IsEquiped)
             {
                 clearCheak = true;
             }
         }
-        else if (chad.attack + chad.plusAttack >= def && chad.defend + chad.plusDefend >= def)
+        else if (_charactor.Attack + _charactor.PlusAttack >= def && _charactor.Defend + _charactor.PlusDefend >= def)
         {
             clearCheak = true;
         }
