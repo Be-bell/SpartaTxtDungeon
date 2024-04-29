@@ -74,6 +74,7 @@ namespace Sparta2weekProject.Menu
             }
         }
 
+        public List<QuestInfo> RemoveQuest(List<QuestInfo> _quests)
         {
             // 순서
             int count = 0;
@@ -94,7 +95,7 @@ namespace Sparta2weekProject.Menu
         // 퀘스트 수락
         public void AcceptQuest(QuestInfo _quest, Charactors _charactor)
         {
-            Console.WriteLine($"퀘스트: {quest.questName}를 수락하셨습니다.\n");
+            Console.WriteLine($"퀘스트: {_quest.questName}를 수락하셨습니다.\n");
         }
     }
 }
