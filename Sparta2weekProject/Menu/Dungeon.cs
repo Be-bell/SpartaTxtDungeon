@@ -4,7 +4,7 @@ namespace Sparta2weekProject.Menu
 {
     internal class Dungeon : MenuHandler
     {
-        Charactors charactor;
+        Charactors chad;
         Random random;
 
         public Dungeon() 
@@ -13,9 +13,9 @@ namespace Sparta2weekProject.Menu
         }
 
         // 던전 입장 메뉴
-        public void DungeonMenu(Charactors _charactor)
+        public void DungeonMenu(Charactors _chad)
         {
-           charactor = _charactor;
+            chad = _chad;
 
             Console.WriteLine("던전입장");
             Console.WriteLine("이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.");
@@ -42,7 +42,7 @@ namespace Sparta2weekProject.Menu
         }
 
         // 던전 탐색
-        void DungeonExplore(DungeonLv _lv, int _recommandedDef)
+        void DungeonExplore(DungeonLv lv, int recommandedDef)
         {
             int getReward=0;
             int getExp = 0;
@@ -50,7 +50,7 @@ namespace Sparta2weekProject.Menu
             random = new Random();
 
             // 난이도에 따른 보상
-            switch (_lv)
+            switch (lv)
             {
                 case DungeonLv.쉬움:
                     getReward = 1000;
@@ -86,7 +86,7 @@ namespace Sparta2weekProject.Menu
                 //공략 성공
                 Console.WriteLine("던전 클리어");
                 Console.WriteLine("축하합니다!!");
-                Console.WriteLine($"던전 : {_lv} 을 클리어 했습니다.\n");
+                Console.WriteLine($"던전 : {lv} 을 클리어 했습니다.\n");
             }
 
             // 보상 수령 및 hp 감소

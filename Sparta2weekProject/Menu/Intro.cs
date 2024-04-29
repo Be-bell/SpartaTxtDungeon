@@ -12,25 +12,27 @@ namespace Sparta2weekProject.Menu
         Dungeon dungeon;
         Spa spa;
         DataManager dataManager;
-        Charactors charactor;
+        Charactors chad;
+        Quest quest;
 
         bool isGameEnd = true;
 
         public Intro()
         {
             dataManager = DataManager.getInstnace();
-            menu = 6;
+            menu = 7;
             status = new Status();
             store = new Store();
             dungeon = new Dungeon();
             spa = new Spa();
+            quest = new Quest();
         }
 
         // 게임 스타트
         public void GameStart()
         {
-            charactor = dataManager.LoadCharactorFromJson();
-            if(charactor == null )
+            chad = dataManager.LoadCharactorFromJson();
+            if(chad == null )
             {
                 MakeCharactor();
             }
@@ -93,6 +95,7 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine("4. 던전입장");
             Console.WriteLine("5. 온천 : 휴식하기");
             Console.WriteLine("6. 저장하기");
+            Console.WriteLine("7. 퀘스트");
             Console.WriteLine("");
             Console.WriteLine("0. 게임종료");
             Console.WriteLine("");
@@ -106,22 +109,25 @@ namespace Sparta2weekProject.Menu
                     isGameEnd = false;
                     return;
                 case 1:
-                    status.StatusMenu(charactor);
+                    status.StatusMenu(chad);
                     break;
                 case 2:
-                    inventory.InvenMenu(charactor);
+                    inventory.InvenMenu(chad);
                     break;
                 case 3:
-                    store.StoreMenu(charactor);
+                    store.StoreMenu(chad);
                     break;
                 case 4:
-                    dungeon.DungeonMenu(charactor);
+                    dungeon.DungeonMenu(chad);
                     break;
                 case 5:
-                    spa.SpaMenu(charactor);
+                    spa.SpaMenu(chad);
                     break;
                 case 6:
-                    dataManager.SaveCharactorToJson(charactor);
+                    dataManager.SaveCharactorToJson(chad);
+                    break;
+                case 7:
+                    quest.ShowQusts(chad, store.ItemList);
                     break;
             }
         }

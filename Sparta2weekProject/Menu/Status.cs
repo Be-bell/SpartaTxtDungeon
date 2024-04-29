@@ -5,14 +5,13 @@ namespace Sparta2weekProject.Menu
     internal class Status : MenuHandler
     {
         Charactors charactor;
-
         public Status()
         {
             menu = 0;
         }
 
         // 스탯창 메뉴
-        public void StatusMenu(Charactors _charactor)
+        public void StatusMenu(Charactors chad)
         {
             charactor = _charactor;
             string plusAttackStr = charactor.Weapon != null ? $"(+ {charactor.PlusAttack})" : "";

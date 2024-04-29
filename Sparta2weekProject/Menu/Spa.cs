@@ -4,16 +4,16 @@ namespace Sparta2weekProject.Menu
 {
     internal class Spa : MenuHandler
     {
-        Charactors charactor;
+        Charactors chad;
 
         public Spa()
         {
             menu = 1;
         }
 
-        public void SpaMenu(Charactors _charactor)
+        public void SpaMenu(Charactors _chad)
         {
-            charactor = _charactor;
+            chad = _chad;
             Console.WriteLine("온천 : 휴식하기");
             Console.WriteLine($"500 G 를 내면 체력을 회복할 수 있습니다. (보유 골드 : {charactor.Gold} G)\n");
 

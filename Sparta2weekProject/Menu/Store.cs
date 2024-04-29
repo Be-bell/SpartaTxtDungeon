@@ -21,19 +21,19 @@ namespace Sparta2weekProject.Menu
             sword3 = new UltraSword();
             armor1 = new Armor();
             armor2 = new PlateArmor();
-            itemList = new List<Items>();
+            ItemList = new List<Items>();
 
-            itemList.Add(sword1);
-            itemList.Add(sword2);
-            itemList.Add(sword3);
-            itemList.Add(armor1);
-            itemList.Add(armor2);
+            ItemList.Add(sword1);
+            ItemList.Add(sword2);
+            ItemList.Add(sword3);
+            ItemList.Add(armor1);
+            ItemList.Add(armor2);
         }
 
         // 상점 기본메뉴
-        public void StoreMenu(Charactors _charactor)
+        public void StoreMenu(Charactors _chad)
         {
-            charactor = _charactor;
+            chad = _chad;
             Console.WriteLine("상점");
             Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.\n");
             Console.WriteLine("[보유 골드]");
@@ -41,9 +41,9 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine("[아이템 목록]");
 
             // Item리스트 띄우기.
-            foreach(Items item in itemList)
+            foreach(Items item in ItemList)
             {
-                string purchase = item.IsPurchase ? "구매완료" : item.Price.ToString() + " G";
+                string purchase = item.isPurchase ? "구매완료" : item.price.ToString() + " G";
                 Console.WriteLine("- " + item.ItemInfo(item) + " | " + purchase);
             }
 
@@ -76,20 +76,20 @@ namespace Sparta2weekProject.Menu
                 Console.WriteLine("[아이템 목록]");
 
                 // 아이템 리스트
-                for (int i = 1; i <= itemList.Count; i++)
+                for (int i = 1; i <= ItemList.Count; i++)
                 {
-                    Items item = itemList[i - 1];
-                    string purchase = item.IsPurchase ? "구매완료" : item.Price.ToString() + " G";
+                    Items item = ItemList[i - 1];
+                    string purchase = item.isPurchase ? "구매완료" : item.price.ToString() + " G";
                     Console.WriteLine("- " + i + " " + item.ItemInfo(item) + " | " + purchase);
                 }
 
                 Console.WriteLine("\n0. 나가기\n");
 
                 // 선택에 따른 로직
-                choice = base.Choice(itemList.Count, true);
+                choice = base.Choice(ItemList.Count, true);
                 if (choice == 0)
                 {
-                    StoreMenu(charactor);
+                    StoreMenu(chad);
                     return;
                 }
 
@@ -101,7 +101,7 @@ namespace Sparta2weekProject.Menu
                     charactor.Inven.Add(buyItem);
                     Console.WriteLine("\n구매를 완료하였습니다.\n");
                 }
-                else if (buyItem.IsPurchase)
+                else if (buyItem.isPurchase)
                 {
                     Console.WriteLine("\n이미 구매한 상품입니다.\n");
                 }
@@ -129,8 +129,8 @@ namespace Sparta2weekProject.Menu
                 for (int j = 1; j <= inven.Count; j++)
                 {
                     Items item = inven[j - 1];
-                    string equip = item.IsEquiped ? " [E] " : "";
-                    Console.WriteLine("- " + j + equip + item.ItemInfo(item) + " | " + "판매 가격 : " + (int)item.Price * 0.85f);
+                    string equip = item.isEquiped ? " [E] " : "";
+                    Console.WriteLine("- " + j + equip + item.ItemInfo(item) + " | " + "판매 가격 : " + (int)item.price * 0.85f);
                 }
 
                 Console.WriteLine("\n0. 나가기\n");
@@ -139,7 +139,7 @@ namespace Sparta2weekProject.Menu
                 choice = base.Choice(inven.Count, true);
                 if (choice == 0)
                 {
-                    StoreMenu(charactor);
+                    StoreMenu(chad);
                     return;
                 }
                     
@@ -147,7 +147,7 @@ namespace Sparta2weekProject.Menu
                 Items sellItem = charactor.Inven[choice - 1];
                 if (sellItem.IsEquiped)
                 {
-                    switch (sellItem.Type)
+                    switch (sellItem.type)
                     {
                         case ItemType.무기:
                             charactor.PlusAttack -= sellItem.ItemState;

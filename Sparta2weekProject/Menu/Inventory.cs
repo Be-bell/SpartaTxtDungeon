@@ -4,7 +4,7 @@ namespace Sparta2weekProject.Menu
 {
     internal class Inventory : MenuHandler
     {
-        Charactors? charactor;
+        Charactors? chad;
         List<Items> inven;
 
         public Inventory(List<Items> _inven)
@@ -14,16 +14,16 @@ namespace Sparta2weekProject.Menu
         }
 
         // 인벤토리 메인메뉴
-        public void InvenMenu(Charactors _charactor)
+        public void InvenMenu(Charactors _chad)
         {
-            this.charactor = _charactor;
+            this.chad = _chad;
 
             Console.WriteLine("인벤토리");
             Console.WriteLine("보유 중인 아이템을 확인할 수 있습니다.\n");
             Console.WriteLine("[아이템 목록]");
             foreach(Items item in inven)
             {
-                string isEquip = item.IsEquiped ? "[E] " : "";
+                string isEquip = item.isEquiped ? "[E] " : "";
                 Console.WriteLine("- " + isEquip + item.ItemInfo(item));
             }
             Console.WriteLine("\n1. 장착 관리");
@@ -53,7 +53,7 @@ namespace Sparta2weekProject.Menu
                 for (int i = 1; i <= inven.Count; i++)
                 {
                     Items item = inven[i - 1];
-                    string isEquip = item.IsEquiped ? "[E]" : "";
+                    string isEquip = item.isEquiped ? "[E]" : "";
                     Console.WriteLine("- " + i + " " + isEquip + item.ItemInfo(item));
                 }
                 Console.WriteLine("\n0. 나가기\n");
@@ -62,13 +62,13 @@ namespace Sparta2weekProject.Menu
                 choice = base.Choice(inven.Count, true);
                 if (choice == 0)
                 {
-                    InvenMenu(charactor);
+                    InvenMenu(chad);
                     return;
                 }
 
                 Items choiceItem = inven[choice - 1];
-                choiceItem.IsEquiped = !choiceItem.IsEquiped;
-                switch (choiceItem.Type)
+                choiceItem.isEquiped = !choiceItem.isEquiped;
+                switch (choiceItem.type)
                 {
                     case ItemType.무기:
                         Items currentWeapon = charactor.Weapon;
