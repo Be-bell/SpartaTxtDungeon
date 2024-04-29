@@ -6,15 +6,14 @@ namespace Sparta2weekProject.Objects
     public class Charactors
     {
         // 각종 스텟
-        public int level { get; set; }
-        public Chad chad { get; protected set; }
-        public int attack { get; set; }
-        public int defend { get; set; }
-        public int health { get; set; }
+        public int level;
+        public Chad chad;
+        public int attack;
+        public int defend;
         public int fullHealth { get; protected set; }
-        public int gold { get; set; }
-        public int Exp { get; set; }
-
+        public int health;
+        public int gold;
+        public int exp;
         public int plusAttack = 0;
         public int plusDefend = 0;
 
@@ -30,7 +29,7 @@ namespace Sparta2weekProject.Objects
         {
             level = 1;
             gold = 1000;
-            Exp = 0;
+            exp = 0;
 
             switch (chad)
             {

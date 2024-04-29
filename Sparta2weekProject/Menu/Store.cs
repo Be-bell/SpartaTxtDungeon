@@ -4,9 +4,8 @@ namespace Sparta2weekProject.Menu
 {
     internal class Store : MenuHandler
     {
-        Charactors? chad;
-
-        public List<Items> ItemList;
+        Charactors? charactor;
+        public List<Items> itemList;
         Items sword1;
         Items sword2;
         Items sword3;

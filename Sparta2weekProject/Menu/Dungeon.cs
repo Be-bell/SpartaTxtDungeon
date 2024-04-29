@@ -90,8 +90,8 @@ namespace Sparta2weekProject.Menu
             }
 
             // 보상 수령 및 hp 감소
-            int nextExp = chad.Exp + getExp;
-            int level = chad.level;
+            int nextExp = charactor.exp + getExp;
+            int level = charactor.level;
             if(nextExp >= 200)
             {
                 Console.WriteLine("레벨업 하였습니다!\n");
@@ -103,12 +103,12 @@ namespace Sparta2weekProject.Menu
             float rewardPercent = (random.Next(chad.attack, (chad.attack*2) + 1) + 100) / 100.0f;
             int totalReward = (int) (getReward * rewardPercent);
             Console.WriteLine("[탐험 결과]");
-            Console.WriteLine($"체력 {chad.health} -> {chad.health - minusHp}");
-            Console.WriteLine($"Gold {chad.gold} -> {chad.gold + totalReward}");
-            Console.WriteLine($"레벨 {chad.level} -> {level}");
-            Console.WriteLine($"경험치 {chad.Exp} -> {nextExp}");
-            chad.health = chad.health - minusHp;
-            chad.gold = chad.gold + totalReward;
+            Console.WriteLine($"체력 {charactor.health} -> {charactor.health - minusHp}");
+            Console.WriteLine($"Gold {charactor.gold} -> {charactor.gold + totalReward}");
+            Console.WriteLine($"레벨 {charactor.level} -> {level}");
+            Console.WriteLine($"경험치 {charactor.exp} -> {nextExp}");
+            charactor.health = charactor.health - minusHp;
+            charactor.gold = charactor.gold + totalReward;
 
             // 캐릭터 사망
             if(chad.health == 0)
