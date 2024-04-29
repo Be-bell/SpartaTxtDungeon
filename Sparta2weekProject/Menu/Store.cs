@@ -5,7 +5,7 @@ namespace Sparta2weekProject.Menu
     internal class Store : MenuHandler
     {
         Charactors? charactor;
-        public List<Items> itemList;
+        public List<Items> ItemList;
         Items sword1;
         Items sword2;
         Items sword3;
@@ -31,9 +31,9 @@ namespace Sparta2weekProject.Menu
         }
 
         // 상점 기본메뉴
-        public void StoreMenu(Charactors _chad)
+        public void StoreMenu(Charactors _charactor)
         {
-            chad = _chad;
+            charactor = _charactor;
             Console.WriteLine("상점");
             Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.\n");
             Console.WriteLine("[보유 골드]");
@@ -43,7 +43,7 @@ namespace Sparta2weekProject.Menu
             // Item리스트 띄우기.
             foreach(Items item in ItemList)
             {
-                string purchase = item.isPurchase ? "구매완료" : item.price.ToString() + " G";
+                string purchase = item.IsPurchase ? "구매완료" : item.Price.ToString() + " G";
                 Console.WriteLine("- " + item.ItemInfo(item) + " | " + purchase);
             }
 
@@ -79,7 +79,7 @@ namespace Sparta2weekProject.Menu
                 for (int i = 1; i <= ItemList.Count; i++)
                 {
                     Items item = ItemList[i - 1];
-                    string purchase = item.isPurchase ? "구매완료" : item.price.ToString() + " G";
+                    string purchase = item.IsPurchase ? "구매완료" : item.Price.ToString() + " G";
                     Console.WriteLine("- " + i + " " + item.ItemInfo(item) + " | " + purchase);
                 }
 
@@ -89,11 +89,11 @@ namespace Sparta2weekProject.Menu
                 choice = base.Choice(ItemList.Count, true);
                 if (choice == 0)
                 {
-                    StoreMenu(chad);
+                    StoreMenu(charactor);
                     return;
                 }
 
-                Items buyItem = itemList[choice - 1];
+                Items buyItem = ItemList[choice - 1];
                 if (!buyItem.IsPurchase && charactor.Gold > buyItem.Price)
                 {
                     charactor.Gold -= buyItem.Price;
@@ -101,7 +101,7 @@ namespace Sparta2weekProject.Menu
                     charactor.Inven.Add(buyItem);
                     Console.WriteLine("\n구매를 완료하였습니다.\n");
                 }
-                else if (buyItem.isPurchase)
+                else if (buyItem.IsPurchase)
                 {
                     Console.WriteLine("\n이미 구매한 상품입니다.\n");
                 }
@@ -129,8 +129,8 @@ namespace Sparta2weekProject.Menu
                 for (int j = 1; j <= inven.Count; j++)
                 {
                     Items item = inven[j - 1];
-                    string equip = item.isEquiped ? " [E] " : "";
-                    Console.WriteLine("- " + j + equip + item.ItemInfo(item) + " | " + "판매 가격 : " + (int)item.price * 0.85f);
+                    string equip = item.IsEquiped ? " [E] " : "";
+                    Console.WriteLine("- " + j + equip + item.ItemInfo(item) + " | " + "판매 가격 : " + (int)item.Price * 0.85f);
                 }
 
                 Console.WriteLine("\n0. 나가기\n");
@@ -139,7 +139,7 @@ namespace Sparta2weekProject.Menu
                 choice = base.Choice(inven.Count, true);
                 if (choice == 0)
                 {
-                    StoreMenu(chad);
+                    StoreMenu(charactor);
                     return;
                 }
                     
@@ -147,7 +147,7 @@ namespace Sparta2weekProject.Menu
                 Items sellItem = charactor.Inven[choice - 1];
                 if (sellItem.IsEquiped)
                 {
-                    switch (sellItem.type)
+                    switch (sellItem.Type)
                     {
                         case ItemType.무기:
                             charactor.PlusAttack -= sellItem.ItemState;

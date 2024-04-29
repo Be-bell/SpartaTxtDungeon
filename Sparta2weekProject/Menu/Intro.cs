@@ -12,7 +12,7 @@ namespace Sparta2weekProject.Menu
         Dungeon dungeon;
         Spa spa;
         DataManager dataManager;
-        Charactors chad;
+        Charactors charactor;
         Quest quest;
 
         bool isGameEnd = true;
@@ -31,8 +31,8 @@ namespace Sparta2weekProject.Menu
         // 게임 스타트
         public void GameStart()
         {
-            chad = dataManager.LoadCharactorFromJson();
-            if(chad == null )
+            charactor = dataManager.LoadCharactorFromJson();
+            if(charactor == null )
             {
                 MakeCharactor();
             }
@@ -109,25 +109,25 @@ namespace Sparta2weekProject.Menu
                     isGameEnd = false;
                     return;
                 case 1:
-                    status.StatusMenu(chad);
+                    status.StatusMenu(charactor);
                     break;
                 case 2:
-                    inventory.InvenMenu(chad);
+                    inventory.InvenMenu(charactor);
                     break;
                 case 3:
-                    store.StoreMenu(chad);
+                    store.StoreMenu(charactor);
                     break;
                 case 4:
-                    dungeon.DungeonMenu(chad);
+                    dungeon.DungeonMenu(charactor);
                     break;
                 case 5:
-                    spa.SpaMenu(chad);
+                    spa.SpaMenu(charactor);
                     break;
                 case 6:
-                    dataManager.SaveCharactorToJson(chad);
+                    dataManager.SaveCharactorToJson(charactor);
                     break;
                 case 7:
-                    quest.ShowQusts(chad, store.ItemList);
+                    quest.ShowQusts(charactor, store.ItemList);
                     break;
             }
         }

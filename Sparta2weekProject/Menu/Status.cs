@@ -11,7 +11,7 @@ namespace Sparta2weekProject.Menu
         }
 
         // 스탯창 메뉴
-        public void StatusMenu(Charactors chad)
+        public void StatusMenu(Charactors _charactor)
         {
             charactor = _charactor;
             string plusAttackStr = charactor.Weapon != null ? $"(+ {charactor.PlusAttack})" : "";
