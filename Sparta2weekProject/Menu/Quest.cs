@@ -74,6 +74,7 @@ namespace Sparta2weekProject.Menu
             }
         }
 
+        // 퀘스트 갱신
         public List<QuestInfo> RemoveQuest(List<QuestInfo> quests)
         {
             // 순서
@@ -96,7 +97,6 @@ namespace Sparta2weekProject.Menu
         public void AcceptQuest(QuestInfo quest, Charactors chad)
         {
             Console.WriteLine($"퀘스트: {quest.questName}를 수락하셨습니다.\n");
-            chad.quests.Add(quest);
         }
     }
 }
