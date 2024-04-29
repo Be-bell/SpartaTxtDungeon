@@ -90,7 +90,7 @@ namespace Sparta2weekProject.Menu
             }
 
             // 보상 수령 및 hp 감소
-            int nextExp = charactor.Exp + getExp;
+            int nextExp = charactor.exp + getExp;
             int level = charactor.level;
             if(nextExp >= 200)
             {
@@ -106,7 +106,7 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine($"체력 {charactor.health} -> {charactor.health - minusHp}");
             Console.WriteLine($"Gold {charactor.gold} -> {charactor.gold + totalReward}");
             Console.WriteLine($"레벨 {charactor.level} -> {level}");
-            Console.WriteLine($"경험치 {charactor.Exp} -> {nextExp}");
+            Console.WriteLine($"경험치 {charactor.exp} -> {nextExp}");
             charactor.health = charactor.health - minusHp;
             charactor.gold = charactor.gold + totalReward;
 

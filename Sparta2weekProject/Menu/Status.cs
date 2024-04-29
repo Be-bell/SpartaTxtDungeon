@@ -25,7 +25,7 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine($"공격력 : {charactor.attack + charactor.plusAttack}" + " " + plusAttackStr);
             Console.WriteLine($"방어력 : {charactor.defend + charactor.plusDefend}" + " " + plusDefendStr);
             Console.WriteLine($"체  력 : {charactor.health} / {charactor.fullHealth}");
-            Console.WriteLine($"경험치 : {charactor.Exp}");
+            Console.WriteLine($"경험치 : {charactor.exp}");
             Console.WriteLine($" Gold  : {charactor.gold}\n");
             Console.WriteLine("0. 나가기\n");
 
