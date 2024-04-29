@@ -15,7 +15,7 @@ namespace Sparta2weekProject.Menu
         // 던전 입장 메뉴
         public void DungeonMenu(Charactors _charactor)
         {
-           charactor = _charactor;
+            charactor = _charactor;
 
             Console.WriteLine("던전입장");
             Console.WriteLine("이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.");
@@ -66,17 +66,17 @@ namespace Sparta2weekProject.Menu
                     break;
             }
 
-            minusHp = random.Next(20, 36) + (_recommandedDef - charactor.defend);
+            minusHp = random.Next(20, 36) + (_recommandedDef - charactor.Defend);
 
-            if ((_recommandedDef > charactor.defend && random.Next(1,100) > 25) || _recommandedDef > charactor.health)
+            if ((_recommandedDef > charactor.Defend && random.Next(1,100) > 25) || _recommandedDef > charactor.Health)
             {
                 //공략 실패
                 Console.WriteLine("던전 공략 실패");
                 Console.WriteLine("던전 공략에 실패했습니다.\n");
                 getReward = 0;
                 minusHp = 50;
-                if(minusHp > charactor.health)
-                    minusHp = charactor.health;
+                if(minusHp > charactor.Health)
+                    minusHp = charactor.Health;
                 getExp -= 10;
                 if(getExp < 0) 
                     getExp = 0;
@@ -91,27 +91,27 @@ namespace Sparta2weekProject.Menu
 
             // 보상 수령 및 hp 감소
             int nextExp = charactor.Exp + getExp;
-            int level = charactor.level;
+            int level = charactor.Level;
             if(nextExp >= 200)
             {
                 Console.WriteLine("레벨업 하였습니다!\n");
                 level++;
-                charactor.attack++;
-                charactor.defend += 2;
+                charactor.Attack++;
+                charactor.Defend += 2;
                 nextExp -= 200;
             }
-            float rewardPercent = (random.Next(charactor.attack, (charactor.attack*2) + 1) + 100) / 100.0f;
+            float rewardPercent = (random.Next(charactor.Attack, (charactor.Attack*2) + 1) + 100) / 100.0f;
             int totalReward = (int) (getReward * rewardPercent);
             Console.WriteLine("[탐험 결과]");
-            Console.WriteLine($"체력 {charactor.health} -> {charactor.health - minusHp}");
-            Console.WriteLine($"Gold {charactor.gold} -> {charactor.gold + totalReward}");
-            Console.WriteLine($"레벨 {charactor.level} -> {level}");
+            Console.WriteLine($"체력 {charactor.Health} -> {charactor.Health - minusHp}");
+            Console.WriteLine($"Gold {charactor.Gold} -> {charactor.Gold + totalReward}");
+            Console.WriteLine($"레벨 {charactor.Level} -> {level}");
             Console.WriteLine($"경험치 {charactor.Exp} -> {nextExp}");
-            charactor.health = charactor.health - minusHp;
-            charactor.gold = charactor.gold + totalReward;
+            charactor.Health = charactor.Health - minusHp;
+            charactor.Gold = charactor.Gold + totalReward;
 
             // 캐릭터 사망
-            if(charactor.health == 0)
+            if(charactor.Health == 0)
             {
                 Console.WriteLine("\n캐릭터가 사망했습니다.");
                 Console.WriteLine("게임 오버");
