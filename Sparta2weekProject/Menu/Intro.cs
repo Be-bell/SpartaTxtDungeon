@@ -34,8 +34,8 @@ namespace Sparta2weekProject.Menu
             {
                 MakeCharactor();
             }
-            inventory = new Inventory(charactor.inven);
-            while (charactor.health!=0 && isGameEnd)
+            inventory = new Inventory(charactor.Inven);
+            while (charactor.Health!=0 && isGameEnd)
             {
                 IntroMenu();
             }
@@ -63,7 +63,7 @@ namespace Sparta2weekProject.Menu
                         choice2 = base.Choice(2, false);
                         if (choice2 == 1)
                         {
-                            charactor = new Charactors(Chad.전사);
+                            charactor = new Charactors(CharactorClass.전사);
                             isCharactorMade = true;
                         }
                         break;
@@ -73,7 +73,7 @@ namespace Sparta2weekProject.Menu
                         choice2 = base.Choice(2, false);
                         if (choice2 == 1)
                         {
-                            charactor = new Charactors(Chad.궁수);
+                            charactor = new Charactors(CharactorClass.궁수);
                             isCharactorMade = true;
                         }
                         break;
