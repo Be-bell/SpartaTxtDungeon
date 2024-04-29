@@ -13,17 +13,19 @@ namespace Sparta2weekProject.Menu
         Spa spa;
         DataManager dataManager;
         Charactors chad;
+        Quest quest;
 
         bool isGameEnd = true;
 
         public Intro()
         {
             dataManager = DataManager.getInstnace();
-            menu = 6;
+            menu = 7;
             status = new Status();
             store = new Store();
             dungeon = new Dungeon();
             spa = new Spa();
+            quest = new Quest();
         }
 
         // 게임 스타트
@@ -93,6 +95,7 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine("4. 던전입장");
             Console.WriteLine("5. 온천 : 휴식하기");
             Console.WriteLine("6. 저장하기");
+            Console.WriteLine("7. 퀘스트");
             Console.WriteLine("");
             Console.WriteLine("0. 게임종료");
             Console.WriteLine("");
@@ -122,6 +125,9 @@ namespace Sparta2weekProject.Menu
                     break;
                 case 6:
                     dataManager.SaveCharactorToJson(chad);
+                    break;
+                case 7:
+                    quest.ShowQusts(chad, store.ItemList);
                     break;
             }
         }
