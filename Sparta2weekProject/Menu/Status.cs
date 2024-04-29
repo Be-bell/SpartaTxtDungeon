@@ -4,19 +4,16 @@ namespace Sparta2weekProject.Menu
 {
     internal class Status : MenuHandler
     {
-        Charactors charactor;
-
         public Status()
         {
             menu = 0;
         }
 
         // 스탯창 메뉴
-        public void StatusMenu(Charactors _charactor)
+        public void StatusMenu(Charactors chad)
         {
-            charactor = _charactor;
-            string plusAttackStr = charactor.weapon != null ? $"(+ {charactor.plusAttack})" : "";
-            string plusDefendStr = charactor.armor != null ? $"(+ {charactor.plusDefend})" : "";
+            string plusAttackStr = chad.weapon != null ? $"(+ {chad.plusAttack})" : "";
+            string plusDefendStr = chad.armor != null ? $"(+ {chad.plusDefend})" : "";
             
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");

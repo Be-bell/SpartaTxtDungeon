@@ -4,7 +4,7 @@ namespace Sparta2weekProject.Menu
 {
     internal class Dungeon : MenuHandler
     {
-        Charactors charactor;
+        Charactors chad;
         Random random;
 
         public Dungeon() 
@@ -13,9 +13,9 @@ namespace Sparta2weekProject.Menu
         }
 
         // 던전 입장 메뉴
-        public void DungeonMenu(Charactors _charactor)
+        public void DungeonMenu(Charactors _chad)
         {
-           charactor = _charactor;
+            chad = _chad;
 
             Console.WriteLine("던전입장");
             Console.WriteLine("이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.");
@@ -42,7 +42,7 @@ namespace Sparta2weekProject.Menu
         }
 
         // 던전 탐색
-        void DungeonExplore(DungeonLv _lv, int _recommandedDef)
+        void DungeonExplore(DungeonLv lv, int recommandedDef)
         {
             int getReward=0;
             int getExp = 0;
@@ -50,7 +50,7 @@ namespace Sparta2weekProject.Menu
             random = new Random();
 
             // 난이도에 따른 보상
-            switch (_lv)
+            switch (lv)
             {
                 case DungeonLv.쉬움:
                     getReward = 1000;
@@ -66,17 +66,17 @@ namespace Sparta2weekProject.Menu
                     break;
             }
 
-            minusHp = random.Next(20, 36) + (_recommandedDef - charactor.defend);
+            minusHp = random.Next(20, 36) + (recommandedDef - chad.defend);
 
-            if ((_recommandedDef > charactor.defend && random.Next(1,100) > 25) || _recommandedDef > charactor.health)
+            if ((recommandedDef > chad.defend && random.Next(1,100) > 25) || minusHp>chad.health)
             {
                 //공략 실패
                 Console.WriteLine("던전 공략 실패");
                 Console.WriteLine("던전 공략에 실패했습니다.\n");
                 getReward = 0;
                 minusHp = 50;
-                if(minusHp > charactor.health)
-                    minusHp = charactor.health;
+                if(minusHp > chad.health)
+                    minusHp = chad.health;
                 getExp -= 10;
                 if(getExp < 0) 
                     getExp = 0;
@@ -86,7 +86,7 @@ namespace Sparta2weekProject.Menu
                 //공략 성공
                 Console.WriteLine("던전 클리어");
                 Console.WriteLine("축하합니다!!");
-                Console.WriteLine($"던전 : {_lv} 을 클리어 했습니다.\n");
+                Console.WriteLine($"던전 : {lv} 을 클리어 했습니다.\n");
             }
 
             // 보상 수령 및 hp 감소
@@ -96,11 +96,11 @@ namespace Sparta2weekProject.Menu
             {
                 Console.WriteLine("레벨업 하였습니다!\n");
                 level++;
-                charactor.attack++;
-                charactor.defend += 2;
+                chad.attack++;
+                chad.defend += 2;
                 nextExp -= 200;
             }
-            float rewardPercent = (random.Next(charactor.attack, (charactor.attack*2) + 1) + 100) / 100.0f;
+            float rewardPercent = (random.Next(chad.attack, (chad.attack*2) + 1) + 100) / 100.0f;
             int totalReward = (int) (getReward * rewardPercent);
             Console.WriteLine("[탐험 결과]");
             Console.WriteLine($"체력 {charactor.health} -> {charactor.health - minusHp}");
@@ -111,7 +111,7 @@ namespace Sparta2weekProject.Menu
             charactor.gold = charactor.gold + totalReward;
 
             // 캐릭터 사망
-            if(charactor.health == 0)
+            if(chad.health == 0)
             {
                 Console.WriteLine("\n캐릭터가 사망했습니다.");
                 Console.WriteLine("게임 오버");

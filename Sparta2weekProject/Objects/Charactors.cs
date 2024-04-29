@@ -1,4 +1,6 @@
 ﻿
+using Sparta2weekProject.Menu;
+
 namespace Sparta2weekProject.Objects
 {
     public class Charactors
@@ -17,6 +19,9 @@ namespace Sparta2weekProject.Objects
 
         // 인벤토리
         public List<Items> inven;
+
+        // 퀘스트
+        internal List<QuestInfo> quests;
 
         // 장착 무기
         public Items? armor;
@@ -46,6 +51,7 @@ namespace Sparta2weekProject.Objects
             }
 
             inven = new List<Items>();
+            quests = new List<QuestInfo>();
         }
     }
 
