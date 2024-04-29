@@ -4,7 +4,7 @@ namespace Sparta2weekProject.Menu
 {
     internal class Dungeon : MenuHandler
     {
-        Charactors chad;
+        Charactors charactor;
         Random random;
 
         public Dungeon() 
@@ -13,9 +13,9 @@ namespace Sparta2weekProject.Menu
         }
 
         // 던전 입장 메뉴
-        public void DungeonMenu(Charactors _chad)
+        public void DungeonMenu(Charactors _charactor)
         {
-            chad = _chad;
+           charactor = _charactor;
 
             Console.WriteLine("던전입장");
             Console.WriteLine("이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.");
@@ -42,7 +42,7 @@ namespace Sparta2weekProject.Menu
         }
 
         // 던전 탐색
-        void DungeonExplore(DungeonLv lv, int recommandedDef)
+        void DungeonExplore(DungeonLv _lv, int _recommandedDef)
         {
             int getReward=0;
             int getExp = 0;
@@ -50,7 +50,7 @@ namespace Sparta2weekProject.Menu
             random = new Random();
 
             // 난이도에 따른 보상
-            switch (lv)
+            switch (_lv)
             {
                 case DungeonLv.쉬움:
                     getReward = 1000;
@@ -66,17 +66,17 @@ namespace Sparta2weekProject.Menu
                     break;
             }
 
-            minusHp = random.Next(20, 36) + (recommandedDef - chad.defend);
+            minusHp = random.Next(20, 36) + (_recommandedDef - charactor.defend);
 
-            if ((recommandedDef > chad.defend && random.Next(1,100) > 25) || minusHp>chad.health)
+            if ((_recommandedDef > charactor.defend && random.Next(1,100) > 25) || _recommandedDef > charactor.health)
             {
                 //공략 실패
                 Console.WriteLine("던전 공략 실패");
                 Console.WriteLine("던전 공략에 실패했습니다.\n");
                 getReward = 0;
                 minusHp = 50;
-                if(minusHp > chad.health)
-                    minusHp = chad.health;
+                if(minusHp > charactor.health)
+                    minusHp = charactor.health;
                 getExp -= 10;
                 if(getExp < 0) 
                     getExp = 0;
@@ -86,32 +86,32 @@ namespace Sparta2weekProject.Menu
                 //공략 성공
                 Console.WriteLine("던전 클리어");
                 Console.WriteLine("축하합니다!!");
-                Console.WriteLine($"던전 : {lv} 을 클리어 했습니다.\n");
+                Console.WriteLine($"던전 : {_lv} 을 클리어 했습니다.\n");
             }
 
             // 보상 수령 및 hp 감소
-            int nextExp = chad.Exp + getExp;
-            int level = chad.level;
+            int nextExp = charactor.Exp + getExp;
+            int level = charactor.level;
             if(nextExp >= 200)
             {
                 Console.WriteLine("레벨업 하였습니다!\n");
                 level++;
-                chad.attack++;
-                chad.defend += 2;
+                charactor.attack++;
+                charactor.defend += 2;
                 nextExp -= 200;
             }
-            float rewardPercent = (random.Next(chad.attack, (chad.attack*2) + 1) + 100) / 100.0f;
+            float rewardPercent = (random.Next(charactor.attack, (charactor.attack*2) + 1) + 100) / 100.0f;
             int totalReward = (int) (getReward * rewardPercent);
             Console.WriteLine("[탐험 결과]");
-            Console.WriteLine($"체력 {chad.health} -> {chad.health - minusHp}");
-            Console.WriteLine($"Gold {chad.gold} -> {chad.gold + totalReward}");
-            Console.WriteLine($"레벨 {chad.level} -> {level}");
-            Console.WriteLine($"경험치 {chad.Exp} -> {nextExp}");
-            chad.health = chad.health - minusHp;
-            chad.gold = chad.gold + totalReward;
+            Console.WriteLine($"체력 {charactor.health} -> {charactor.health - minusHp}");
+            Console.WriteLine($"Gold {charactor.gold} -> {charactor.gold + totalReward}");
+            Console.WriteLine($"레벨 {charactor.level} -> {level}");
+            Console.WriteLine($"경험치 {charactor.Exp} -> {nextExp}");
+            charactor.health = charactor.health - minusHp;
+            charactor.gold = charactor.gold + totalReward;
 
             // 캐릭터 사망
-            if(chad.health == 0)
+            if(charactor.health == 0)
             {
                 Console.WriteLine("\n캐릭터가 사망했습니다.");
                 Console.WriteLine("게임 오버");
