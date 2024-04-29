@@ -12,7 +12,7 @@ namespace Sparta2weekProject.Menu
         Dungeon dungeon;
         Spa spa;
         DataManager dataManager;
-        Charactors chad;
+        Charactors charactor;
 
         bool isGameEnd = true;
 
@@ -29,13 +29,13 @@ namespace Sparta2weekProject.Menu
         // 게임 스타트
         public void GameStart()
         {
-            chad = dataManager.LoadCharactorFromJson();
-            if(chad == null )
+            charactor = dataManager.LoadCharactorFromJson();
+            if(charactor == null )
             {
                 MakeCharactor();
             }
-            inventory = new Inventory(chad.inven);
-            while (chad.health!=0 && isGameEnd)
+            inventory = new Inventory(charactor.inven);
+            while (charactor.health!=0 && isGameEnd)
             {
                 IntroMenu();
             }
@@ -63,7 +63,7 @@ namespace Sparta2weekProject.Menu
                         choice2 = base.Choice(2, false);
                         if (choice2 == 1)
                         {
-                            chad = new Charactors(Chad.전사);
+                            charactor = new Charactors(Chad.전사);
                             isCharactorMade = true;
                         }
                         break;
@@ -73,7 +73,7 @@ namespace Sparta2weekProject.Menu
                         choice2 = base.Choice(2, false);
                         if (choice2 == 1)
                         {
-                            chad = new Charactors(Chad.궁수);
+                            charactor = new Charactors(Chad.궁수);
                             isCharactorMade = true;
                         }
                         break;
@@ -106,22 +106,22 @@ namespace Sparta2weekProject.Menu
                     isGameEnd = false;
                     return;
                 case 1:
-                    status.StatusMenu(chad);
+                    status.StatusMenu(charactor);
                     break;
                 case 2:
-                    inventory.InvenMenu(chad);
+                    inventory.InvenMenu(charactor);
                     break;
                 case 3:
-                    store.StoreMenu(chad);
+                    store.StoreMenu(charactor);
                     break;
                 case 4:
-                    dungeon.DungeonMenu(chad);
+                    dungeon.DungeonMenu(charactor);
                     break;
                 case 5:
-                    spa.SpaMenu(chad);
+                    spa.SpaMenu(charactor);
                     break;
                 case 6:
-                    dataManager.SaveCharactorToJson(chad);
+                    dataManager.SaveCharactorToJson(charactor);
                     break;
             }
         }

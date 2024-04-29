@@ -6,11 +6,11 @@ namespace Sparta2weekProject.Objects
     {
         public Sword()
         {
-            itemName = "쫄따구검";
-            type = ItemType.무기;
-            itemState = 1;
-            description = "쫄따구들만 쓰는 검입니다.";
-            price = 50;
+            ItemName = "쫄따구검";
+            Type = ItemType.무기;
+            ItemState = 1;
+            Description = "쫄따구들만 쓰는 검입니다.";
+            Price = 50;
         }
     }
 
@@ -18,10 +18,10 @@ namespace Sparta2weekProject.Objects
     {
         public SuperSword()
         {
-            itemName = "짱쌘검";
-            itemState = 5;
-            description = "짱쌥니다.";
-            price = 500;
+            ItemName = "짱쌘검";
+            ItemState = 5;
+            Description = "짱쌥니다.";
+            Price = 500;
         }
     }
 
@@ -29,10 +29,10 @@ namespace Sparta2weekProject.Objects
     {
         public UltraSword()
         {
-            itemName = "지존짱쌘검";
-            itemState = 8;
-            description = "지존짱쌥니다.";
-            price = 900;
+            ItemName = "지존짱쌘검";
+            ItemState = 8;
+            Description = "지존짱쌥니다.";
+            Price = 900;
         }
     }
 }
