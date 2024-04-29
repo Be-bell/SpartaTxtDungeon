@@ -5,7 +5,7 @@ namespace Sparta2weekProject.Menu
     internal class Store : MenuHandler
     {
         Charactors? charactor;
-        List<Items> itemList;
+        public List<Items> itemList;
         Items sword1;
         Items sword2;
         Items sword3;
