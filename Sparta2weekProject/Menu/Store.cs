@@ -6,7 +6,7 @@ namespace Sparta2weekProject.Menu
     {
         Charactors? chad;
 
-        public List<Items> ItemList;
+        List<Items> ItemList;
         Items sword1;
         Items sword2;
         Items sword3;
