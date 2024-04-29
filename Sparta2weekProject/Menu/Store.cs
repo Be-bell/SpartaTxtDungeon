@@ -21,13 +21,13 @@ namespace Sparta2weekProject.Menu
             sword3 = new UltraSword();
             armor1 = new Armor();
             armor2 = new PlateArmor();
-            ItemList = new List<Items>();
+            itemList = new List<Items>();
 
-            ItemList.Add(sword1);
-            ItemList.Add(sword2);
-            ItemList.Add(sword3);
-            ItemList.Add(armor1);
-            ItemList.Add(armor2);
+            itemList.Add(sword1);
+            itemList.Add(sword2);
+            itemList.Add(sword3);
+            itemList.Add(armor1);
+            itemList.Add(armor2);
         }
 
         // 상점 기본메뉴
@@ -41,7 +41,7 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine("[아이템 목록]");
 
             // Item리스트 띄우기.
-            foreach(Items item in ItemList)
+            foreach(Items item in itemList)
             {
                 string purchase = item.IsPurchase ? "구매완료" : item.Price.ToString() + " G";
                 Console.WriteLine("- " + item.ItemInfo(item) + " | " + purchase);
@@ -76,7 +76,7 @@ namespace Sparta2weekProject.Menu
                 Console.WriteLine("[아이템 목록]");
 
                 // 아이템 리스트
-                for (int i = 1; i <= ItemList.Count; i++)
+                for (int i = 1; i <= itemList.Count; i++)
                 {
                     Items item = ItemList[i - 1];
                     string purchase = item.IsPurchase ? "구매완료" : item.Price.ToString() + " G";
@@ -86,7 +86,7 @@ namespace Sparta2weekProject.Menu
                 Console.WriteLine("\n0. 나가기\n");
 
                 // 선택에 따른 로직
-                choice = base.Choice(ItemList.Count, true);
+                choice = base.Choice(itemList.Count, true);
                 if (choice == 0)
                 {
                     StoreMenu(charactor);
