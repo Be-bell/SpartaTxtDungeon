@@ -127,7 +127,7 @@ namespace Sparta2weekProject.Menu
                     dataManager.SaveCharactorToJson(chad);
                     break;
                 case 7:
-                    quest.ShowQusts(chad, store.ItemList);
+                    quest.ShowQusts(chad, store.itemList);
                     break;
             }
         }
