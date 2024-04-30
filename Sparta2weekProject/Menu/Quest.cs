@@ -20,6 +20,7 @@ namespace Sparta2weekProject.Menu
             QuestInfos.Add(equip);
             QuestInfos.Add(power);
         }
+        // ShowQuest를 Quest클래스에서 사용하기 위해서
         public Quest(List<QuestInfo> quests)
         {
             QuestInfos = quests;
@@ -30,9 +31,9 @@ namespace Sparta2weekProject.Menu
         {
             bool Restart = false;
             QuestInfos = RemoveQuest(QuestInfos);
-            int aa = QuestInfos.Count;
+            int questCount = QuestInfos.Count; // 현재 퀘스트 개수
             Console.WriteLine("Quest!!\n\n");
-            int count = 1; // 개수
+            int count = 1; // foreach 개수
             Console.WriteLine("0. 나가기");
             foreach (QuestInfo quest in QuestInfos)
             {
@@ -42,7 +43,7 @@ namespace Sparta2weekProject.Menu
                 count++;
             }
             Console.WriteLine("\n\n");
-            choice = base.Choice(aa, true);
+            choice = base.Choice(questCount, true);
             switch (choice)
             {
                 case 1:
