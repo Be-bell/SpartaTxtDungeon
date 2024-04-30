@@ -2,11 +2,11 @@
 
 namespace Sparta2weekProject.Objects
 {
-    public abstract class Skills : ISkill
+    public class Skills : ISkill
     {
-        protected int requiredMP;
-        protected string skillName;
-        protected string skillInfo;
+        public int requiredMP { get; protected set; }
+        public string skillName { get; protected set; }
+        public string skillInfo { get; protected set; }
 
         public string SkillInfo()
         {

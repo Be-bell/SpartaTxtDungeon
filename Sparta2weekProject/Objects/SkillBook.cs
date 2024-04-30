@@ -1,7 +1,7 @@
 ﻿
 namespace Sparta2weekProject.Objects
 {
-    public abstract class SkillBook
+    public class SkillBook
     {
         public Skills skill_1 { get; protected set; }
         public Skills skill_2 { get; protected set; }
