@@ -94,7 +94,7 @@ namespace Sparta2weekProject.Menu
                 }
 
                 Items buyItem = ItemList[choice - 1];
-                if (!buyItem.IsPurchase && charactor.Gold > buyItem.Price)
+                if (!buyItem.IsPurchase && charactor.Gold >= buyItem.Price)
                 {
                     charactor.Gold -= buyItem.Price;
                     buyItem.IsPurchase = true;
@@ -130,7 +130,7 @@ namespace Sparta2weekProject.Menu
                 {
                     Items item = inven[j - 1];
                     string equip = item.IsEquiped ? " [E] " : "";
-                    Console.WriteLine("- " + j + equip + item.ItemInfo(item) + " | " + "판매 가격 : " + (int)item.Price * 0.85f);
+                    Console.WriteLine("- " + j + equip + item.ItemInfo(item) + " | " + "판매 가격 : " + (int) (item.Price * 0.85f));
                 }
 
                 Console.WriteLine("\n0. 나가기\n");
@@ -150,14 +150,18 @@ namespace Sparta2weekProject.Menu
                     switch (sellItem.Type)
                     {
                         case ItemType.무기:
+                            charactor.Weapon = null;
                             charactor.PlusAttack -= sellItem.ItemState;
                             break;
                         case ItemType.방어구:
+                            charactor.Armor = null;
                             charactor.PlusDefend -= sellItem.ItemState;
                             break;
                     }
                 }
-                charactor.Gold += (int)(sellItem.Price * 0.85f);
+                sellItem.IsEquiped = !sellItem.IsEquiped;
+                sellItem.IsPurchase = !sellItem.IsPurchase;
+                charactor.Gold += (int) (sellItem.Price * 0.85f);
                 charactor.Inven.Remove(sellItem);
                 Console.WriteLine("\n판매가 완료되었습니다.\n");
             }
