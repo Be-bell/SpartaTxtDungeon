@@ -32,12 +32,36 @@ namespace Sparta2weekProject.Menu
         // 게임 스타트
         public void GameStart()
         {
-            charactor = dataManager.LoadCharactorFromJson();
-            if(charactor == null )
+            Console.WriteLine("1. 새로시작");
+            Console.WriteLine("2. 이어하기");
+            choice = base.Choice(3, false);
+            switch (choice)
             {
-                MakeCharactor();
+                case 1:
+                    // 캐릭터 생성
+                    MakeCharactor();
+                    // 생성한 캐릭터 정보 저장
+                    dataManager.SaveCharactorToJson(charactor);
+                    break;
+
+                case 2:
+                    // 캐릭터 정보 받아오기
+                    charactor = dataManager.LoadCharactorFromJson();
+                    // 캐릭터 정보가 없다면
+                    if (charactor == null)
+                    {
+                        Console.WriteLine("\n저장된 정보가 없어 새로 시작합니다.\n");
+                        MakeCharactor();
+                    }
+                    else
+                    {
+                        // 인벤토리 정보 받기
+                        inventory = new Inventory(charactor.Inven);
+                    }
+                    break;
             }
-            inventory = new Inventory(charactor.Inven);
+
+            // 게임 진행
             while (charactor.Health!=0 && isGameEnd)
             {
                 IntroMenu();
@@ -81,10 +105,8 @@ namespace Sparta2weekProject.Menu
                         }
                         break;
                 }
-
-                charactor.NameCreate();
-
             }
+            charactor.NameCreate();
         }
 
         // 인트로(마을)
