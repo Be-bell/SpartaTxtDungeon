@@ -8,7 +8,6 @@ namespace Sparta2weekProject.Menu
     {
         Charactors charactor;
         Random random;
-        Status status = new Status();
         int floor = 1; // 현재 던전 층
 
         public Dungeon() 
