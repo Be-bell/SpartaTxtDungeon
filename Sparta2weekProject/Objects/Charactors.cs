@@ -27,6 +27,9 @@ namespace Sparta2weekProject.Objects
         public Items? Armor;
         public Items? Weapon;
 
+        // 스킬북
+        public SkillBook SkillBook;
+
         // 직업 생성 시 lv. 1, gold 1000부터 시작, 인벤토리 제작.
         public Charactors(CharactorClass _charactorClass)
         {
@@ -42,12 +45,14 @@ namespace Sparta2weekProject.Objects
                     Defend = 20;
                     FullHealth = 150;
                     Health = 150;
+                    SkillBook = new WarriorSkillBook();
                     break;
                 case CharactorClass.궁수:
                     Attack = 15;
                     Defend = 15;
                     FullHealth = 100;
                     Health = 100;
+                    SkillBook = new ArchorSkillBook();
                     break;
             }
 
@@ -65,6 +70,11 @@ namespace Sparta2weekProject.Objects
         public void ItemUse(Items _item)
         {
             
+        }
+
+        public void SkillUse(Skills _skill)
+        {
+
         }
         
     }

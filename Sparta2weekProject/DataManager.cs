@@ -64,7 +64,6 @@ namespace Sparta2weekProject
                 Console.WriteLine("저장된 파일이 없습니다.");
                 Console.WriteLine("캐릭터 생성을 시작합니다.");
                 Console.WriteLine("");
-                Console.Write("아무키나 입력하세요.");
                 Console.ReadLine();
                 Console.Clear();
                 return null;
