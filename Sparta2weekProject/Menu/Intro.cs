@@ -53,14 +53,10 @@ namespace Sparta2weekProject.Menu
                         Console.WriteLine("\n저장된 정보가 없어 새로 시작합니다.\n");
                         MakeCharactor();
                     }
-                    else
-                    {
-                        // 인벤토리 정보 받기
-                        inventory = new Inventory(charactor.Inven);
-                    }
                     break;
             }
-
+            // 인벤토리 정보 받기
+            inventory = new Inventory(charactor.Inven);
             // 게임 진행
             while (charactor.Health!=0 && isGameEnd)
             {
