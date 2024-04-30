@@ -1,4 +1,6 @@
 ﻿using Sparta2weekProject.Objects;
+using System.Drawing;
+using System.Reflection.Emit;
 
 namespace Sparta2weekProject.Menu
 {
@@ -6,6 +8,8 @@ namespace Sparta2weekProject.Menu
     {
         Charactors charactor;
         Random random;
+        Status status = new Status();
+        int floor = 1; // 현재 던전 층
 
         public Dungeon() 
         {
@@ -15,6 +19,7 @@ namespace Sparta2weekProject.Menu
         // 던전 입장 메뉴
         public void DungeonMenu(Charactors _charactor)
         {
+            floor = 1; // 층 초기화
             charactor = _charactor;
 
             Console.WriteLine("던전입장");
@@ -30,15 +35,82 @@ namespace Sparta2weekProject.Menu
             switch(choice)
             {
                 case 1:
-                    DungeonExplore(DungeonLv.쉬움, 10);
+                    DungeonSelect(DungeonLv.쉬움, 10);
+                    //DungeonExplore(DungeonLv.쉬움, 10);
                     break;
                 case 2:
-                    DungeonExplore(DungeonLv.일반, 25);
+                    DungeonSelect(DungeonLv.일반, 25);
+                    //DungeonExplore(DungeonLv.일반, 25);
                     break;
                 case 3:
-                    DungeonExplore(DungeonLv.어려움, 45);
+                    DungeonSelect(DungeonLv.어려움, 45);
+                    //DungeonExplore(DungeonLv.어려움, 45);
                     break;
             }
+        }
+
+        // 던전 진행 선택
+        void DungeonSelect(DungeonLv level, int def)
+        {
+            Console.WriteLine($"{level}던전에 들어오셨습니다.\n");
+            Console.WriteLine("0. 던전 나가기");
+            Console.WriteLine("1. 상태 보기");
+            Console.WriteLine($"2. 전투 시작 (현재 진행: {floor}층)\n");
+
+            // 선택 시 로직
+            choice = base.Choice(menu, true);
+            switch (choice)
+            {
+                case 0:
+                    Console.WriteLine("던전을 나갑니다.\n");
+                    break;
+                case 1:
+                    // 상태 보기
+                    Status status = new Status();
+                    status.StatusMenu(charactor);
+                    DungeonSelect(level, def);
+                    break;
+                case 2:
+                    // 던전 입장
+                    //DungeonInvite(floor, level);
+                    DungeonExplore(level, def);
+                    break;
+            }
+        }
+
+        // 던전 입장
+        void DungeonInvite(int floor, DungeonLv level)
+        {
+            // 몬스터 개수
+            int monsterCount;
+            // 강한 몬스터
+            int monsterAttack;
+            // int monsterDeffend = random.Next();
+
+            // 난이도에 따른 보상
+            switch (level)
+            {
+                case DungeonLv.쉬움:
+                    monsterCount = random.Next(1, 2);
+                    break;
+                case DungeonLv.일반:
+                    monsterCount = random.Next(1, 4);
+                    monsterAttack = random.Next(0, 3);
+                    break;
+                case DungeonLv.어려움:
+                    monsterCount = random.Next(2, 4);
+                    monsterAttack = random.Next(3, 7);
+                    break;
+            }
+
+            // 몬스터 소환 및 값 공격력 변경
+            // 전투 시작
+
+            // 보상 획득
+
+
+            // 전투 끝으로 층 상승
+            floor++;
         }
 
         // 던전 탐색
@@ -100,6 +172,7 @@ namespace Sparta2weekProject.Menu
                 charactor.Defend += 2;
                 nextExp -= 200;
             }
+
             float rewardPercent = (random.Next(charactor.Attack, (charactor.Attack*2) + 1) + 100) / 100.0f;
             int totalReward = (int) (getReward * rewardPercent);
             Console.WriteLine("[탐험 결과]");
