@@ -1,4 +1,5 @@
 ﻿using Sparta2weekProject.Objects;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Sparta2weekProject.Menu
@@ -80,7 +81,9 @@ namespace Sparta2weekProject.Menu
                         }
                         break;
                 }
-                
+
+                charactor.NameCreate();
+
             }
         }
 
