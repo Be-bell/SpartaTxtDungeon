@@ -5,6 +5,9 @@ namespace Sparta2weekProject.Objects
 {
     public class Charactors
     {
+        // 이름
+        public string Name;
+
         // 각종 스텟
         public int Level;
         public CharactorClass Class;
@@ -27,6 +30,7 @@ namespace Sparta2weekProject.Objects
         // 직업 생성 시 lv. 1, gold 1000부터 시작, 인벤토리 제작.
         public Charactors(CharactorClass _charactorClass)
         {
+            Name = NameCreate();
             Class = _charactorClass;
             Level = 1;
             Gold = 1000;
@@ -51,6 +55,14 @@ namespace Sparta2weekProject.Objects
             Inven = new List<Items>();
         }
         
+        public string NameCreate()
+        {
+            Console.Write("이름을 입력해주세요: ");
+            string name = Console.ReadLine();
+            Console.WriteLine();
+            return name;
+        }
+
         public void ItemUse(Items _item)
         {
             

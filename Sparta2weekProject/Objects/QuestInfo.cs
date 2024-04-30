@@ -193,5 +193,5 @@ internal class PowerUp : QuestInfo
         clearGold = 30;
         atk = 13;
         def = 23;
-}
+    }
 }
