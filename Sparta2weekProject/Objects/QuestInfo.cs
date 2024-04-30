@@ -24,8 +24,8 @@ internal class QuestInfo : MenuHandler
     public bool access = false; // 수락 여부
     public bool rewardCheck = false; // 보상 획득 여부
 
-	// 퀘스트 정보 보여주기
-	public void QuestShow(Charactors charactor, List<Items> shopitems)
+    // 퀘스트 정보 보여주기
+    public bool QuestShow(Charactors charactor, List<Items> shopitems, bool Restart)
 	{
         // 퀘스트 클리어 여부 확인
         QuestClear(charactor);
@@ -60,7 +60,11 @@ internal class QuestInfo : MenuHandler
             Console.WriteLine("1. 보상 받기");
             // 선택에 따른 로직
             choice = base.Choice(1, true);
-            if (choice == 1)
+            if (choice == 0)
+            {
+                Restart = true;
+            }
+            else if (choice == 1)
             {
                 Console.WriteLine("퀘스트 보상을 획득하셨습니다.");
                 rewardCheck = true;
@@ -107,6 +111,7 @@ internal class QuestInfo : MenuHandler
             Console.WriteLine("0. 돌아가기");
             // 선택에 따른 로직
             choice = base.Choice(1, true);
+            Restart = true;
         }
 		else
 		{
@@ -116,14 +121,16 @@ internal class QuestInfo : MenuHandler
             choice = base.Choice(2, true);
             switch (choice)
             {
+                case 0:
+                    Restart = true;
+                    access = false;
+                    break;
                 case 1:
                     access = true;
                     break;
-                case 2:
-                    access = false;
-                    break;
             }
         }
+        return Restart;
     }
 
     public void QuestClear(Charactors _charactor)
