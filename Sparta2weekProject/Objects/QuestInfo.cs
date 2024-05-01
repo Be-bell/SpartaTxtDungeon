@@ -24,25 +24,16 @@ internal class QuestInfo : MenuHandler
     public bool access = false; // 수락 여부
     public bool rewardCheck = false; // 보상 획득 여부
 
-	// 퀘스트 정보 보여주기
-	public void QuestShow(Charactors charactor, List<Items> shopitems)
+    // 퀘스트 정보 보여주기
+    public bool QuestShow(Charactors charactor, List<Items> shopitems, bool Restart)
 	{
         // 퀘스트 클리어 여부 확인
         QuestClear(charactor);
         // 해당 퀘스트의 정보 출력
         Console.WriteLine("Quest");
 		Console.WriteLine($"{questName}\n\n{questDescription}\n");
-		// 목표 횟수가 있는 퀘스트
-		if (maxCount != 0)
-		{
-            Console.WriteLine($"- {questGoal}");
-        }
-		// 목표 횟수가 없는 퀘스트
-		else
-		{
-            Console.WriteLine($"- {questGoal}");
-        }
-		
+        Console.WriteLine($"- {questGoal}");
+
         Console.WriteLine("\n- 보상 -");
 		// 보상 아이템이 있다면
 		if (rewardItem != null)
@@ -60,7 +51,11 @@ internal class QuestInfo : MenuHandler
             Console.WriteLine("1. 보상 받기");
             // 선택에 따른 로직
             choice = base.Choice(1, true);
-            if (choice == 1)
+            if (choice == 0)
+            {
+                Restart = true;
+            }
+            else if (choice == 1)
             {
                 Console.WriteLine("퀘스트 보상을 획득하셨습니다.");
                 rewardCheck = true;
@@ -107,6 +102,7 @@ internal class QuestInfo : MenuHandler
             Console.WriteLine("0. 돌아가기");
             // 선택에 따른 로직
             choice = base.Choice(1, true);
+            Restart = true;
         }
 		else
 		{
@@ -116,39 +112,22 @@ internal class QuestInfo : MenuHandler
             choice = base.Choice(2, true);
             switch (choice)
             {
+                case 0:
+                    Restart = true;
+                    access = false;
+                    break;
                 case 1:
                     access = true;
                     break;
-                case 2:
-                    access = false;
-                    break;
             }
         }
+        return Restart;
     }
 
-    public void QuestClear(Charactors _charactor)
+    // 퀘스트마다 클리어 조건을 각 클래스 별로 상속으로 설정함
+    public virtual void QuestClear(Charactors _charactor)
     {
-        // 최대 횟수가 0이 아니고 currentCount가 maxCount가 아니라면
-        if(maxCount <= currentCount)
-        {
-            clearCheak = true;
-        }
-        // 무기와 방어구를 모두 장착 중이라면
-        else if (_charactor.Weapon != null && _charactor.Armor != null)
-        {
-            if(_charactor.Weapon.IsEquiped && _charactor.Armor.IsEquiped)
-            {
-                clearCheak = true;
-            }
-        }
-        else if (_charactor.Attack + _charactor.PlusAttack >= def && _charactor.Defend + _charactor.PlusDefend >= def)
-        {
-            clearCheak = true;
-        }
-        else
-        {
-            clearCheak = false;
-        }
+
     }
 }
 
@@ -166,6 +145,15 @@ internal class Hunting : QuestInfo
         rewardItem = new Armor(); // 방어구
         clearGold = 5;
     }
+
+    public override void QuestClear(Charactors _charactor)
+    {
+        // 최대 횟수가 0이 아니고 currentCount가 maxCount가 아니라면
+        if (maxCount <= currentCount)
+        {
+            clearCheak = true;
+        }
+    }
 }
 
 // 장비를 장착하기
@@ -176,9 +164,19 @@ internal class EquipItem : QuestInfo
         questName = "장비를 장착해보자";
 		questDescription = "자네 신참 모험가가 아닌가? \n모험을 떠나기전에 장비를 구매해서 한 번 장착해보겠는가?";
         questGoal = string.Format($"무기와 방어구를 모두 장착하기");
-        // rewardItem; // 보상 아이템
         clearGold = 10;
 	}
+
+    public override void QuestClear(Charactors _charactor)
+    {
+        if (_charactor.Weapon != null && _charactor.Armor != null)
+        {
+            if (_charactor.Weapon.IsEquiped && _charactor.Armor.IsEquiped)
+            {
+                clearCheak = true;
+            }
+        }
+    }
 }
 
 // 더 강해지기
@@ -186,12 +184,19 @@ internal class PowerUp : QuestInfo
 {
 	public PowerUp()
 	{
-        questName = "더욱 더 강해지기";
-        questDescription = "당신 아직 높은 던전에 가기에는 미숙한 거 같군";
-        questGoal = string.Format($"공격력 20이상 / 방어력 25이상 ");
-        // rewardItem; // 보상 아이템
-        clearGold = 30;
         atk = 13;
         def = 23;
-}
+        questName = "더욱 더 강해지기";
+        questDescription = "당신 아직 높은 던전에 가기에는 미숙한 거 같군";
+        questGoal = string.Format($"공격력 {atk}이상 / 방어력 {def}이상 ");
+        clearGold = 30;
+    }
+
+    public override void QuestClear(Charactors _charactor)
+    {
+        if (_charactor.Attack + _charactor.PlusAttack >= def && _charactor.Defend + _charactor.PlusDefend >= def)
+        {
+            clearCheak = true;
+        }
+    }
 }

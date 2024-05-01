@@ -19,6 +19,7 @@ namespace Sparta2weekProject.Menu
             
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");
+            Console.WriteLine($"이  름 : {charactor.Name}");
             Console.WriteLine("Lv. {0}", charactor.Level.ToString("D2"));
             Console.WriteLine($"Chad ( {charactor.Class} )");
             Console.WriteLine($"공격력 : {charactor.Attack + charactor.PlusAttack}" + " " + plusAttackStr);
@@ -31,6 +32,5 @@ namespace Sparta2weekProject.Menu
             choice = base.Choice(menu, true);
 
         }
-
     }
 }

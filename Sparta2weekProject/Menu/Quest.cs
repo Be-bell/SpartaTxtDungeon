@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Sparta2weekProject.Interfaces;
 using Sparta2weekProject.Objects;
 
@@ -8,8 +9,6 @@ namespace Sparta2weekProject.Menu
     {
         // 퀘스트 전체 정보
         public List<QuestInfo> QuestInfos = new List<QuestInfo>();
-        // 상점 아이템 정보들
-        public List<Items> ShopItems;
         // 퀘스트들의 정보
         Hunting hunt = new Hunting();
         EquipItem equip = new EquipItem();
@@ -21,14 +20,20 @@ namespace Sparta2weekProject.Menu
             QuestInfos.Add(equip);
             QuestInfos.Add(power);
         }
+        // ShowQuest를 Quest클래스에서 사용하기 위해서
+        public Quest(List<QuestInfo> quests)
+        {
+            QuestInfos = quests;
+        }
 
         // 모든 퀘스트 보여주기
         public void ShowQusts(Charactors _charactor, List<Items> _items)
         {
+            bool Restart = false;
             QuestInfos = RemoveQuest(QuestInfos);
-            ShopItems = _items;
+            int questCount = QuestInfos.Count; // 현재 퀘스트 개수
             Console.WriteLine("Quest!!\n\n");
-            int count = 1; // 개수
+            int count = 1; // foreach 개수
             Console.WriteLine("0. 나가기");
             foreach (QuestInfo quest in QuestInfos)
             {
@@ -38,14 +43,14 @@ namespace Sparta2weekProject.Menu
                 count++;
             }
             Console.WriteLine("\n\n");
-            choice = base.Choice(3, true);
+            choice = base.Choice(questCount, true);
             switch (choice)
             {
                 case 1:
                     // 퀘스트 클리어 여부 확인
                     QuestInfos[0].QuestClear(_charactor);
                     // 입력한 퀘스트 확인
-                    QuestInfos[0].QuestShow(_charactor, _items);
+                    Restart = QuestInfos[0].QuestShow(_charactor, _items, Restart);
                     // 퀘스트를 수락하고 퀘스트를 클리어하지 않았다면
                     if (QuestInfos[0].access && QuestInfos[0].clearCheak == false)
                     {
@@ -56,7 +61,7 @@ namespace Sparta2weekProject.Menu
                 case 2:
                     // 퀘스트 클리어 여부 확인
                     QuestInfos[1].QuestClear(_charactor);
-                    QuestInfos[1].QuestShow(_charactor, _items);
+                    Restart = QuestInfos[1].QuestShow(_charactor, _items, Restart);
                     if (QuestInfos[1].access && QuestInfos[1].clearCheak == false)
                     {
                         AcceptQuest(QuestInfos[1], _charactor);
@@ -65,12 +70,17 @@ namespace Sparta2weekProject.Menu
                 case 3:
                     // 퀘스트 클리어 여부 확인
                     QuestInfos[2].QuestClear(_charactor);
-                    QuestInfos[2].QuestShow(_charactor, _items);
+                    Restart = QuestInfos[2].QuestShow(_charactor, _items, Restart);
                     if (QuestInfos[2].access && QuestInfos[2].clearCheak == false)
                     {
                         AcceptQuest(QuestInfos[2], _charactor);
                     }
                     break;
+            }
+            // 돌아가기를 눌렀다면 재귀 함수 시작
+            if (Restart)
+            {
+                ShowQusts(_charactor, _items);
             }
         }
 
