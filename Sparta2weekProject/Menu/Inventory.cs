@@ -40,6 +40,30 @@ namespace Sparta2weekProject.Menu
             }
         }
 
+        public void ItemPortion(Charactors _charactor)
+        {
+            //Console.WriteLine($"{i}번째 포션");
+            for (int i = 0; i < _charactor.Portion.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}번째 포션");
+            }
+
+            Console.WriteLine("사용할 포션의 번호를 입력해주세요");
+            int input = int.Parse(Console.ReadLine());
+            _charactor.Portion[input - 1].Drink(_charactor);
+            _charactor.Portion.RemoveAt(input - 1);
+            choice = base.Choice(menu, true);
+            switch (choice)
+            {
+                case 1:
+                    EquipMenu();
+                    break;
+
+            }
+
+
+        }
+
         // 장착 메뉴
         public void EquipMenu()
         {
@@ -100,8 +124,17 @@ namespace Sparta2weekProject.Menu
                             charactor.Armor = choiceItem;
                         }
                         break;
+                    case ItemType.포션:
+                        Items currenPortion = charactor.Portions;
+                        if (choiceItem == currenPortion)
+                        {
+                            charactor.Portions = null;
+                            charactor.PlusDefend = 0;
+                        }
+                        break;
                 }
             }
         }
+       
     }
 }
