@@ -33,7 +33,7 @@ namespace Sparta2weekProject.Objects.Charactor
 
 
 
-        // 장착 무기
+        // 장착 Weapon
         public Items? Armor;
         public Items? Weapon;
 

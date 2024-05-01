@@ -17,7 +17,7 @@ namespace Sparta2weekProject.Objects
 
         public string ItemInfo(Items item)
         {
-            string state = item.Type == ItemType.무기 ? "공격력" : "방어력";
+            string state = item.Type == ItemType.Weapon ? "공격력" : "방어력";
             string s = string.Format("{0, -10} | {1} +{2} | {3, -30}", item.ItemName, state, item.ItemState, item.Description);
             return s;
         }
@@ -27,11 +27,11 @@ namespace Sparta2weekProject.Objects
 
     public enum ItemType
     {
-        무기, 방어구
+        Weapon, Armor
     }
 
 
 
   
-    }
+}
 

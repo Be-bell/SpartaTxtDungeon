@@ -150,11 +150,11 @@ namespace Sparta2weekProject.Menu
                 {
                     switch (sellItem.Type)
                     {
-                        case ItemType.무기:
+                        case ItemType.Weapon:
                             charactor.Weapon = null;
                             charactor.PlusAttack -= sellItem.ItemState;
                             break;
-                        case ItemType.방어구:
+                        case ItemType.Armor:
                             charactor.Armor = null;
                             charactor.PlusDefend -= sellItem.ItemState;
                             break;

@@ -7,7 +7,7 @@ namespace Sparta2weekProject.Objects
         public Sword()
         {
             ItemName = "쫄따구검";
-            Type = ItemType.무기;
+            Type = ItemType.Weapon;
             ItemState = 1;
             Description = "쫄따구들만 쓰는 검입니다.";
             Price = 50;

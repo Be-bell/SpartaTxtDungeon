@@ -90,7 +90,7 @@ namespace Sparta2weekProject.Menu
                 choiceItem.IsEquiped = !choiceItem.IsEquiped;
                 switch (choiceItem.Type)
                 {
-                    case ItemType.무기:
+                    case ItemType.Weapon:
                         Items currentWeapon = charactor.Weapon;
                         if (choiceItem == currentWeapon)
                         {
@@ -105,7 +105,7 @@ namespace Sparta2weekProject.Menu
                             charactor.Weapon = choiceItem;
                         }
                         break;
-                    case ItemType.방어구:
+                    case ItemType.Armor:
                         Items currentArmor = charactor.Armor;
                         if (choiceItem == currentArmor)
                         {

@@ -143,7 +143,7 @@ internal class Hunting : QuestInfo
 		questName = "마을을 위협하는 미니언 처치";
         questDescription = "이봐! 마을 근처에 미니언들이 너무 많아졌다고 생각하지 않나?\n마을 주민들의 안전을 위해서라도 저것들 수를 좀 줄여야 한다고!\n모험가인 자네가 좀 처치해주게!";
         questGoal = string.Format($"{monsterName} 5마리 처치 ({currentCount} / {maxCount})");
-        rewardItem = new Armor(); // 방어구
+        rewardItem = new Armor(); // Armor
         clearGold = 5;
     }
 
@@ -164,7 +164,7 @@ internal class EquipItem : QuestInfo
 	{
         questName = "장비를 장착해보자";
 		questDescription = "자네 신참 모험가가 아닌가? \n모험을 떠나기전에 장비를 구매해서 한 번 장착해보겠는가?";
-        questGoal = string.Format($"무기와 방어구를 모두 장착하기");
+        questGoal = string.Format($"Weapon와 Armor를 모두 장착하기");
         clearGold = 10;
 	}
 
