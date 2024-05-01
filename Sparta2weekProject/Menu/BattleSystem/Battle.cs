@@ -210,15 +210,17 @@ namespace Sparta2weekProject.Menu.BattleSystem
             SkillBook skills = charactor.SkillBook;
             skills.SkillsPrint();
             int choice = GetChoice();
+            bool skillUse = false;
 
             switch (choice)
             {
                 case 1:
-                    bool skillUse = charactor.SkillUse(skills.skill_1, charactor, monsters);
+                    skillUse = charactor.SkillUse(skills.skill_1, charactor, monsters);
                     if (!skillUse) PlayerSkill();
                     break;
                 case 2:
-                    Console.WriteLine("스킬 2 사용");
+                    skillUse = charactor.SkillUse(skills.skill_2, charactor, monsters);
+                    if (!skillUse) PlayerSkill();
                     break;
                 case 0:
                     PlayerTurn(); // 플레이어의 턴으로 돌아감

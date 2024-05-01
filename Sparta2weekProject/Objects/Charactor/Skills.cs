@@ -2,6 +2,7 @@
 using Sparta2weekProject.Menu.BattleSystem;
 using System.Reflection.Metadata;
 using System.Xml.Serialization;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Sparta2weekProject.Objects.Charactor
 {
@@ -10,6 +11,9 @@ namespace Sparta2weekProject.Objects.Charactor
         public int requiredMP { get; protected set; }
         public string skillName { get; protected set; }
         public string Description { get; protected set; }
+
+        protected Monster[] monsters;
+        protected Charactor charactor;
 
         public string SkillInfo()
         {
@@ -36,7 +40,7 @@ namespace Sparta2weekProject.Objects.Charactor
             return choice;
         }
 
-        public abstract bool IsUse(Charactor charactor,Monster[] _targets);
+        public abstract bool IsUse(Charactor _charactor,Monster[] _targets);
 
     }
 
@@ -49,10 +53,12 @@ namespace Sparta2weekProject.Objects.Charactor
             Description = "공격력 * 2 로 하나의 적을 공격합니다.";
         }
 
-        public override bool IsUse(Charactor charactor, Monster[] _targets)
+        public override bool IsUse(Charactor _charactor, Monster[] _targets)
         {
             Console.WriteLine("\n몬스터 정보");
-            Monster[] monsters = _targets;
+            monsters = _targets;
+            charactor = _charactor;
+
             for (int i = 0; i < monsters.Length; i++)
             {
                 Monster monster = monsters[i];
@@ -94,15 +100,54 @@ namespace Sparta2weekProject.Objects.Charactor
         }
     }
 
-    //public class WarriorSkill_2 : Skills
-    //{
-    //    public WarriorSkill_2()
-    //    {
-    //        requiredMP += 15;
-    //        skillName = "더블 스트라이크";
-    //        Description = "공격력 * 1.5 로 2명의 적을 랜덤으로 공격합니다.";
-    //    }
-    //}
+    public class WarriorSkill_2 : Skills
+    {
+        public WarriorSkill_2()
+        {
+            requiredMP = 15;
+            skillName = "더블 스트라이크";
+            Description = "공격력 * 1.5 로 2명의 적을 랜덤으로 공격합니다.";
+        }
+
+        public override bool IsUse(Charactor _charactor, Monster[] _targets)
+        {
+            monsters = _targets;
+            charactor = _charactor;
+
+            if(monsters.Length < 2) 
+            {
+                return false;
+            }
+
+            int[] randoms = TwoRandomSelect(monsters.Length);
+
+            int damage = (int) (charactor.Attack * 1.5f);
+            
+            foreach(var i in randoms)
+            {
+                Monster target = monsters[i];
+                Console.WriteLine($"{charactor.Name} 의 공격! {target.Name}에게 더블 스트라이크! {damage}의 피해를 입혔습니다.");
+                target.TakeDamage(damage);
+            }
+            charactor.MP -= requiredMP;
+
+            return true;
+        }
+
+        int[] TwoRandomSelect(int length)
+        {
+            var random = new Random();
+            int[] randomValues = new int[2];
+            randomValues[0] = random.Next(0, length);
+            do
+            {
+                randomValues[1] = random.Next(0, length);
+            }
+            while (randomValues[0] == randomValues[1] );
+
+            return randomValues;
+        }
+    }
 
     //public class ArchorSkill_1 : Skills
     //{

@@ -8,6 +8,8 @@
         public void SkillsPrint()
         {
             Console.WriteLine("[1] " + skill_1.SkillInfo());
+            Console.WriteLine("[2] " + skill_2.SkillInfo());
+            Console.WriteLine("0. 돌아가기");
         }
     }
 
@@ -16,7 +18,7 @@
         public WarriorSkillBook()
         {
             skill_1 = new WarriorSkill_1();
-            //skill_2 = new WarriorSkill_2();
+            skill_2 = new WarriorSkill_2();
         }
     }
 
