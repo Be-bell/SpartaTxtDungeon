@@ -3,7 +3,7 @@
 namespace Sparta2weekProject.Objects
 {
     // Item들의 부모클래스, Item들끼리 겹치는 부분들을 미리 합쳐놓음.
-    public abstract class Items : IItems
+    public class Items : IItems
     {
         public bool IsEquiped;
         public bool IsPurchase;

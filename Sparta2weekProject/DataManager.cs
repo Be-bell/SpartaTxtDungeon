@@ -10,7 +10,7 @@ namespace Sparta2weekProject
         private static DataManager instance;
 
         // 각 시스템 Docu에 저장.
-        string userDocumentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CreateFolder";
+        String userDocumentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CreateFolder";
 
         //싱글톤으로 생성
         private DataManager() { }
@@ -25,7 +25,7 @@ namespace Sparta2weekProject
         }
 
         // Charactor 변수만 받아 변수의 데이터를 저장.
-        public void SaveCharactorToJson(Charactors charactor)
+        public void SaveCharactorToJson(Charactors _charactor)
         {
             //디렉토리가 없으면 디렉토리 생성.
             DirectoryInfo directoryInfo = new DirectoryInfo(userDocumentsFolder);
@@ -42,7 +42,7 @@ namespace Sparta2weekProject
             }
 
             // json으로 직렬화하여 데이터 저장.
-            string json = JsonConvert.SerializeObject(charactor, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(_charactor, Formatting.Indented);
             File.WriteAllText(filePath, json);
 
             // 저장 완료되면 나옴.
@@ -64,7 +64,6 @@ namespace Sparta2weekProject
                 Console.WriteLine("저장된 파일이 없습니다.");
                 Console.WriteLine("캐릭터 생성을 시작합니다.");
                 Console.WriteLine("");
-                Console.Write("아무키나 입력하세요.");
                 Console.ReadLine();
                 Console.Clear();
                 return null;
