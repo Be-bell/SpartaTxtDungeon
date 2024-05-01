@@ -1,6 +1,11 @@
+<<<<<<< Updated upstream
 ﻿using Sparta2weekProject.Objects;
 using System.Drawing;
 using System.Reflection.Emit;
+=======
+﻿using Sparta2weekProject.BattleSystem;
+using Sparta2weekProject.Objects;
+>>>>>>> Stashed changes
 
 namespace Sparta2weekProject.Menu
 {
@@ -124,14 +129,17 @@ namespace Sparta2weekProject.Menu
             switch (_lv)
             {
                 case DungeonLv.쉬움:
+                    StartBattle(DungeonLv.쉬움);
                     getReward = 1000;
                     getExp = random.Next(11);
                     break;
                 case DungeonLv.일반:
+                    StartBattle(DungeonLv.일반);
                     getReward = 1700;
                     getExp = random.Next(11, 21);
                     break;
                 case DungeonLv.어려움:
+                    StartBattle(DungeonLv.어려움);
                     getReward = 2500;
                     getExp = random.Next(21, 31);
                     break;
@@ -192,6 +200,55 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine("\n0. 나가기\n");
 
             choice = base.Choice(0, true);
+        }
+
+        // 전투 시작
+        void StartBattle(DungeonLv dungeonLevel)
+        {
+            // 몬스터 생성
+            Monster[] monsters = CreateMonsters(dungeonLevel);
+
+            if (monsters != null)
+            {
+                // 전투 시작
+                Battle battle = new Battle(new Player(charactor), monsters);
+                battle.StartBattle();
+            }
+            else
+            {
+                Console.WriteLine("몬스터를 생성하는 데 문제가 발생했습니다.");
+            }
+        }
+
+        // 던전 레벨에 따라 몬스터 생성
+        Monster[] CreateMonsters(DungeonLv dungeonLevel)
+        {
+            switch (dungeonLevel)
+            {
+                case DungeonLv.쉬움:
+                    return new Monster[]
+                    {
+                          new Monster("미니언", 15, 5),
+                          new Monster("대포미니언", 25, 8),
+                          new Monster("공허충", 10, 9)
+                    };
+                case DungeonLv.일반:
+                    return new Monster[]
+                    {
+                        new Monster("미니언", 15, 5),
+                        new Monster("대포미니언", 25, 8),
+                        new Monster("공허충", 10, 9)
+                    };
+                case DungeonLv.어려움:
+                    return new Monster[]
+                    {
+                        new Monster("미니언", 15, 5),
+                        new Monster("대포미니언", 25, 8),
+                        new Monster("공허충", 10, 9)
+                    };
+                default:
+                    throw new ArgumentException("올바르지 않은 던전 레벨입니다.");
+            }
         }
     }
     enum DungeonLv
