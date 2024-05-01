@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Reflection.Emit;
 
 using Sparta2weekProject.BattleSystem;
+using System.Numerics;
 
 
 
@@ -129,6 +130,8 @@ namespace Sparta2weekProject.Menu
                 Console.WriteLine("던전 클리어");
                 Console.WriteLine("축하합니다!!");
                 Console.WriteLine($"던전 : {_lv} 을 클리어 했습니다.\n");
+                
+
                 floor++; // 클리어 후 층 증가
             }
 
@@ -143,11 +146,13 @@ namespace Sparta2weekProject.Menu
                 charactor.Defend += 2;
                 nextExp -= 200;
             }
-
+            
+           
             float rewardPercent = (random.Next(charactor.Attack, (charactor.Attack * 2) + 1) + 100) / 100.0f;
             int totalReward = (int)(getReward * rewardPercent);
             Console.WriteLine("[탐험 결과]");
             Console.WriteLine($"체력 {charactor.Health} -> {charactor.Health - minusHp}");
+           
             Console.WriteLine($"Gold {charactor.Gold} -> {charactor.Gold + totalReward}");
             Console.WriteLine($"레벨 {charactor.Level} -> {level}");
             Console.WriteLine($"경험치 {charactor.Exp} -> {nextExp}");
@@ -181,6 +186,7 @@ namespace Sparta2weekProject.Menu
         // 전투 시작
         void StartBattle(DungeonLv dungeonLevel)
         {
+            
             // 몬스터 생성
             Monster[] monsters = CreateMonsters(dungeonLevel);
 
@@ -209,9 +215,9 @@ namespace Sparta2weekProject.Menu
                     monsterCount = random.Next(1, 3);
                     MonstersLevel = new Monster[]
                     {
-                          new Monster("미니언", 15, 20, 3),
-                          new Monster("대포미니언", 25, 20,4),
-                          new Monster("공허충", 10, 30, 6)
+                          new Monster("미니언", 15, 50, 3),
+                          new Monster("대포미니언", 25, 60,4),
+                          new Monster("공허충", 10, 65, 6)
                     };
                     break;
                 case DungeonLv.일반:
@@ -220,9 +226,9 @@ namespace Sparta2weekProject.Menu
                     monsterHp = random.Next(0, 5);
                     MonstersLevel = new Monster[]
                     {
-                        new Monster("미니언", 15, 25 + monsterHp, 5 + monsterAttack),
-                        new Monster("대포미니언", 25, 30 + monsterHp,6 + monsterAttack),
-                        new Monster("공허충", 10, 50 + monsterHp, 8 + monsterAttack)
+                        new Monster("미니언", 15, 40 + monsterHp, 5 + monsterAttack),
+                        new Monster("대포미니언", 25, 50 + monsterHp,6 + monsterAttack),
+                        new Monster("공허충", 10, 70 + monsterHp, 8 + monsterAttack)
                     };
                     break;
                 case DungeonLv.어려움:
@@ -231,9 +237,9 @@ namespace Sparta2weekProject.Menu
                     monsterHp = random.Next(5, 15);
                     MonstersLevel = new Monster[]
                     {
-                        new Monster("미니언", 15, 40 + monsterHp, 8 + monsterAttack),
-                        new Monster("대포미니언", 25, 60 + monsterHp, 9 + monsterAttack),
-                        new Monster("공허충", 10, 60 + monsterHp, 10 + monsterAttack)
+                        new Monster("미니언", 15, 50 + monsterHp, 8 + monsterAttack),
+                        new Monster("대포미니언", 25, 70 + monsterHp, 9 + monsterAttack),
+                        new Monster("공허충", 10, 150 + monsterHp, 10 + monsterAttack)
                     };
                     break;
                 default:

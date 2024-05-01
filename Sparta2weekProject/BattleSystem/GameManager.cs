@@ -51,7 +51,8 @@ namespace Sparta2weekProject.BattleSystem
         {
             Console.WriteLine("\n[내정보]");
             Console.WriteLine($"Lv.{player.Level} {player.Name} (전사)");
-            Console.WriteLine($"HP {player.HP}/100\n");
+            Console.WriteLine($"HP {player.HP}/150\n");
+            Console.WriteLine($"HP {player.MP}/100\n");
         }
     }
 }
