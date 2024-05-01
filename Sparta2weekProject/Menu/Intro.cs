@@ -1,5 +1,6 @@
 ﻿using Sparta2weekProject.Objects;
 using System.Xml.Linq;
+using static Sparta2weekProject.Objects.Charactors;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Sparta2weekProject.Menu
@@ -22,12 +23,13 @@ namespace Sparta2weekProject.Menu
         public Intro()
         {
             dataManager = DataManager.getInstnace();
-            menu = 7;
+            menu = 8;
             status = new Status(); //new를 통해서초기화를한다(객체만들기)
             store = new Store();
             dungeon = new Dungeon();
             spa = new Spa();
             quest = new Quest();
+            
         }
 
         // 게임 스타트
@@ -58,12 +60,11 @@ namespace Sparta2weekProject.Menu
             }
             // 인벤토리 정보 받기
             inventory = new Inventory(charactor.Inven);
-<<<<<<< HEAD
-            while (charactor.Health!=0 && isGameEnd)  //캐릭터의 죽지않고 게임이 끝나지 않았다면 
-=======
-            // 게임 진행
+
+               
+                // 게임 진행
             while (charactor.Health!=0 && isGameEnd)
->>>>>>> Dev
+
             {
                 IntroMenu();
             }
@@ -158,7 +159,7 @@ namespace Sparta2weekProject.Menu
                     quest.ShowQusts(charactor, store.ItemList);
                     break;
                 case 8:
-                 
+                    inventory.ItemPortion(charactor);
                     break;
             }
         }
