@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sparta2weekProject.Menu;
-namespace Sparta2weekProject.BattleSystem
+﻿namespace Sparta2weekProject.BattleSystem
 {
     // 전투 클래스
     public class Battle
@@ -58,12 +52,16 @@ namespace Sparta2weekProject.BattleSystem
         // 플레이어 공격 메서드
         private void PlayerAttack()
         {
+            int DeadMonster = 0;
             Console.WriteLine("\n[플레이어의 공격]");
             foreach (var monster in monsters1)
             {
                 monster.TakeDamage(player.ATK);
                 Console.WriteLine($"{monster.Name}에게 {player.ATK}의 피해를 입혔습니다.");
+                if(monster.HP == 0) DeadMonster++;
             }
+
+            if (DeadMonster == monsters1.Length) return;
 
             EnemyTurn(); // 적의 턴으로 넘어감
         }
@@ -106,6 +104,7 @@ namespace Sparta2weekProject.BattleSystem
                 Console.WriteLine("숫자를 입력하세요.");
                 return GetChoice();
             }
+            Console.Clear();
             return choice;
         }
 
