@@ -55,7 +55,7 @@ namespace Sparta2weekProject.Objects.Charactor
                     FullHP = 150;
                     HP = 150;
                     FullMP = 100;
-                    MP = 10;
+                    MP = 30;
                     SkillBook = new WarriorSkillBook();
                     break;
                 case CharactorClass.궁수:
