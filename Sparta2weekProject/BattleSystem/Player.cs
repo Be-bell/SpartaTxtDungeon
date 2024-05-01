@@ -38,7 +38,7 @@ namespace Sparta2weekProject.BattleSystem
             Level = charactor.Level;
             ATK = charactor.Attack;
             Def = charactor.Defend;
-            HP = charactor.FullHealth;
+            HP = charactor.Health;
 
             // 캐릭터 클래스에 따라 플레이어 체력 초기화
             // 캐릭터 클래스에서 FullHealth로 초기화되었다고 가정
