@@ -1,57 +1,107 @@
 ﻿
+using Sparta2weekProject.Menu;
+
 namespace Sparta2weekProject.Objects
 {
     public class Charactors
     {
-        // 각종 스텟
-        public int level { get; set; }
-        public Chad chad { get; protected set; }
-        public int attack { get; set; }
-        public int defend { get; set; }
-        public int health { get; set; }
-        public int fullHealth { get; protected set; }
-        public int gold { get; set; }
-        public int Exp { get; set; }
+        // 이름
+        public string Name;
 
-        public int plusAttack = 0;
-        public int plusDefend = 0;
+        // 각종 스텟
+        public int Level;
+        public CharactorClass Class;
+        public int Attack;
+        public int Defend;
+        public int FullHealth;
+        public int Health;
+        public int Gold;
+        public int Exp;
+        public int PlusAttack = 0;
+        public int PlusDefend = 0;
+
+
 
         // 인벤토리
-        public List<Items> inven;
+        public List<Items> Inven;
+      
+        public List<Portion> PortionHP = new List<Portion>();
+        public List<Portion> PortionAtk = new List<Portion>();
+        public List<Portion> PortionDef = new List<Portion>();
+
+
 
         // 장착 무기
-        public Items? armor;
-        public Items? weapon;
+        public Items? Armor;
+        public Items? Weapon;
+ 
+        // 스킬북
+        public SkillBook SkillBook;
 
         // 직업 생성 시 lv. 1, gold 1000부터 시작, 인벤토리 제작.
-        public Charactors(Chad chad)
+        public Charactors(CharactorClass _charactorClass)
         {
-            level = 1;
-            gold = 1000;
+            Class = _charactorClass;
+            Level = 1;
+            Gold = 1000;
             Exp = 0;
 
-            switch (chad)
+
+
+            switch (_charactorClass)
             {
-                case Chad.전사:
-                    attack = 10;
-                    defend = 20;
-                    fullHealth = 150;
-                    health = 150;
+                case CharactorClass.전사:
+                    Attack = 10;
+                    Defend = 20;
+                    FullHealth = 150;
+                    Health = 150;
+                    SkillBook = new WarriorSkillBook();
                     break;
-                case Chad.궁수:
-                    attack = 15;
-                    defend = 15;
-                    fullHealth = 100;
-                    health = 100;
+                case CharactorClass.궁수:
+                    Attack = 15;
+                    Defend = 15;
+                    FullHealth = 100;
+                    Health = 100;
+                    SkillBook = new ArchorSkillBook();
                     break;
             }
 
-            inven = new List<Items>();
+            Inven = new List<Items>();
+
+            
+            for (int i = 0; i < 3; i++)
+            {
+               PortionHP Hpname= new PortionHP(100, 0, 0);
+                Hpname.ItemName = "Hp포션";
+                PortionHP.Add(Hpname);
+
+            }
+        }
+
+
+        public void NameCreate()
+        {
+            Console.Write("이름을 입력해주세요: ");
+            string name = Console.ReadLine();
+            Console.WriteLine();
+            Name = name;
+        }
+
+        public void ItemUse(Items _item)
+        {
+
+        }
+
+        public void SkillUse(Skills _skill)
+        {
+
+        }
+
+
+        public enum CharactorClass
+        {
+            전사, 궁수
         }
     }
-
-    public enum Chad
-    {
-        전사, 궁수
-    }
 }
+

@@ -2,9 +2,9 @@
 
 namespace Sparta2weekProject.Menu
 {
-    internal abstract class MenuHandler : IMenu
+    internal class MenuHandler : IMenu
     {
-        protected int menu; // 각 메뉴 기본창에서 메뉴 선택지 개수
+        protected int menu { get; set; } // 각 메뉴 기본창에서 메뉴 선택지 개수
         protected int choice = -1;  // Choice 메소드 실행 시 리턴받는 값. 초기값은 -1로 고정.
 
         public int Choice(int _menuCount, bool _isZeroContain)

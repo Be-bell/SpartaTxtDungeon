@@ -6,7 +6,7 @@ namespace Sparta2weekProject.Menu
     {
         Charactors? charactor;
         List<Items> inven;
-
+       
         public Inventory(List<Items> _inven)
         {
             inven = _inven;
@@ -39,6 +39,25 @@ namespace Sparta2weekProject.Menu
 
             }
         }
+    public void ItemPortion(Charactors charactor)
+        {
+            //Console.WriteLine($"{i}번째 포션");
+            for (int i = 0; i < charactor.PortionHP.Count; i++)
+            {
+                Console.WriteLine($"{i+1}. {charactor.PortionHP[i].ItemName }");
+            }
+            //아이템 설명
+            //리스트 인덱스 사용
+  
+            Console.WriteLine("사용할 포션의 번호를 입력해주세요");
+            int input = int.Parse(Console.ReadLine());
+            charactor.PortionHP[input - 1].Drink(charactor);
+            charactor.PortionHP.RemoveAt(input - 1);
+           
+
+
+        }
+    
 
         // 장착 메뉴
         public void EquipMenu()
@@ -71,37 +90,41 @@ namespace Sparta2weekProject.Menu
                 switch (choiceItem.Type)
                 {
                     case ItemType.무기:
-                        Items currentWeapon = charactor.weapon;
+                        Items currentWeapon = charactor.Weapon;
                         if (choiceItem == currentWeapon)
                         {
-                            charactor.weapon = null;
-                            charactor.plusAttack = 0;
+                            charactor.Weapon = null;
+                            charactor.PlusAttack = 0;
                         }
                         else
                         {
                             if (currentWeapon != null)
                                 currentWeapon.IsEquiped = !currentWeapon.IsEquiped;
-                            charactor.plusAttack = choiceItem.ItemState;
-                            charactor.weapon = choiceItem;
+                            charactor.PlusAttack = choiceItem.ItemState;
+                            charactor.Weapon = choiceItem;
                         }
                         break;
                     case ItemType.방어구:
-                        Items currentArmor = charactor.armor;
+                        Items currentArmor = charactor.Armor;
                         if (choiceItem == currentArmor)
                         {
-                            charactor.armor = null;
-                            charactor.plusDefend = 0;
+                            charactor.Armor = null;
+                            charactor.PlusDefend = 0;
                         }
                         else
                         {
                             if (currentArmor != null)
                                 currentArmor.IsEquiped = !currentArmor.IsEquiped;
-                            charactor.plusDefend = choiceItem.ItemState;
-                            charactor.armor = choiceItem;
+                            charactor.PlusDefend = choiceItem.ItemState;
+                            charactor.Armor = choiceItem;
                         }
                         break;
+                    
+                        
+                    
                 }
             }
         }
+       
     }
 }

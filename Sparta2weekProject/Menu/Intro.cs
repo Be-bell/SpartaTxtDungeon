@@ -1,11 +1,14 @@
 ﻿using Sparta2weekProject.Objects;
+using System.Xml.Linq;
+using static Sparta2weekProject.Objects.Charactors;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Sparta2weekProject.Menu
 {
     internal class Intro : MenuHandler
     {
-
+        //클래스 선언했고
+        
         Status status;
         Store store;
         Inventory inventory;
@@ -13,29 +16,55 @@ namespace Sparta2weekProject.Menu
         Spa spa;
         DataManager dataManager;
         Charactors charactor;
+        Quest quest;
 
         bool isGameEnd = true;
-
+        //인트로가 생성되면 생성자가 동작한다
         public Intro()
         {
             dataManager = DataManager.getInstnace();
-            menu = 6;
-            status = new Status();
+            menu = 8;
+            status = new Status(); //new를 통해서초기화를한다(객체만들기)
             store = new Store();
             dungeon = new Dungeon();
             spa = new Spa();
+            quest = new Quest();
+            
         }
 
         // 게임 스타트
         public void GameStart()
         {
-            charactor = dataManager.LoadCharactorFromJson();
-            if(charactor == null )
+            Console.WriteLine("1. 새로시작");
+            Console.WriteLine("2. 이어하기");
+            choice = base.Choice(3, false);
+            switch (choice)
             {
-                MakeCharactor();
+                case 1:
+                    // 캐릭터 생성
+                    MakeCharactor();
+                    // 생성한 캐릭터 정보 저장
+                    dataManager.SaveCharactorToJson(charactor);
+                    break;
+
+                case 2:
+                    // 캐릭터 정보 받아오기
+                    charactor = dataManager.LoadCharactorFromJson();
+                    // 캐릭터 정보가 없다면
+                    if (charactor == null)
+                    {
+                        Console.WriteLine("\n저장된 정보가 없어 새로 시작합니다.\n");
+                        MakeCharactor();
+                    }
+                    break;
             }
-            inventory = new Inventory(charactor.inven);
-            while (charactor.health!=0 && isGameEnd)
+            // 인벤토리 정보 받기
+            inventory = new Inventory(charactor.Inven);
+
+               
+                // 게임 진행
+            while (charactor.Health!=0 && isGameEnd)
+
             {
                 IntroMenu();
             }
@@ -63,7 +92,7 @@ namespace Sparta2weekProject.Menu
                         choice2 = base.Choice(2, false);
                         if (choice2 == 1)
                         {
-                            charactor = new Charactors(Chad.전사);
+                            charactor = new Charactors(CharactorClass.전사);
                             isCharactorMade = true;
                         }
                         break;
@@ -73,13 +102,13 @@ namespace Sparta2weekProject.Menu
                         choice2 = base.Choice(2, false);
                         if (choice2 == 1)
                         {
-                            charactor = new Charactors(Chad.궁수);
+                            charactor = new Charactors(CharactorClass.궁수);
                             isCharactorMade = true;
                         }
                         break;
                 }
-                
             }
+            charactor.NameCreate();
         }
 
         // 인트로(마을)
@@ -93,6 +122,9 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine("4. 던전입장");
             Console.WriteLine("5. 온천 : 휴식하기");
             Console.WriteLine("6. 저장하기");
+            Console.WriteLine("7. 퀘스트");
+            Console.WriteLine("8. 회복아이템");
+
             Console.WriteLine("");
             Console.WriteLine("0. 게임종료");
             Console.WriteLine("");
@@ -122,6 +154,12 @@ namespace Sparta2weekProject.Menu
                     break;
                 case 6:
                     dataManager.SaveCharactorToJson(charactor);
+                    break;
+                case 7:
+                    quest.ShowQusts(charactor, store.ItemList);
+                    break;
+                case 8:
+                    inventory.ItemPortion(charactor);
                     break;
             }
         }

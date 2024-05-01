@@ -1,9 +1,10 @@
 ﻿using Sparta2weekProject.Interfaces;
+using System.Globalization;
 
 namespace Sparta2weekProject.Objects
 {
     // Item들의 부모클래스, Item들끼리 겹치는 부분들을 미리 합쳐놓음.
-    public abstract class Items : IItems
+    public class Items : IItems
     {
         public bool IsEquiped;
         public bool IsPurchase;
@@ -11,6 +12,7 @@ namespace Sparta2weekProject.Objects
         public int ItemState;
         public string Description;
         public int Price;
+   
         public ItemType Type;
 
         public string ItemInfo(Items item)
@@ -19,6 +21,7 @@ namespace Sparta2weekProject.Objects
             string s = string.Format("{0, -10} | {1} +{2} | {3, -30}", item.ItemName, state, item.ItemState, item.Description);
             return s;
         }
+      
 
     }
 
@@ -27,4 +30,8 @@ namespace Sparta2weekProject.Objects
         무기, 방어구
     }
 
-}
+
+
+  
+    }
+

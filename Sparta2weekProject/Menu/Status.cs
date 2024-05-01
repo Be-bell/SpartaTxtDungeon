@@ -5,7 +5,6 @@ namespace Sparta2weekProject.Menu
     internal class Status : MenuHandler
     {
         Charactors charactor;
-
         public Status()
         {
             menu = 0;
@@ -15,23 +14,28 @@ namespace Sparta2weekProject.Menu
         public void StatusMenu(Charactors _charactor)
         {
             charactor = _charactor;
-            string plusAttackStr = charactor.weapon != null ? $"(+ {charactor.plusAttack})" : "";
-            string plusDefendStr = charactor.armor != null ? $"(+ {charactor.plusDefend})" : "";
+            string plusAttackStr = charactor.Weapon != null ? $"(+ {charactor.PlusAttack})" : "";
+            string plusDefendStr = charactor.Armor != null ? $"(+ {charactor.PlusDefend})" : "";
             
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");
-            Console.WriteLine("Lv. {0}", charactor.level.ToString("D2"));
-            Console.WriteLine($"Chad ( {charactor.chad} )");
-            Console.WriteLine($"공격력 : {charactor.attack + charactor.plusAttack}" + " " + plusAttackStr);
-            Console.WriteLine($"방어력 : {charactor.defend + charactor.plusDefend}" + " " + plusDefendStr);
-            Console.WriteLine($"체  력 : {charactor.health} / {charactor.fullHealth}");
+            Console.WriteLine($"이  름 : {charactor.Name}");
+            Console.WriteLine("Lv. {0}", charactor.Level.ToString("D2"));
+            Console.WriteLine($"Chad ( {charactor.Class} )");
+            Console.WriteLine($"공격력 : {charactor.Attack + charactor.PlusAttack}" + " " + plusAttackStr);
+            Console.WriteLine($"방어력 : {charactor.Defend + charactor.PlusDefend}" + " " + plusDefendStr);
+            Console.WriteLine($"체  력 : {charactor.Health} / {charactor.FullHealth}");
             Console.WriteLine($"경험치 : {charactor.Exp}");
-            Console.WriteLine($" Gold  : {charactor.gold}\n");
+            Console.WriteLine($" Gold  : {charactor.Gold}\n");
+            Console.WriteLine( $"PortionHP :{charactor.PortionHP.Count}");
+            Console.WriteLine($"PortionAtk :{charactor.PortionAtk.Count}");
+            Console.WriteLine($"PortionDef :{charactor.PortionDef.Count}");
+
+
             Console.WriteLine("0. 나가기\n");
 
             choice = base.Choice(menu, true);
 
         }
-
     }
 }
