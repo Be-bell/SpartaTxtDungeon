@@ -1,7 +1,11 @@
+
+﻿using Sparta2weekProject.Objects;
 using System.Drawing;
 using System.Reflection.Emit;
+
 ﻿using Sparta2weekProject.BattleSystem;
-using Sparta2weekProject.Objects;
+
+
 
 namespace Sparta2weekProject.Menu
 {
@@ -73,6 +77,7 @@ namespace Sparta2weekProject.Menu
                 case 2:
                     // 던전 입장
                     //DungeonInvite(floor, level);
+                   
                     DungeonExplore(level, def);
                     break;
             }
@@ -224,23 +229,23 @@ namespace Sparta2weekProject.Menu
                 case DungeonLv.쉬움:
                     return new Monster[]
                     {
-                          new Monster("미니언", 15, 5),
-                          new Monster("대포미니언", 25, 8),
-                          new Monster("공허충", 10, 9)
+                          new Monster("미니언", 15, 20, 3),
+                          new Monster("대포미니언", 25, 20,4),
+                          new Monster("공허충", 10, 30, 6)
                     };
                 case DungeonLv.일반:
                     return new Monster[]
                     {
-                        new Monster("미니언", 15, 5),
-                        new Monster("대포미니언", 25, 8),
-                        new Monster("공허충", 10, 9)
+                        new Monster("미니언", 15, 25,5),
+                        new Monster("대포미니언", 25, 30,6),
+                        new Monster("공허충", 10, 50,8)
                     };
                 case DungeonLv.어려움:
                     return new Monster[]
                     {
-                        new Monster("미니언", 15, 5),
-                        new Monster("대포미니언", 25, 8),
-                        new Monster("공허충", 10, 9)
+                        new Monster("미니언", 15, 40, 8),
+                        new Monster("대포미니언", 25, 60, 9),
+                        new Monster("공허충", 10,60, 10)
                     };
                 default:
                     throw new ArgumentException("올바르지 않은 던전 레벨입니다.");

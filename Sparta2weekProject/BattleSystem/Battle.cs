@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Sparta2weekProject.Menu;
 namespace Sparta2weekProject.BattleSystem
 {
     // 전투 클래스
@@ -39,6 +39,7 @@ namespace Sparta2weekProject.BattleSystem
             Console.WriteLine("\n[플레이어의 턴]");
             Console.WriteLine("1. 공격");
 
+
             int choice = GetChoice();
 
             switch (choice)
@@ -46,6 +47,7 @@ namespace Sparta2weekProject.BattleSystem
                 case 1:
                     PlayerAttack();
                     break;
+
                 default:
                     Console.WriteLine("잘못된 입력입니다.");
                     PlayerTurn();
@@ -106,5 +108,6 @@ namespace Sparta2weekProject.BattleSystem
             }
             return choice;
         }
+
     }
 }
