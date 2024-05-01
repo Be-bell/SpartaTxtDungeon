@@ -1,4 +1,5 @@
 ﻿using Sparta2weekProject.Interfaces;
+using System.Globalization;
 
 namespace Sparta2weekProject.Objects
 {
@@ -11,6 +12,7 @@ namespace Sparta2weekProject.Objects
         public int ItemState;
         public string Description;
         public int Price;
+   
         public ItemType Type;
 
         public string ItemInfo(Items item)
@@ -19,6 +21,7 @@ namespace Sparta2weekProject.Objects
             string s = string.Format("{0, -10} | {1} +{2} | {3, -30}", item.ItemName, state, item.ItemState, item.Description);
             return s;
         }
+      
 
     }
 
@@ -27,4 +30,8 @@ namespace Sparta2weekProject.Objects
         무기, 방어구
     }
 
-}
+
+
+  
+    }
+

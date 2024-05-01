@@ -6,7 +6,7 @@ namespace Sparta2weekProject.Menu
     {
         Charactors? charactor;
         List<Items> inven;
-
+       
         public Inventory(List<Items> _inven)
         {
             inven = _inven;
@@ -39,6 +39,25 @@ namespace Sparta2weekProject.Menu
 
             }
         }
+    public void ItemPortion(Charactors charactor)
+        {
+            //Console.WriteLine($"{i}번째 포션");
+            for (int i = 0; i < charactor.PortionHP.Count; i++)
+            {
+                Console.WriteLine($"{i+1}. {charactor.PortionHP[i].ItemName }");
+            }
+            //아이템 설명
+            //리스트 인덱스 사용
+  
+            Console.WriteLine("사용할 포션의 번호를 입력해주세요");
+            int input = int.Parse(Console.ReadLine());
+            charactor.PortionHP[input - 1].Drink(charactor);
+            charactor.PortionHP.RemoveAt(input - 1);
+           
+
+
+        }
+    
 
         // 장착 메뉴
         public void EquipMenu()
@@ -100,8 +119,12 @@ namespace Sparta2weekProject.Menu
                             charactor.Armor = choiceItem;
                         }
                         break;
+                    
+                        
+                    
                 }
             }
         }
+       
     }
 }
