@@ -19,6 +19,8 @@ namespace Sparta2weekProject.Objects
         public int Exp;
         public int PlusAttack = 0;
         public int PlusDefend = 0;
+        public int MP;
+        public int MMP;
 
 
 
@@ -45,9 +47,13 @@ namespace Sparta2weekProject.Objects
             Level = 1;
             Gold = 1000;
             Exp = 0;
+//<<<<<<< Updated upstream
 
 
 
+//=======
+            
+//>>>>>>> Stashed changes
             switch (_charactorClass)
             {
                 case CharactorClass.전사:
@@ -55,6 +61,8 @@ namespace Sparta2weekProject.Objects
                     Defend = 20;
                     FullHealth = 150;
                     Health = 150;
+                    MMP = 100;
+                    MP = 100;
                     SkillBook = new WarriorSkillBook();
                     break;
                 case CharactorClass.궁수:
@@ -62,6 +70,8 @@ namespace Sparta2weekProject.Objects
                     Defend = 15;
                     FullHealth = 100;
                     Health = 100;
+                    MP = 80;
+                    MMP = 80;
                     SkillBook = new ArchorSkillBook();
                     break;
             }
