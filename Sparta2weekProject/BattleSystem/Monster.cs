@@ -28,12 +28,12 @@ namespace Sparta2weekProject.BattleSystem
             ATK = atk;
         }
 
-        public Monster(string v1, int v2, int v3)
+       /* public Monster(string v1, int v2, int v3)
         {
             this.v1 = v1;
             this.v2 = v2;
             this.v3 = v3;
-        }
+        }*/
 
         // 몬스터가 피해를 받는 메서드
         public void TakeDamage(int damage)
