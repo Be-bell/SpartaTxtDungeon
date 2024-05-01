@@ -25,7 +25,7 @@ namespace Sparta2weekProject
         }
 
         // Charactor 변수만 받아 변수의 데이터를 저장.
-        public void SaveCharactorToJson(Charactors _charactor)
+        public void SaveCharactorToJson(Charactors chad)
         {
             //디렉토리가 없으면 디렉토리 생성.
             DirectoryInfo directoryInfo = new DirectoryInfo(userDocumentsFolder);
@@ -42,7 +42,7 @@ namespace Sparta2weekProject
             }
 
             // json으로 직렬화하여 데이터 저장.
-            string json = JsonConvert.SerializeObject(_charactor, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(chad, Formatting.Indented);
             File.WriteAllText(filePath, json);
 
             // 저장 완료되면 나옴.

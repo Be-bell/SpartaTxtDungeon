@@ -1,4 +1,10 @@
-﻿namespace Sparta2weekProject.BattleSystem
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sparta2weekProject.BattleSystem
 {
     // 전투 클래스
     public class Battle
@@ -30,9 +36,8 @@
         // 플레이어 턴 메서드
         private void PlayerTurn()
         {
-            Console.WriteLine($"\n{player.Name}의 턴");
+            Console.WriteLine("\n[플레이어의 턴]");
             Console.WriteLine("1. 공격");
-
 
             int choice = GetChoice();
 
@@ -41,7 +46,6 @@
                 case 1:
                     PlayerAttack();
                     break;
-
                 default:
                     Console.WriteLine("잘못된 입력입니다.");
                     PlayerTurn();
@@ -52,16 +56,12 @@
         // 플레이어 공격 메서드
         private void PlayerAttack()
         {
-            int DeadMonster = 0;
-            Console.WriteLine($"\n{player.Name}의 공격]");
+            Console.WriteLine("\n[플레이어의 공격]");
             foreach (var monster in monsters1)
             {
                 monster.TakeDamage(player.ATK);
                 Console.WriteLine($"{monster.Name}에게 {player.ATK}의 피해를 입혔습니다.");
-                if(monster.HP == 0) DeadMonster++;
             }
-
-            if (DeadMonster == monsters1.Length) return;
 
             EnemyTurn(); // 적의 턴으로 넘어감
         }
@@ -75,7 +75,7 @@
                 if (!monster.IsDead())
                 {
                     player.TakeDamage(monster.ATK);
-                    Console.WriteLine($"{monster.Name}의 공격! {player.Name}가 {monster.ATK}의 피해를 입었습니다.");
+                    Console.WriteLine($"{monster.Name}의 공격! 플레이어가 {monster.ATK}의 피해를 입었습니다.");
                 }
             }
 
@@ -87,7 +87,7 @@
         private void DisplayBattleStatus(Player player, Monster[] monsters)
         {
             Console.WriteLine("\n[전투 상태]");
-            Console.WriteLine($"{player.Name} 체력: " + player.HP);
+            Console.WriteLine("플레이어 체력: " + player.HP);
 
             for (int i = 0; i < monsters.Length; i++)
             {
@@ -104,9 +104,7 @@
                 Console.WriteLine("숫자를 입력하세요.");
                 return GetChoice();
             }
-            Console.Clear();
             return choice;
         }
-
     }
 }
