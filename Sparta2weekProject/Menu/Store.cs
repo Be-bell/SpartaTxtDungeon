@@ -1,10 +1,11 @@
 ﻿using Sparta2weekProject.Objects;
+using Sparta2weekProject.Objects.Charactor;
 
 namespace Sparta2weekProject.Menu
 {
     internal class Store : MenuHandler
     {
-        Charactors? charactor;
+        Charactor? charactor;
         public List<Items> ItemList;
         Items sword1;
         Items sword2;
@@ -31,7 +32,7 @@ namespace Sparta2weekProject.Menu
         }
 
         // 상점 기본메뉴
-        public void StoreMenu(Charactors _charactor)
+        public void StoreMenu(Charactor _charactor)
         {
             charactor = _charactor;
             Console.WriteLine("상점");

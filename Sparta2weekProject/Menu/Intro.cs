@@ -1,6 +1,6 @@
-﻿using Sparta2weekProject.Objects;
+﻿using Sparta2weekProject.Objects.Charactor;
 using System.Xml.Linq;
-using static Sparta2weekProject.Objects.Charactors;
+using static Sparta2weekProject.Objects.Charactor.Charactor;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Sparta2weekProject.Menu
@@ -15,7 +15,7 @@ namespace Sparta2weekProject.Menu
         Dungeon dungeon;
         Spa spa;
         DataManager dataManager;
-        Charactors charactor;
+        Charactor charactor;
         Quest quest;
 
         bool isGameEnd = true;
@@ -63,7 +63,7 @@ namespace Sparta2weekProject.Menu
 
                
                 // 게임 진행
-            while (charactor.Health!=0 && isGameEnd)
+            while (charactor.HP!=0 && isGameEnd)
 
             {
                 IntroMenu();
@@ -92,7 +92,7 @@ namespace Sparta2weekProject.Menu
                         choice2 = base.Choice(2, false);
                         if (choice2 == 1)
                         {
-                            charactor = new Charactors(CharactorClass.전사);
+                            charactor = new Charactor(CharactorClass.전사);
                             isCharactorMade = true;
                         }
                         break;
@@ -102,7 +102,7 @@ namespace Sparta2weekProject.Menu
                         choice2 = base.Choice(2, false);
                         if (choice2 == 1)
                         {
-                            charactor = new Charactors(CharactorClass.궁수);
+                            charactor = new Charactor(CharactorClass.궁수);
                             isCharactorMade = true;
                         }
                         break;

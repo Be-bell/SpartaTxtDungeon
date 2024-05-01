@@ -1,4 +1,5 @@
 ﻿using Sparta2weekProject.Objects;
+using Sparta2weekProject.Objects.Charactor;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -19,7 +20,7 @@ namespace Sparta2weekProject.Menu
         public int PlusAtk;
         public int PlusDef;
 
-        public virtual void Drink(Charactors charactor)
+        public virtual void Drink(Charactor charactor)
         {
             Console.WriteLine("포션을 사용했습니다");
         }
@@ -32,8 +33,7 @@ namespace Sparta2weekProject.Menu
 
         public Portion(PortionType portionType)
         {
-          PortionType  name = portionType;
-
+            PortionType name = portionType;
         }
 
     }
@@ -41,12 +41,12 @@ namespace Sparta2weekProject.Menu
 
     public class PortionHP : Portion
     {
-        public override void Drink(Charactors charactor)
+        public override void Drink(Charactor charactor)
         {
             base.Drink(charactor);
-            charactor.Health += PlusHp;
+            charactor.HP += PlusHp;
             Console.WriteLine("채력 포션 한개를 마셨습니다 ");
-            Console.WriteLine($"플레이어의 체력 : {charactor.Health}");
+            Console.WriteLine($"플레이어의 체력 : {charactor.HP}");
         }
         public PortionHP(int hp, int atk, int Def) : base(hp, atk, Def)
         {
@@ -55,7 +55,7 @@ namespace Sparta2weekProject.Menu
     }
     public class PortionAtk : Portion
     {
-        public override void Drink(Charactors charactor)
+        public override void Drink(Charactor charactor)
         {
             base.Drink(charactor);
             charactor.Attack += PlusAtk;
@@ -71,7 +71,7 @@ namespace Sparta2weekProject.Menu
 
     public class PortionDes : Portion
     {
-        public override void Drink(Charactors charactor)
+        public override void Drink(Charactor charactor)
         {
             base.Drink(charactor);
             charactor.Defend += PlusDef;

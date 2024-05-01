@@ -1,5 +1,6 @@
 ﻿using Sparta2weekProject.Menu;
 using Sparta2weekProject.Objects;
+using Sparta2weekProject.Objects.Charactor;
 
 internal class QuestInfo : MenuHandler
 {
@@ -25,7 +26,7 @@ internal class QuestInfo : MenuHandler
     public bool rewardCheck = false; // 보상 획득 여부
 
     // 퀘스트 정보 보여주기
-    public bool QuestShow(Charactors charactor, List<Items> shopitems, bool Restart)
+    public bool QuestShow(Charactor charactor, List<Items> shopitems, bool Restart)
 	{
         // 퀘스트 클리어 여부 확인
         QuestClear(charactor);
@@ -125,7 +126,7 @@ internal class QuestInfo : MenuHandler
     }
 
     // 퀘스트마다 클리어 조건을 각 클래스 별로 상속으로 설정함
-    public virtual void QuestClear(Charactors _charactor)
+    public virtual void QuestClear(Charactor _charactor)
     {
 
     }
@@ -146,7 +147,7 @@ internal class Hunting : QuestInfo
         clearGold = 5;
     }
 
-    public override void QuestClear(Charactors _charactor)
+    public override void QuestClear(Charactor _charactor)
     {
         // 최대 횟수가 0이 아니고 currentCount가 maxCount가 아니라면
         if (maxCount <= currentCount)
@@ -167,7 +168,7 @@ internal class EquipItem : QuestInfo
         clearGold = 10;
 	}
 
-    public override void QuestClear(Charactors _charactor)
+    public override void QuestClear(Charactor _charactor)
     {
         if (_charactor.Weapon != null && _charactor.Armor != null)
         {
@@ -192,7 +193,7 @@ internal class PowerUp : QuestInfo
         clearGold = 30;
     }
 
-    public override void QuestClear(Charactors _charactor)
+    public override void QuestClear(Charactor _charactor)
     {
         if (_charactor.Attack + _charactor.PlusAttack >= def && _charactor.Defend + _charactor.PlusDefend >= def)
         {

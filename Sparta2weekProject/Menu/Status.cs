@@ -1,17 +1,17 @@
-﻿using Sparta2weekProject.Objects;
+﻿using Sparta2weekProject.Objects.Charactor;
 
 namespace Sparta2weekProject.Menu
 {
     internal class Status : MenuHandler
     {
-        Charactors charactor;
+        Charactor charactor;
         public Status()
         {
             menu = 0;
         }
 
         // 스탯창 메뉴
-        public void StatusMenu(Charactors _charactor)
+        public void StatusMenu(Charactor _charactor)
         {
             charactor = _charactor;
             string plusAttackStr = charactor.Weapon != null ? $"(+ {charactor.PlusAttack})" : "";
@@ -24,7 +24,7 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine($"Chad ( {charactor.Class} )");
             Console.WriteLine($"공격력 : {charactor.Attack + charactor.PlusAttack}" + " " + plusAttackStr);
             Console.WriteLine($"방어력 : {charactor.Defend + charactor.PlusDefend}" + " " + plusDefendStr);
-            Console.WriteLine($"체  력 : {charactor.Health} / {charactor.FullHealth}");
+            Console.WriteLine($"체  력 : {charactor.HP} / {charactor.FullHP}");
             Console.WriteLine($"경험치 : {charactor.Exp}");
             Console.WriteLine($" Gold  : {charactor.Gold}\n");
             Console.WriteLine( $"PortionHP :{charactor.PortionHP.Count}");

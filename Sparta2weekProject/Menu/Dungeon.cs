@@ -1,10 +1,8 @@
-
-using Sparta2weekProject.Objects;
 using System.Drawing;
 using System.Reflection.Emit;
-
-using Sparta2weekProject.BattleSystem;
 using System.Numerics;
+using Sparta2weekProject.Menu.BattleSystem;
+using Sparta2weekProject.Objects.Charactor;
 
 
 
@@ -12,9 +10,9 @@ namespace Sparta2weekProject.Menu
 {
     internal class Dungeon : MenuHandler
     {
-        Charactors charactor;
-        Random random;
-        int floor = 1; // 현재 던전 층
+        private Charactor charactor;
+        private Random random;
+        private int floor = 1; // 현재 던전 층
 
         public Dungeon()
         {
@@ -22,45 +20,50 @@ namespace Sparta2weekProject.Menu
         }
 
         // 던전 입장 메뉴
-        public void DungeonMenu(Charactors _charactor)
+        public void DungeonMenu(Charactor _charactor)
         {
             floor = 1; // 층 초기화
             charactor = _charactor;
 
+            #region ConsolePrint
             Console.WriteLine("던전입장");
             Console.WriteLine("이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.");
             Console.WriteLine("권장 방어력 이하로 던전을 수행할 시, 75% 확률로 실패할 수 있습니다.\n");
             Console.WriteLine($"1. 던전 : {DungeonLv.easy}  | 방어력 10 이상 권장");
             Console.WriteLine($"2. 던전 : {DungeonLv.normal}  | 방어력 25 이상 권장");
-            Console.WriteLine($"3. 던전 : {DungeonLv.어려움}  | 방어력 45 이상 권장\n");
+            Console.WriteLine($"3. 던전 : {DungeonLv.hard}  | 방어력 45 이상 권장\n");
             Console.WriteLine("0. 나가기\n");
+            #endregion ConsolePrint
 
             // 선택 시 로직
             choice = base.Choice(menu, true);
             switch (choice)
             {
                 case 1:
-                    DungeonSelect(DungeonLv.easy, 10);
+                    DungeonSelect(DungeonLv.easy);
                     //DungeonExplore(DungeonLv.easy, 10);
                     break;
                 case 2:
-                    DungeonSelect(DungeonLv.normal, 25);
+                    DungeonSelect(DungeonLv.normal);
                     //DungeonExplore(DungeonLv.normal, 25);
                     break;
                 case 3:
-                    DungeonSelect(DungeonLv.어려움, 45);
-                    //DungeonExplore(DungeonLv.어려움, 45);
+                    DungeonSelect(DungeonLv.hard);
+                    //DungeonExplore(DungeonLv.hard, 45);
                     break;
             }
         }
 
         // 던전 진행 선택
-        void DungeonSelect(DungeonLv level, int def)
+        void DungeonSelect(DungeonLv level)
         {
+
+            #region ConsolePrint
             Console.WriteLine($"{level}던전에 들어오셨습니다.\n");
             Console.WriteLine("0. 던전 나가기");
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine($"2. 전투 시작 (현재 진행: {floor}층)\n");
+            #endregion ConsolePrint
 
             // 선택 시 로직
             choice = base.Choice(menu, true);
@@ -73,68 +76,73 @@ namespace Sparta2weekProject.Menu
                     // 상태 보기
                     Status status = new Status();
                     status.StatusMenu(charactor);
-                    DungeonSelect(level, def);
+                    DungeonSelect(level);
                     break;
                 case 2:
-                    DungeonExplore(level, def);
+                    DungeonExplore(level);
                     break;
             }
         }
 
         // 던전 탐색
-        void DungeonExplore(DungeonLv _lv, int _recommandedDef)
+        void DungeonExplore(DungeonLv _lv)
         {
             int getReward = 0;
             int getExp = 0;
-            int minusHp = 0;
+            int beforeHP = charactor.HP;
+            //int minusHp = 0;
             random = new Random();
 
             // 난이도에 따른 보상
             switch (_lv)
             {
                 case DungeonLv.easy:
-                    StartBattle(DungeonLv.easy);
+                    //StartBattle(DungeonLv.easy);
                     getReward = 1000;
                     getExp = random.Next(11);
                     break;
                 case DungeonLv.normal:
-                    StartBattle(DungeonLv.normal);
+                    //StartBattle(DungeonLv.normal);
                     getReward = 1700;
                     getExp = random.Next(11, 21);
                     break;
-                case DungeonLv.어려움:
-                    StartBattle(DungeonLv.어려움);
+                case DungeonLv.hard:
+                    //StartBattle(DungeonLv.hard);
                     getReward = 2500;
                     getExp = random.Next(21, 31);
                     break;
             }
 
-            minusHp = random.Next(20, 36) + (_recommandedDef - charactor.Defend);
+            // 전투 시작
+            StartBattle(_lv);
 
-            if ((_recommandedDef > charactor.Defend && random.Next(1, 100) > 25) || _recommandedDef > charactor.Health)
-            {
-                //공략 실패
-                Console.WriteLine("던전 공략 실패");
-                Console.WriteLine("던전 공략에 실패했습니다.\n");
-                getReward = 0;
-                minusHp = 50;
-                if (minusHp > charactor.Health)
-                    minusHp = charactor.Health;
-                getExp -= 10;
-                if (getExp < 0)
-                    getExp = 0;
-            }
-            else
-            {
-                //공략 성공
-                Console.WriteLine("던전 클리어");
-                Console.WriteLine("축하합니다!!");
-                Console.WriteLine($"던전 : {_lv} 을 클리어 했습니다.\n");
-                
+            //minusHp = random.Next(20, 36) + (_recommandedDef - charactor.Defend);
 
-                floor++; // 클리어 후 층 증가
-            }
+            //if ((_recommandedDef > charactor.Defend && random.Next(1, 100) > 25) || _recommandedDef > charactor.HP)
+            //{
+            //    //공략 실패
+            //    Console.WriteLine("던전 공략 실패");
+            //    Console.WriteLine("던전 공략에 실패했습니다.\n");
+            //    getReward = 0;
+            //    minusHp = 50;
+            //    if (minusHp > charactor.HP)
+            //        minusHp = charactor.HP;
+            //    getExp -= 10;
+            //    if (getExp < 0)
+            //        getExp = 0;
+            //}
 
+
+            //공략 성공
+            #region Clear
+            Console.WriteLine("던전 클리어");
+            Console.WriteLine("축하합니다!!");
+            Console.WriteLine($"던전 : {_lv} 을 클리어 했습니다.\n");
+
+
+            floor++; // 클리어 후 층 증가
+
+            #region Reward
             // 보상 수령 및 hp 감소
             int nextExp = charactor.Exp + getExp;
             int level = charactor.Level;
@@ -147,40 +155,50 @@ namespace Sparta2weekProject.Menu
                 nextExp -= 200;
             }
             
-           
+           // 보상 계산
             float rewardPercent = (random.Next(charactor.Attack, (charactor.Attack * 2) + 1) + 100) / 100.0f;
-            int totalReward = (int)(getReward * rewardPercent);
+            int totalReward = (int) (getReward * rewardPercent);
+
+            #region ConsolePrint
             Console.WriteLine("[탐험 결과]");
-            Console.WriteLine($"체력 {charactor.Health} -> {charactor.Health - minusHp}");
+            Console.WriteLine($"체력 {beforeHP} -> {charactor.HP}");
            
             Console.WriteLine($"Gold {charactor.Gold} -> {charactor.Gold + totalReward}");
             Console.WriteLine($"레벨 {charactor.Level} -> {level}");
             Console.WriteLine($"경험치 {charactor.Exp} -> {nextExp}");
-            charactor.Health = charactor.Health - minusHp;
+            #endregion ConsolePrint
+
+            //charactor.HP = charactor.HP - minusHp;
+            charactor.Exp = nextExp;
+            charactor.Level = level;
             charactor.Gold = charactor.Gold + totalReward;
-
+            #endregion Reward
             // 캐릭터 사망
-            if (charactor.Health == 0)
+            //if (charactor.HP == 0)
+            //{
+            //    Console.WriteLine("\n캐릭터가 사망했습니다.");
+            //    Console.WriteLine("게임 오버");
+            //}
+
+            Console.WriteLine("\n0. 로비로 나가기");
+            Console.WriteLine("1. 던전 입구로\n");
+            choice = base.Choice(1, true);
+            if (choice == 0)
             {
-                Console.WriteLine("\n캐릭터가 사망했습니다.");
-                Console.WriteLine("게임 오버");
+                return;
             }
 
-            Console.WriteLine("\n0. 던전 나가기");
-            Console.WriteLine("1. 던전 로비\n");
-            choice = base.Choice(1, true);
-            if (choice == 1)
+            if (floor == 6)
             {
-                if (floor == 6)
-                {
-                    Console.WriteLine("꼭대기에 도착하여 던전에서 나갑니다.\n");
-                }
-                else
-                {
-                    // 던전 로비로 이동
-                    DungeonSelect(_lv, _recommandedDef);
-                }   
+                Console.WriteLine("꼭대기에 도착하여 던전에서 나갑니다.\n");
             }
+            else
+            {
+                // 던전 로비로 이동
+                DungeonSelect(_lv);
+            }
+            #endregion Clear
+
         }
 
         // 전투 시작
@@ -193,11 +211,11 @@ namespace Sparta2weekProject.Menu
             if (monsters != null)
             {
                 // 전투 시작
-                Battle battle = new Battle(new Player(charactor), monsters);
-                battle.StartBattle();
+                Battle battle = new Battle(charactor, monsters);
+                battle.InBattle();
             }
 
-            //몬스터 생성 x
+            //몬스터 생성이 되지 않았을 때.
             else
             {
                 Console.WriteLine("몬스터를 생성하는 데 문제가 발생했습니다.");

@@ -1,10 +1,11 @@
 ﻿using Sparta2weekProject.Objects;
+using Sparta2weekProject.Objects.Charactor;
 
 namespace Sparta2weekProject.Menu
 {
     internal class Inventory : MenuHandler
     {
-        Charactors? charactor;
+        Charactor? charactor;
         List<Items> inven;
        
         public Inventory(List<Items> _inven)
@@ -14,7 +15,7 @@ namespace Sparta2weekProject.Menu
         }
 
         // 인벤토리 메인메뉴
-        public void InvenMenu(Charactors _charactor)
+        public void InvenMenu(Charactor _charactor)
         {
             this.charactor = _charactor;
 
@@ -39,7 +40,7 @@ namespace Sparta2weekProject.Menu
 
             }
         }
-    public void ItemPortion(Charactors charactor)
+    public void ItemPortion(Charactor charactor)
         {
             //Console.WriteLine($"{i}번째 포션");
             for (int i = 0; i < charactor.PortionHP.Count; i++)

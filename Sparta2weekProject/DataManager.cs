@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Sparta2weekProject.Objects;
+using Sparta2weekProject.Objects.Charactor;
 using System.IO;
 
 namespace Sparta2weekProject
@@ -25,7 +25,7 @@ namespace Sparta2weekProject
         }
 
         // Charactor 변수만 받아 변수의 데이터를 저장.
-        public void SaveCharactorToJson(Charactors _charactor)
+        public void SaveCharactorToJson(Charactor _charactor)
         {
             //디렉토리가 없으면 디렉토리 생성.
             DirectoryInfo directoryInfo = new DirectoryInfo(userDocumentsFolder);
@@ -35,7 +35,7 @@ namespace Sparta2weekProject
             }
 
             // 디렉토리에 파일이 없으면 파일 생성.
-            string filePath = Path.Combine(userDocumentsFolder, "Charactors.txt");
+            string filePath = Path.Combine(userDocumentsFolder, "Charactor.txt");
             if (!File.Exists(filePath))
             {
                 using (File.Create(filePath)) { }
@@ -53,10 +53,10 @@ namespace Sparta2weekProject
         }
 
         // 데이터 불러오기
-        public Charactors LoadCharactorFromJson()
+        public Charactor LoadCharactorFromJson()
         {
             // 읽어올 파일 경로.
-            string filePath = Path.Combine(userDocumentsFolder, "Charactors.txt");
+            string filePath = Path.Combine(userDocumentsFolder, "Charactor.txt");
             
             // 파일 없으면 캐릭터 생성 시작.
             if (!File.Exists(filePath))
@@ -71,8 +71,8 @@ namespace Sparta2weekProject
             
             // 파일 있으면 불러오기.
             string json = File.ReadAllText(filePath);
-            Charactors Loadchad = JsonConvert.DeserializeObject<Charactors>(json);
-            return Loadchad;
+            Charactor Loadcharactor = JsonConvert.DeserializeObject<Charactor>(json);
+            return Loadcharactor;
         }
 
     }

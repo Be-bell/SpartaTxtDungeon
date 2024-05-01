@@ -1,17 +1,17 @@
-﻿using Sparta2weekProject.Objects;
+﻿using Sparta2weekProject.Objects.Charactor;
 
 namespace Sparta2weekProject.Menu
 {
     internal class Spa : MenuHandler
     {
-        Charactors charactor;
+        Charactor charactor;
 
         public Spa()
         {
             menu = 1;
         }
 
-        public void SpaMenu(Charactors _charactor)
+        public void SpaMenu(Charactor _charactor)
         {
             charactor = _charactor;
             Console.WriteLine("온천 : 휴식하기");
@@ -31,9 +31,9 @@ namespace Sparta2weekProject.Menu
             {
                 Console.WriteLine("휴식하였습니다. (-500 G)\n");
                 charactor.Gold -= 500;
-                charactor.Health += 100;
-                if (charactor.Health > charactor.FullHealth)
-                    charactor.Health = charactor.FullHealth;
+                charactor.HP += 100;
+                if (charactor.HP > charactor.FullHP)
+                    charactor.HP = charactor.FullHP;
             }
         }
     }

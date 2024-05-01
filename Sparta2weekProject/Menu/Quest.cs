@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sparta2weekProject.Interfaces;
 using Sparta2weekProject.Objects;
+using Sparta2weekProject.Objects.Charactor;
 
 namespace Sparta2weekProject.Menu
 {
@@ -27,7 +28,7 @@ namespace Sparta2weekProject.Menu
         }
 
         // 모든 퀘스트 보여주기
-        public void ShowQusts(Charactors _charactor, List<Items> _items)
+        public void ShowQusts(Charactor _charactor, List<Items> _items)
         {
             bool Restart = false;
             QuestInfos = RemoveQuest(QuestInfos);
@@ -103,7 +104,7 @@ namespace Sparta2weekProject.Menu
         }
 
         // 퀘스트 수락
-        public void AcceptQuest(QuestInfo _quest, Charactors _charactor)
+        public void AcceptQuest(QuestInfo _quest, Charactor _charactor)
         {
             Console.WriteLine($"퀘스트: {_quest.questName}를 수락하셨습니다.\n");
         }
