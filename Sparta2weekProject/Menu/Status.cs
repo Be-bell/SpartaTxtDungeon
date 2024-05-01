@@ -27,11 +27,6 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine($"체  력 : {charactor.Health} / {charactor.FullHealth}");
             Console.WriteLine($"경험치 : {charactor.Exp}");
             Console.WriteLine($" Gold  : {charactor.Gold}\n");
-            Console.WriteLine( $"PortionHP :{charactor.PortionHP.Count}");
-            Console.WriteLine($"PortionAtk :{charactor.PortionAtk.Count}");
-            Console.WriteLine($"PortionDef :{charactor.PortionDef.Count}");
-
-
             Console.WriteLine("0. 나가기\n");
 
             choice = base.Choice(menu, true);

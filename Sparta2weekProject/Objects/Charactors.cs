@@ -12,7 +12,7 @@ namespace Sparta2weekProject.Objects
         public int Level;
         public CharactorClass Class;
         public int Attack;
-        public int Defend;
+        public int Defend; 
         public int FullHealth;
         public int Health;
         public int Gold;
@@ -20,21 +20,18 @@ namespace Sparta2weekProject.Objects
         public int PlusAttack = 0;
         public int PlusDefend = 0;
 
-
+  
 
         // 인벤토리
         public List<Items> Inven;
-      
-        public List<Portion> PortionHP = new List<Portion>();
-        public List<Portion> PortionAtk = new List<Portion>();
-        public List<Portion> PortionDef = new List<Portion>();
 
-
+        public List<Portion> Portion;
 
         // 장착 무기
         public Items? Armor;
         public Items? Weapon;
- 
+        public Items? Portions;
+
         // 스킬북
         public SkillBook SkillBook;
 
@@ -45,8 +42,8 @@ namespace Sparta2weekProject.Objects
             Level = 1;
             Gold = 1000;
             Exp = 0;
-
-
+            
+          
 
             switch (_charactorClass)
             {
@@ -67,18 +64,18 @@ namespace Sparta2weekProject.Objects
             }
 
             Inven = new List<Items>();
-
-            
+            Portion = new List<Portion>();
             for (int i = 0; i < 3; i++)
             {
-               PortionHP Hpname= new PortionHP(100, 0, 0);
-                Hpname.ItemName = "Hp포션";
-                PortionHP.Add(Hpname);
+                Portion.Add(new PortionHP(100, 0, 0));
 
             }
         }
-
-
+<<<<<<< HEAD
+      
+       
+=======
+        
         public void NameCreate()
         {
             Console.Write("이름을 입력해주세요: ");
@@ -89,19 +86,19 @@ namespace Sparta2weekProject.Objects
 
         public void ItemUse(Items _item)
         {
-
+            
         }
 
         public void SkillUse(Skills _skill)
         {
 
         }
+        
+>>>>>>> Dev
+    }
 
-
-        public enum CharactorClass
-        {
-            전사, 궁수
-        }
+    public enum CharactorClass
+    {
+        전사, 궁수
     }
 }
-
