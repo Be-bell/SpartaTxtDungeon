@@ -30,7 +30,7 @@
         // 플레이어 턴 메서드
         private void PlayerTurn()
         {
-            Console.WriteLine("\n[플레이어의 턴]");
+            Console.WriteLine($"\n{player.Name}의 턴");
             Console.WriteLine("1. 공격");
 
 
@@ -53,7 +53,7 @@
         private void PlayerAttack()
         {
             int DeadMonster = 0;
-            Console.WriteLine("\n[플레이어의 공격]");
+            Console.WriteLine($"\n{player.Name}의 공격]");
             foreach (var monster in monsters1)
             {
                 monster.TakeDamage(player.ATK);
@@ -75,7 +75,7 @@
                 if (!monster.IsDead())
                 {
                     player.TakeDamage(monster.ATK);
-                    Console.WriteLine($"{monster.Name}의 공격! 플레이어가 {monster.ATK}의 피해를 입었습니다.");
+                    Console.WriteLine($"{monster.Name}의 공격! {player.Name}가 {monster.ATK}의 피해를 입었습니다.");
                 }
             }
 
@@ -87,7 +87,7 @@
         private void DisplayBattleStatus(Player player, Monster[] monsters)
         {
             Console.WriteLine("\n[전투 상태]");
-            Console.WriteLine("플레이어 체력: " + player.HP);
+            Console.WriteLine($"{player.Name} 체력: " + player.HP);
 
             for (int i = 0; i < monsters.Length; i++)
             {
