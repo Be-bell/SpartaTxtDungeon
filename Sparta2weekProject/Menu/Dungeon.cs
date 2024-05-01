@@ -29,8 +29,8 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine("던전입장");
             Console.WriteLine("이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.");
             Console.WriteLine("권장 방어력 이하로 던전을 수행할 시, 75% 확률로 실패할 수 있습니다.\n");
-            Console.WriteLine($"1. 던전 : {DungeonLv.쉬움}  | 방어력 10 이상 권장");
-            Console.WriteLine($"2. 던전 : {DungeonLv.일반}  | 방어력 25 이상 권장");
+            Console.WriteLine($"1. 던전 : {DungeonLv.easy}  | 방어력 10 이상 권장");
+            Console.WriteLine($"2. 던전 : {DungeonLv.normal}  | 방어력 25 이상 권장");
             Console.WriteLine($"3. 던전 : {DungeonLv.어려움}  | 방어력 45 이상 권장\n");
             Console.WriteLine("0. 나가기\n");
 
@@ -39,12 +39,12 @@ namespace Sparta2weekProject.Menu
             switch (choice)
             {
                 case 1:
-                    DungeonSelect(DungeonLv.쉬움, 10);
-                    //DungeonExplore(DungeonLv.쉬움, 10);
+                    DungeonSelect(DungeonLv.easy, 10);
+                    //DungeonExplore(DungeonLv.easy, 10);
                     break;
                 case 2:
-                    DungeonSelect(DungeonLv.일반, 25);
-                    //DungeonExplore(DungeonLv.일반, 25);
+                    DungeonSelect(DungeonLv.normal, 25);
+                    //DungeonExplore(DungeonLv.normal, 25);
                     break;
                 case 3:
                     DungeonSelect(DungeonLv.어려움, 45);
@@ -91,13 +91,13 @@ namespace Sparta2weekProject.Menu
             // 난이도에 따른 보상
             switch (_lv)
             {
-                case DungeonLv.쉬움:
-                    StartBattle(DungeonLv.쉬움);
+                case DungeonLv.easy:
+                    StartBattle(DungeonLv.easy);
                     getReward = 1000;
                     getExp = random.Next(11);
                     break;
-                case DungeonLv.일반:
-                    StartBattle(DungeonLv.일반);
+                case DungeonLv.normal:
+                    StartBattle(DungeonLv.normal);
                     getReward = 1700;
                     getExp = random.Next(11, 21);
                     break;
@@ -190,6 +190,8 @@ namespace Sparta2weekProject.Menu
                 Battle battle = new Battle(new Player(charactor), monsters);
                 battle.StartBattle();
             }
+
+            //몬스터 생성 x
             else
             {
                 Console.WriteLine("몬스터를 생성하는 데 문제가 발생했습니다.");
@@ -205,7 +207,7 @@ namespace Sparta2weekProject.Menu
             Monster[] MonstersLevel; // 난이도에 따른 몬스터 정보
             switch (dungeonLevel)
             {
-                case DungeonLv.쉬움:
+                case DungeonLv.easy:
                     monsterCount = random.Next(1, 3);
                     MonstersLevel = new Monster[]
                     {
@@ -214,7 +216,7 @@ namespace Sparta2weekProject.Menu
                           new Monster("공허충", 10, 30, 6)
                     };
                     break;
-                case DungeonLv.일반:
+                case DungeonLv.normal:
                     monsterCount = random.Next(1, 4);
                     monsterAttack = random.Next(0, 3);
                     monsterHp = random.Next(0, 5);
@@ -225,7 +227,7 @@ namespace Sparta2weekProject.Menu
                         new Monster("공허충", 10, 50 + monsterHp, 8 + monsterAttack)
                     };
                     break;
-                case DungeonLv.어려움:
+                case DungeonLv.hard:
                     monsterCount = random.Next(2, 4);
                     monsterAttack = random.Next(3, 7);
                     monsterHp = random.Next(5, 15);
@@ -251,6 +253,6 @@ namespace Sparta2weekProject.Menu
     }
     enum DungeonLv
     {
-        쉬움 = 1, 일반, 어려움
+        easy = 1, normal, hard
     }
 }
