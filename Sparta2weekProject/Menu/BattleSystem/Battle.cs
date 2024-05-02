@@ -66,9 +66,20 @@ namespace Sparta2weekProject.Menu.BattleSystem
                 if (monster.IsDead())
                 {
                     DeadMonster++;
+                    switch (monster.Name)
+                    {
+                        case "미니언":
+                            charactor.MinionCount++;
+                            break;
+                        case "대포미니언":
+                            charactor.CannonCount++;
+                            break;
+                        case "공허충":
+                            charactor.vacuityCount++;
+                            break;
+                    }
                 }
             }
-
             if (DeadMonster == monsters.Length)
             {
                 // 플레이어 마나 회복

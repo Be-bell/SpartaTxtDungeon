@@ -21,8 +21,9 @@ namespace Sparta2weekProject.Objects.Charactor
         public int PlusDefend = 0;
         public int MP;
         public int FullMP;
-
-
+        public int MinionCount; // 미니언 킬 수
+        public int CannonCount; // 대포미니언 킬 수
+        public int vacuityCount; // 공허충 킬 수
 
         // 인벤토리
         public List<Items> Inven;

@@ -118,6 +118,25 @@ internal class QuestInfo : MenuHandler
                     access = false;
                     break;
                 case 1:
+                    // 몬스터의 이름이 
+                    switch (monsterName)
+                    {
+                        case "Minion":
+                            currentCount = charactor.MinionCount;
+                            maxCount = currentCount + 5;
+                            break;
+                        case "CannonMinion":
+                            currentCount = charactor.CannonCount;
+                            maxCount = currentCount + 5;
+                            break;
+                        case "vacuity":
+                            currentCount = charactor.vacuityCount;
+                            maxCount = currentCount + 5;
+                            break;
+                        default:
+                            // 몬스터 처치 퀘스트가 아니므로 없으므로 넘김
+                            break;
+                    }
                     access = true;
                     break;
             }
@@ -137,9 +156,9 @@ internal class Hunting : QuestInfo
 {
     public Hunting()
 	{
-		monsterName = "미니언";
+		monsterName = "Minion";
 		currentCount = 0;
-		maxCount = 0;
+		maxCount = 5;
 		questName = "마을을 위협하는 미니언 처치";
         questDescription = "이봐! 마을 근처에 미니언들이 너무 많아졌다고 생각하지 않나?\n마을 주민들의 안전을 위해서라도 저것들 수를 좀 줄여야 한다고!\n모험가인 자네가 좀 처치해주게!";
         questGoal = string.Format($"{monsterName} 5마리 처치 ({currentCount} / {maxCount})");
@@ -149,6 +168,24 @@ internal class Hunting : QuestInfo
 
     public override void QuestClear(Charactor _charactor)
     {
+        // 몬스터의 이름이 
+        switch (monsterName)
+        {
+            case "Minion":
+                questGoal = string.Format($"{monsterName} 5마리 처치 ({_charactor.MinionCount - currentCount} / {maxCount - currentCount})");
+                break;
+            case "CannonMinion":
+                questGoal = string.Format($"{monsterName} 5마리 처치 ({_charactor.MinionCount - currentCount} / {maxCount - currentCount})");
+                break;
+            case "vacuity":
+                questGoal = string.Format($"{monsterName} 5마리 처치 ({_charactor.MinionCount - currentCount} / {maxCount - currentCount})");
+                break;
+            default:
+                // 몬스터 처치 퀘스트가 아니므로 없으므로 넘김
+                break;
+        }
+
+
         // 최대 횟수가 0이 아니고 currentCount가 maxCount가 아니라면
         if (maxCount <= currentCount)
         {
