@@ -31,10 +31,10 @@ namespace Sparta2weekProject.Menu
             PlusDef = Def;
         }
 
-        public Portion(PortionType portionType)
-        {
-            PortionType name = portionType;
-        }
+        //public Portion(PortionType portionType)
+        //{
+        //    PortionType name = portionType;
+        //}
 
     }
 
