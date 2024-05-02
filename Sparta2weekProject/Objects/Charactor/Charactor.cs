@@ -24,7 +24,7 @@ namespace Sparta2weekProject.Objects.Charactor
         public int MinionCount; // 미니언 킬 수
         public int CannonCount; // 대포미니언 킬 수
         public int vacuityCount; // 공허충 킬 수
-
+        public int KillCount;   // 던전 입장 시 킬카운트
         // 인벤토리
         public List<Items> Inven;
 
@@ -119,7 +119,7 @@ namespace Sparta2weekProject.Objects.Charactor
             if (HP <= 0)
             {
                 HP = 0;
-                Console.WriteLine("You Lose");
+                Console.WriteLine("캐릭터가 사망했습니다.");
             }
         }
 
