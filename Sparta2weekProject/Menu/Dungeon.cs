@@ -120,9 +120,7 @@ namespace Sparta2weekProject.Menu
 
             //if ((_recommandedDef > charactor.Defend && random.Next(1, 100) > 25) || _recommandedDef > charactor.HP)
             //{
-            //    //공략 실패
-            //    Console.WriteLine("던전 공략 실패");
-            //    Console.WriteLine("던전 공략에 실패했습니다.\n");
+
             //    getReward = 0;
             //    minusHp = 50;
             //    if (minusHp > charactor.HP)
@@ -130,8 +128,15 @@ namespace Sparta2weekProject.Menu
             //    getExp -= 10;
             //    if (getExp < 0)
             //        getExp = 0;
-            //}
+            //
 
+            //공략 실패
+            if (charactor.HP==0)
+            {
+                Console.WriteLine("던전 공략 실패");
+                Console.WriteLine("던전 공략에 실패했습니다.\n");
+                return;
+            }
 
             //공략 성공
             #region Clear
