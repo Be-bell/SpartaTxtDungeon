@@ -53,7 +53,7 @@ namespace Sparta2weekProject.Menu
                     // 입력한 퀘스트 확인
                     Restart = QuestInfos[0].QuestShow(_charactor, _items, Restart);
                     // 퀘스트를 수락하고 퀘스트를 클리어하지 않았다면
-                    if (QuestInfos[0].access && QuestInfos[0].clearCheak == false)
+                    if (QuestInfos[0].access && QuestInfos[0].access == false)
                     {
                         // 해당 퀘스트 추가(수락)
                         AcceptQuest(QuestInfos[0], _charactor);
@@ -63,7 +63,7 @@ namespace Sparta2weekProject.Menu
                     // 퀘스트 클리어 여부 확인
                     QuestInfos[1].QuestClear(_charactor);
                     Restart = QuestInfos[1].QuestShow(_charactor, _items, Restart);
-                    if (QuestInfos[1].access && QuestInfos[1].clearCheak == false)
+                    if (QuestInfos[1].access && QuestInfos[1].access == false)
                     {
                         AcceptQuest(QuestInfos[1], _charactor);
                     }   
@@ -72,7 +72,7 @@ namespace Sparta2weekProject.Menu
                     // 퀘스트 클리어 여부 확인
                     QuestInfos[2].QuestClear(_charactor);
                     Restart = QuestInfos[2].QuestShow(_charactor, _items, Restart);
-                    if (QuestInfos[2].access && QuestInfos[2].clearCheak == false)
+                    if (QuestInfos[2].access && QuestInfos[2].access == false)
                     {
                         AcceptQuest(QuestInfos[2], _charactor);
                     }
