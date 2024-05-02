@@ -270,7 +270,9 @@ namespace Sparta2weekProject.Menu
             Monster[] randomMonster = new Monster[monsterCount];
             for(int i = 0; i < monsterCount; i++)
             {
-                randomMonster[i] = MonstersLevel[random.Next(0, 3)];
+                // Monster[]에서 옮기면 얕은 복사가 되므로 새로운 객체를 만들어 생성함 (Monster.cs 33줄)
+                Monster monsterClone = new Monster(MonstersLevel[random.Next(0, 3)]);
+                randomMonster[i] = monsterClone;
             }
             return randomMonster;
         }

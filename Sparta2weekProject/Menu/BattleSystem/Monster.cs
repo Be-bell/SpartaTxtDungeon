@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Sparta2weekProject.Menu.BattleSystem
 {
@@ -26,6 +28,14 @@ namespace Sparta2weekProject.Menu.BattleSystem
             Level = level;
             HP = hp;
             ATK = atk;
+        }
+
+        public Monster(Monster clone)
+        {
+            Name = clone.Name;
+            Level = clone.Level;
+            HP = clone.HP;
+            ATK = clone.ATK;
         }
 
         /* 
