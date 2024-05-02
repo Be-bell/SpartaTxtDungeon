@@ -26,8 +26,8 @@
     {
         public ArchorSkillBook()
         {
-            //skill_1 = new ArchorSkill_1();
-            //skill_2 = new ArchorSkill_2();
+            skill_1 = new ArchorSkill_1();
+            skill_2 = new ArchorSkill_2();
         }
     }
 }
