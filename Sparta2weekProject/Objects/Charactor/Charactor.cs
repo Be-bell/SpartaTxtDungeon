@@ -89,15 +89,15 @@ namespace Sparta2weekProject.Objects.Charactor
             Name = name;
         }
 
-        public bool SkillUse(Skills _skill, Charactor charactor, Monster[] _targets)
+        public bool SkillUse(Skills _skill, Charactor _charactor, Monster[] _targets)
         {
             Skills skill =  _skill;
-            if(charactor.MP < skill.requiredMP)
+            if(_charactor.MP < skill.requiredMP)
             {
                 Console.WriteLine("마나가 부족합니다.");
                 return false;
             }
-            return skill.IsUse(charactor, _targets);
+            return skill.IsUse(_charactor, _targets);
         }
 
         // 마나 회복 메서드
