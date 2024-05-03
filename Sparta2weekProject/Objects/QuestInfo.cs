@@ -102,7 +102,7 @@ internal class QuestInfo : MenuHandler
         {
             Console.WriteLine("0. 돌아가기");
             // 선택에 따른 로직
-            choice = base.Choice(1, true);
+            choice = base.Choice(0, true);
             Restart = true;
         }
 		else
@@ -110,7 +110,7 @@ internal class QuestInfo : MenuHandler
             Console.WriteLine("0. 거절");
             Console.WriteLine("1. 수락");
             // 선택에 따른 로직
-            choice = base.Choice(2, true);
+            choice = base.Choice(1, true);
             switch (choice)
             {
                 case 0:
@@ -137,6 +137,7 @@ internal class QuestInfo : MenuHandler
                             // 몬스터 처치 퀘스트가 아니므로 없으므로 넘김
                             break;
                     }
+                    Console.WriteLine($"퀘스트: {questName}를 수락하셨습니다.\n");
                     access = true;
                     break;
             }
