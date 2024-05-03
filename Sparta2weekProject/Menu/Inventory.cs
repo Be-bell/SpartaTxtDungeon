@@ -67,7 +67,7 @@ namespace Sparta2weekProject.Menu
                     {
                         Console.WriteLine("사용할 포션이 없습니다 ");
                         Console.WriteLine("");
-                        Thread.Sleep(5000);
+                        Thread.Sleep(1000);
                     }
                     break;
                 case 2:
@@ -83,7 +83,7 @@ namespace Sparta2weekProject.Menu
                     {
                         Console.WriteLine("사용할 포션이 없습니다 ");
                         Console.WriteLine("");
-                        Thread.Sleep(5000);
+                        Thread.Sleep(1000);
                     }
                     break;
                 case 3:
@@ -99,7 +99,7 @@ namespace Sparta2weekProject.Menu
                     {
                         Console.WriteLine("사용할 포션이 없습니다 ");
                         Console.WriteLine("");
-                        Thread.Sleep(5000);
+                        Thread.Sleep(1000);
                     }
                     break;
                 default:
