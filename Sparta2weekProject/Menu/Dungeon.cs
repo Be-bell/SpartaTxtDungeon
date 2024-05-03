@@ -14,6 +14,9 @@ namespace Sparta2weekProject.Menu
         private Random random;
         private int floor = 1; // 현재 던전 층
         public bool escapeCheck = false;
+        PortionHP Hpname = new PortionHP(30, 0, 0, "Hp포션");
+        PortionAtk Atkname = new PortionAtk(0, 2, 0, "Atk포션");
+        PortionDes Desname = new PortionDes(0, 0, 2, "Des포션");
 
         public Dungeon()
         {
@@ -151,12 +154,6 @@ namespace Sparta2weekProject.Menu
             // 던전 탈출
             if (escapeCheck)
             {
-                PortionHP Hpname = new PortionHP(30, 0, 0, "Hp포션");
-                PortionAtk Atkname = new PortionAtk(0, 2, 0, "Atk포션");
-                PortionDes Desname = new PortionDes(0, 0, 2, "Des포션");
-                charactor.PortionHP.Add(Hpname);
-                charactor.PortionAtk.Add(Atkname);
-                charactor.PortionDef.Add(Desname);
                 // 아래의 코드 넘김
                 Console.WriteLine("던전에서 도망쳤습니다.\n");
                 return;
@@ -201,13 +198,25 @@ namespace Sparta2weekProject.Menu
             charactor.Exp = nextExp;
             charactor.Level = level;
             charactor.Gold = charactor.Gold + totalReward;
+
+            int RandomPotion = random.Next(20);
+
+            if (RandomPotion <= 5)
+            {
+                Console.WriteLine("보상으로 체력 포션을 획득하였습니다!");
+                charactor.PortionHP.Add(Hpname);
+            }
+            else if (RandomPotion <= 7)
+            {
+                Console.WriteLine("보상으로 공격 포션을 획득하였습니다!");
+                charactor.PortionAtk.Add(Atkname);
+            }
+            else if (RandomPotion <= 9)
+            {
+                Console.WriteLine("보상으로 방어 포션을 획득하였습니다!");
+                charactor.PortionAtk.Add(Desname);
+            }
             #endregion Reward
-            // 캐릭터 사망
-            //if (charactor.HP == 0)
-            //{
-            //    Console.WriteLine("\n캐릭터가 사망했습니다.");
-            //    Console.WriteLine("게임 오버");
-            //}
 
             Console.WriteLine("\n0. 로비로 나가기");
             Console.WriteLine("1. 던전 입구로\n");
