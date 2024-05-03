@@ -1,4 +1,5 @@
 ﻿using Sparta2weekProject.Objects.Charactor;
+using System;
 using System.Threading;
 
 namespace Sparta2weekProject.Menu.BattleSystem
@@ -103,9 +104,9 @@ namespace Sparta2weekProject.Menu.BattleSystem
             }
 
             Console.WriteLine($"[{charactor.Name} 의 공격]");
-            int damage = charactor.Attack;
+            int damage = charactor.Attack + charactor.PlusAttack;
 
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
 
             // 치명타 여부 확인
             if (IsCritical())
@@ -137,7 +138,7 @@ namespace Sparta2weekProject.Menu.BattleSystem
                 charactor.KillCount++;
             }
 
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
         }
 
         // 적 턴 메서드
@@ -145,28 +146,30 @@ namespace Sparta2weekProject.Menu.BattleSystem
         {
             Console.WriteLine("\n[적의 턴]");
 
-            Thread.Sleep(1000);
             foreach (var monster in monsters)
             {
                 if (!monster.IsDead())
                 {
+                    Console.WriteLine($"{monster.Name}의 공격!");
+                    Thread.Sleep(500);
                     // 회피 여부 확인
                     if (IsDodge())
                     {
-                        Console.WriteLine($"{charactor.Name}의 공격! {monster.Name}의 공격을 회피했습니다.");
+                        Console.WriteLine($"{monster.Name}의 공격을 회피했습니다.");
                     }
-                    else
+                    else if (charactor.TakeDamage(monster.ATK-charactor.Defend))
                     {
-                        Console.WriteLine($"{monster.Name}의 공격! {charactor.Name}가 {monster.ATK}의 피해를 입었습니다.");
-                        charactor.TakeDamage(monster.ATK);
-                        //캐릭터가 죽으면 리턴함.
-                        if (charactor.HP == 0)
-                        {
-                            return;
-                        }
+                        Console.WriteLine($"{charactor.Name}가 {monster.ATK}의 피해를 입었습니다.");
+
                     }
+                    Thread.Sleep(500);
+                    //캐릭터가 죽으면 리턴함.
+                    if (charactor.HP == 0)
+                    {
+                        return;
+                    }
+                    
                 }
-                Thread.Sleep(1000);
             }
 
             Console.Clear();

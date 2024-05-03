@@ -113,14 +113,20 @@ namespace Sparta2weekProject.Objects.Charactor
         }
 
         // 플레이어가 피해를 받는 메서드
-        public void TakeDamage(int damage)
+        public bool TakeDamage(int damage)
         {
+            if(damage < 0)
+            {
+                Console.WriteLine("방어력이 높아 공격을 막아냈습니다!");
+                return false;
+            }
             HP -= damage;
             if (HP <= 0)
             {
                 HP = 0;
                 Console.WriteLine("캐릭터가 사망했습니다.");
             }
+            return true;
         }
     }
     public enum CharactorClass
