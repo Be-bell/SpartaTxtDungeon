@@ -164,7 +164,7 @@ internal class Hunting : QuestInfo
         questDescription = "이봐! 마을 근처에 미니언들이 너무 많아졌다고 생각하지 않나?\n마을 주민들의 안전을 위해서라도 저것들 수를 좀 줄여야 한다고!\n모험가인 자네가 좀 처치해주게!";
         questGoal = string.Format($"{monsterName} 5마리 처치 ({currentCount} / {maxCount})");
         rewardItem = new Armor(); // Armor
-        clearGold = 5;
+        clearGold = 100;
     }
 
     public override void QuestClear(Charactor _charactor)
@@ -203,7 +203,7 @@ internal class EquipItem : QuestInfo
         questName = "장비를 장착해보자";
 		questDescription = "자네 신참 모험가가 아닌가? \n모험을 떠나기전에 장비를 구매해서 한 번 장착해보겠는가?";
         questGoal = string.Format($"Weapon와 Armor를 모두 장착하기");
-        clearGold = 10;
+        clearGold = 300;
 	}
 
     public override void QuestClear(Charactor _charactor)
@@ -214,6 +214,14 @@ internal class EquipItem : QuestInfo
             {
                 clearCheak = true;
             }
+            else
+            {
+                clearCheak = false;
+            }
+        }
+        else
+        {
+            clearCheak = false;
         }
     }
 }
@@ -223,19 +231,24 @@ internal class PowerUp : QuestInfo
 {
 	public PowerUp()
 	{
-        atk = 13;
-        def = 23;
+        atk = 15;
+        def = 8;
+
         questName = "더욱 더 강해지기";
         questDescription = "당신 아직 높은 던전에 가기에는 미숙한 거 같군";
-        questGoal = string.Format($"공격력 {atk}이상 / 방어력 {def}이상 ");
-        clearGold = 30;
+        questGoal = string.Format($"공격력 {atk} / 방어력 {def} ");
+        clearGold = 500;
     }
 
     public override void QuestClear(Charactor _charactor)
     {
-        if (_charactor.Attack + _charactor.PlusAttack >= def && _charactor.Defend + _charactor.PlusDefend >= def)
+        if (_charactor.Attack + _charactor.PlusAttack >= atk && _charactor.Defend + _charactor.PlusDefend >= def)
         {
             clearCheak = true;
+        }
+        else
+        {
+            clearCheak = false;
         }
     }
 }
