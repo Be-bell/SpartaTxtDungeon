@@ -7,7 +7,7 @@ namespace Sparta2weekProject.Menu
     {
         Charactor? charactor;
         List<Items> inven;
-       
+
         public Inventory(List<Items> _inven)
         {
             inven = _inven;
@@ -22,7 +22,7 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine("인벤토리");
             Console.WriteLine("보유 중인 아이템을 확인할 수 있습니다.\n");
             Console.WriteLine("[아이템 목록]");
-            foreach(Items item in inven)
+            foreach (Items item in inven)
             {
                 string isEquip = item.IsEquiped ? "[E] " : "";
                 Console.WriteLine("- " + isEquip + item.ItemInfo(item));
@@ -32,38 +32,57 @@ namespace Sparta2weekProject.Menu
 
             // 선택
             choice = base.Choice(menu, true);
-            switch(choice)
-            { 
+            switch (choice)
+            {
                 case 1:
                     EquipMenu();
                     break;
 
             }
         }
-    public void ItemPortion(Charactor charactor)
+        public void ItemPortion(Charactor charactor)
         {
-            //Console.WriteLine($"{i}번째 포션");
-            for (int i = 0; i < charactor.PortionHP.Count; i++)
+            if (charactor.PortionHP.Count > 0) //포션이있을때 
             {
-                Console.WriteLine($"{i+1}. {charactor.PortionHP[i].ItemName }");
-            }
-            //아이템 설명
-            //리스트 인덱스 사용
-  
-            Console.WriteLine("사용할 포션의 번호를 입력해주세요");
-            int input = int.Parse(Console.ReadLine());
-            charactor.PortionHP[input - 1].Drink(charactor);
-            charactor.PortionHP.RemoveAt(input - 1);
-           
+                //Console.WriteLine($"{i}번째 포션");
+                for (int i = 0; i < charactor.PortionHP.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {charactor.PortionHP[i].ItemName}");
+                }
+                //아이템 설명
+                //리스트 인덱스 사용
 
+                Console.WriteLine("사용할 포션의 번호를 입력해주세요");
+                int input = int.Parse(Console.ReadLine());
+           
+                charactor.PortionHP[input - 1].Drink(charactor, input);
+          
+            }
+            else //포션이없을때
+            {
+                Console.WriteLine("사용할 포션이 없습니다 ");
+                Console.WriteLine("");
+                Thread.Sleep(5000);
+            }
+
+          
+            
+
+
+
+           // charactor.PortionHP.RemoveAt(input - 1);
+          
+                //input = int.Parse(Console.ReadLine());
+                //Console.WriteLine("체력이 가득차서 사용할수있는 포션이없");
+            
 
         }
-    
+
 
         // 장착 메뉴
         public void EquipMenu()
         {
-            while(choice!=0)
+            while (choice != 0)
             {
                 Console.WriteLine("인벤토리 - 장착 관리");
                 Console.WriteLine("보유 중인 아이템을 장착할 수 있습니다.\n");
@@ -120,12 +139,12 @@ namespace Sparta2weekProject.Menu
                             charactor.Armor = choiceItem;
                         }
                         break;
-                    
-                        
-                    
+
+
+
                 }
             }
         }
-       
+
     }
 }
