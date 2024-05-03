@@ -122,12 +122,10 @@ namespace Sparta2weekProject.Objects.Charactor
                 Console.WriteLine("캐릭터가 사망했습니다.");
             }
         }
-
-
-        public enum CharactorClass
-        {
-            전사, 궁수
-        }
+    }
+    public enum CharactorClass
+    {
+        전사, 궁수
     }
 }
 
