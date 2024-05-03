@@ -151,6 +151,12 @@ namespace Sparta2weekProject.Menu
             // 던전 탈출
             if (escapeCheck)
             {
+                PortionHP Hpname = new PortionHP(30, 0, 0, "Hp포션");
+                PortionAtk Atkname = new PortionAtk(0, 2, 0, "Atk포션");
+                PortionDes Desname = new PortionDes(0, 0, 2, "Des포션");
+                charactor.PortionHP.Add(Hpname);
+                charactor.PortionAtk.Add(Atkname);
+                charactor.PortionDef.Add(Desname);
                 // 아래의 코드 넘김
                 Console.WriteLine("던전에서 도망쳤습니다.\n");
                 return;

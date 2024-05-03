@@ -42,40 +42,72 @@ namespace Sparta2weekProject.Menu
         }
         public void ItemPortion(Charactor charactor)
         {
-            if (charactor.PortionHP.Count > 0) //포션이있을때 
-            {
-                //Console.WriteLine($"{i}번째 포션");
-                for (int i = 0; i < charactor.PortionHP.Count; i++)
-                {
-                    Console.WriteLine($"{i + 1}. {charactor.PortionHP[i].ItemName}");
-                }
-                //아이템 설명
-                //리스트 인덱스 사용
+            Console.WriteLine("HP 포션 개수: " + charactor.PortionHP.Count);
+            Console.WriteLine("Atk 포션 개수: " + charactor.PortionAtk.Count);
+            Console.WriteLine("Def 포션 개수: " + charactor.PortionDef.Count);
 
-                Console.WriteLine("사용할 포션의 번호를 입력해주세요");
-                int input = int.Parse(Console.ReadLine());
+            Console.WriteLine("어떤 포션을 사용하시겠습니까?");
+            Console.WriteLine("\n0. 돌아가기");
+            Console.WriteLine("1. HP 포션");
+            Console.WriteLine("2. Atk 포션");
+            Console.WriteLine("3. Def 포션\n");
+            choice = Choice(3, true);
+            switch (choice)
+            {
+                case 1:
+                    if (charactor.PortionHP.Count > 0) //포션이있을때 
+                    {
+                        //아이템 설명
+                        //리스트 인덱스 사용
+
+                        // 1번째 포션 사용
+                        charactor.PortionHP[0].Drink(charactor, 0);
+                    }
+                    else //포션이없을때
+                    {
+                        Console.WriteLine("사용할 포션이 없습니다 ");
+                        Console.WriteLine("");
+                        Thread.Sleep(5000);
+                    }
+                    break;
+                case 2:
+                    if (charactor.PortionAtk.Count > 0) //포션이있을때 
+                    {
+                        //아이템 설명
+                        //리스트 인덱스 사용
+
+                        // 1번째 포션 사용
+                        charactor.PortionAtk[0].Drink(charactor, 0);
+                    }
+                    else //포션이없을때
+                    {
+                        Console.WriteLine("사용할 포션이 없습니다 ");
+                        Console.WriteLine("");
+                        Thread.Sleep(5000);
+                    }
+                    break;
+                case 3:
+                    if (charactor.PortionDef.Count > 0) //포션이있을때 
+                    {
+                        //아이템 설명
+                        //리스트 인덱스 사용
+
+                        // 1번째 포션 사용
+                        charactor.PortionDef[0].Drink(charactor, 0);
+                    }
+                    else //포션이없을때
+                    {
+                        Console.WriteLine("사용할 포션이 없습니다 ");
+                        Console.WriteLine("");
+                        Thread.Sleep(5000);
+                    }
+                    break;
+                default:
+                    Console.WriteLine("잘못된 입력입니다.");
+                    break;
+            }
+
            
-                charactor.PortionHP[input - 1].Drink(charactor, input);
-          
-            }
-            else //포션이없을때
-            {
-                Console.WriteLine("사용할 포션이 없습니다 ");
-                Console.WriteLine("");
-                Thread.Sleep(5000);
-            }
-
-          
-            
-
-
-
-           // charactor.PortionHP.RemoveAt(input - 1);
-          
-                //input = int.Parse(Console.ReadLine());
-                //Console.WriteLine("체력이 가득차서 사용할수있는 포션이없");
-            
-
         }
 
 

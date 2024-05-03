@@ -21,11 +21,12 @@ namespace Sparta2weekProject.Menu
         {
             Console.WriteLine("포션을 사용했습니다");
         }
-        public Portion(int hp, int atk, int Def)
+        public Portion(int hp, int atk, int Def, string name)
         {
             PlusHp = hp;
             PlusAtk = atk;
             PlusDef = Def;
+            ItemName = name;
         }
 
 
@@ -50,7 +51,7 @@ namespace Sparta2weekProject.Menu
 
                 Console.WriteLine("채력 포션 한개를 마셨습니다 ");
                 Console.WriteLine($"플레이어의 체력 : {charactor.HP}");
-                  charactor.PortionHP.RemoveAt(input- 1);
+                  charactor.PortionHP.RemoveAt(0);
             }
 
             else
@@ -60,7 +61,7 @@ namespace Sparta2weekProject.Menu
             }
         }
 
-        public PortionHP(int hp, int atk, int Def) : base(hp, atk, Def)
+        public PortionHP(int hp, int atk, int Def, string name) : base(hp, atk, Def, name)
         {
 
         }
@@ -71,11 +72,12 @@ namespace Sparta2weekProject.Menu
         {
             base.Drink(charactor, input);
             charactor.Attack += PlusAtk;
+            charactor.PortionAtk.RemoveAt(0);
             Console.WriteLine("공격력 포션을 한개 마셨습니다 ");
             Console.WriteLine($"플레이어의 체력 : {charactor.Attack}");
 
         }
-        public PortionAtk(int hp, int atk, int Def) : base(hp, atk, Def)
+        public PortionAtk(int hp, int atk, int Def, string name) : base(hp, atk, Def, name)
         {
 
         }
@@ -87,10 +89,11 @@ namespace Sparta2weekProject.Menu
         {
             base.Drink(charactor, input);
             charactor.Defend += PlusDef;
+            charactor.PortionDef.RemoveAt(0);
             Console.WriteLine("방어력 포션을 한개 먹었습니다 ");
             Console.WriteLine($"플레이어의 방어력 :{charactor.Defend}");
         }
-        public PortionDes(int hp, int atk, int Def) : base(hp, atk, Def)
+        public PortionDes(int hp, int atk, int Def, string name) : base(hp, atk, Def, name)
         {
 
         }

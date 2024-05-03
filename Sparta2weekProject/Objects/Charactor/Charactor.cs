@@ -75,7 +75,7 @@ namespace Sparta2weekProject.Objects.Charactor
 
             for (int i = 0; i < 3; i++)
             {
-                PortionHP Hpname = new PortionHP(30, 0, 0);
+                PortionHP Hpname = new PortionHP(30, 0, 0, "Hp포션");
                 Hpname.ItemName = "Hp포션";
                 PortionHP.Add(Hpname);
 
