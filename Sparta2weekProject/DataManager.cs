@@ -72,6 +72,15 @@ namespace Sparta2weekProject
             // 파일 있으면 불러오기.
             string json = File.ReadAllText(filePath);
             Charactor Loadcharactor = JsonConvert.DeserializeObject<Charactor>(json);
+            switch(Loadcharactor.Class)
+            {
+                case CharactorClass.전사:
+                    Loadcharactor.SkillBook = new WarriorSkillBook();
+                    break;
+                case CharactorClass.궁수:
+                    Loadcharactor.SkillBook = new ArchorSkillBook();
+                    break;
+            }
             return Loadcharactor;
         }
 
