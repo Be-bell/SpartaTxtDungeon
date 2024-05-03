@@ -62,7 +62,8 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine($"{level}던전에 들어오셨습니다.\n");
             Console.WriteLine("0. 던전 나가기");
             Console.WriteLine("1. 상태 보기");
-            Console.WriteLine($"2. 전투 시작 (현재 진행: {floor}층)\n");
+            Console.WriteLine($"2. 전투 시작 (현재 진행: {floor}층)");
+            Console.WriteLine($"3. 포션사용하기 \n");
             #endregion ConsolePrint
 
             // 선택 시 로직
@@ -81,6 +82,13 @@ namespace Sparta2weekProject.Menu
                 case 2:
                     DungeonExplore(level);
                     break;
+                case 3:
+                    Inventory inventory = new Inventory(charactor.Inven);
+                    inventory.ItemPortion(charactor);
+                    DungeonSelect(level);
+                    break;
+
+
             }
         }
 
