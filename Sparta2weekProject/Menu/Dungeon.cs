@@ -258,31 +258,31 @@ namespace Sparta2weekProject.Menu
                     monsterCount = random.Next(1, 3);
                     MonstersLevel = new Monster[]
                     {
-                          new Monster("미니언", 15, 50, 3),
-                          new Monster("대포미니언", 25, 60,4),
-                          new Monster("공허충", 10, 65, 6)
+                          new Monster("미니언", 15, 20, 5),
+                          new Monster("대포미니언", 25, 25, 7),
+                          new Monster("공허충", 10, 30, 8)
                     };
                     break;
                 case DungeonLv.normal:
                     monsterCount = random.Next(1, 4);
-                    monsterAttack = random.Next(0, 3);
+                    monsterAttack = random.Next(1, 5);
                     monsterHp = random.Next(0, 5);
                     MonstersLevel = new Monster[]
                     {
-                        new Monster("미니언", 15, 40 + monsterHp, 5 + monsterAttack),
-                        new Monster("대포미니언", 25, 50 + monsterHp,6 + monsterAttack),
-                        new Monster("공허충", 10, 70 + monsterHp, 8 + monsterAttack)
+                        new Monster("미니언", 15, 35 + monsterHp, 5 + monsterAttack),
+                        new Monster("대포미니언", 25, 50 + monsterHp, 6 + monsterAttack),
+                        new Monster("공허충", 10, 65 + monsterHp, 8 + monsterAttack)
                     };
                     break;
                 case DungeonLv.hard:
                     monsterCount = random.Next(2, 4);
-                    monsterAttack = random.Next(3, 7);
+                    monsterAttack = random.Next(5, 10);
                     monsterHp = random.Next(5, 15);
                     MonstersLevel = new Monster[]
                     {
                         new Monster("미니언", 15, 50 + monsterHp, 8 + monsterAttack),
                         new Monster("대포미니언", 25, 70 + monsterHp, 9 + monsterAttack),
-                        new Monster("공허충", 10, 150 + monsterHp, 10 + monsterAttack)
+                        new Monster("공허충", 10, 120 + monsterHp, 10 + monsterAttack)
                     };
                     break;
                 default:

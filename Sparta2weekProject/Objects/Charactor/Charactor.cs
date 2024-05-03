@@ -52,16 +52,16 @@ namespace Sparta2weekProject.Objects.Charactor
             {
                 case CharactorClass.전사:
                     Attack = 10;
-                    Defend = 20;
+                    Defend = 5;
                     FullHP = 150;
                     HP = 150;
                     FullMP = 100;
-                    MP = 30;
+                    MP = 100;
                     SkillBook = new WarriorSkillBook();
                     break;
                 case CharactorClass.궁수:
                     Attack = 15;
-                    Defend = 15;
+                    Defend = 3;
                     FullHP = 100;
                     HP = 100;
                     MP = 80;
