@@ -7,6 +7,7 @@ namespace Sparta2weekProject.Menu.BattleSystem
     // 전투 클래스
     public class Battle : GameManager
     {
+        bool escapeCheck = false; // 전투 탈출 여부
 
         public Battle(Charactor _charactor, Monster[] _monsters)
         {
@@ -15,10 +16,11 @@ namespace Sparta2weekProject.Menu.BattleSystem
         }
 
         // 전투 시작 메서드
-        public void InBattle()
+        public bool InBattle()
         {
             charactor.KillCount = 0;
             PlayerTurn(); // 플레이어의 턴 시작
+            return this.escapeCheck;
         }
 
         // 플레이어 턴 메서드
@@ -30,6 +32,7 @@ namespace Sparta2weekProject.Menu.BattleSystem
             Console.WriteLine($"\n{charactor.Name}의 턴");
             Console.WriteLine("1. 공격");
             Console.WriteLine("2. 스킬");
+            Console.WriteLine("3. 도망");
             Console.Write(">> ");
             #endregion ConsolePrint
 
@@ -44,12 +47,15 @@ namespace Sparta2weekProject.Menu.BattleSystem
                 case 2:
                     PlayerSkill();
                     break;
+                case 3:
+                    PlayerEscape();
+                    break;
                 default:
                     Console.WriteLine("잘못된 입력입니다.");
                     PlayerTurn();
                     return;
             }
-            if (!MonsterAllDead())
+            if (!MonsterAllDead() && escapeCheck == false)
             {
                 EnemyTurn();
                 return;
@@ -67,6 +73,24 @@ namespace Sparta2weekProject.Menu.BattleSystem
             }
 
             return false;
+        }
+
+        // 플레이어 도망
+        private void PlayerEscape()
+        {
+            Console.WriteLine("도망을 시도합니다.\n");
+            Thread.Sleep(500);
+            // 랜덤 선언 후 
+            Random random = new Random();
+            int chance = random.Next(0, 10);
+            if (chance > 6) // 7 8 9 = 30% 확률로 도망 실패
+            {
+                Console.WriteLine("도망에 실패하였습니다.\n");
+            }
+            else
+            {
+                escapeCheck = true;
+            }
         }
 
         // 플레이어 공격 메서드

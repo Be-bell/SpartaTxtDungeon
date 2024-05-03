@@ -13,6 +13,7 @@ namespace Sparta2weekProject.Menu
         private Charactor charactor;
         private Random random;
         private int floor = 1; // 현재 던전 층
+        public bool escapeCheck = false;
 
         public Dungeon()
         {
@@ -98,6 +99,7 @@ namespace Sparta2weekProject.Menu
             int getReward = 0;
             int getExp = 0;
             int beforeHP = charactor.HP;
+            escapeCheck = false;
             //int minusHp = 0;
             random = new Random();
 
@@ -143,6 +145,14 @@ namespace Sparta2weekProject.Menu
             {
                 Console.WriteLine("던전 공략 실패");
                 Console.WriteLine("던전 공략에 실패했습니다.\n");
+                return;
+            }
+
+            // 던전 탈출
+            if (escapeCheck)
+            {
+                // 아래의 코드 넘김
+                Console.WriteLine("던전에서 도망쳤습니다.\n");
                 return;
             }
 
@@ -225,7 +235,7 @@ namespace Sparta2weekProject.Menu
             {
                 // 전투 시작
                 Battle battle = new Battle(charactor, monsters);
-                battle.InBattle();
+                escapeCheck = battle.InBattle();
             }
 
             //몬스터 생성이 되지 않았을 때.
