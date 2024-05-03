@@ -28,7 +28,7 @@ namespace Sparta2weekProject.Menu
             store = new Store();
             dungeon = new Dungeon();
             spa = new Spa();
-            quest = new Quest();
+            quest = new Quest(true);
             
         }
 
@@ -45,11 +45,13 @@ namespace Sparta2weekProject.Menu
                     MakeCharactor();
                     // 생성한 캐릭터 정보 저장
                     dataManager.SaveCharactorToJson(charactor);
+                    dataManager.SaveQuestToJson(quest);
                     break;
 
                 case 2:
                     // 캐릭터 정보 받아오기
                     charactor = dataManager.LoadCharactorFromJson();
+                    quest =  dataManager.LoadQuestFromJson();
                     // 캐릭터 정보가 없다면
                     if (charactor == null)
                     {
@@ -154,6 +156,7 @@ namespace Sparta2weekProject.Menu
                     break;
                 case 6:
                     dataManager.SaveCharactorToJson(charactor);
+                    dataManager.SaveQuestToJson(quest);
                     break;
                 case 7:
                     quest.ShowQusts(charactor, store.ItemList);

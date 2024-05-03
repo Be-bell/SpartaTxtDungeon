@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Sparta2weekProject.Menu;
 using Sparta2weekProject.Objects.Charactor;
 using System.IO;
 
@@ -22,6 +23,26 @@ namespace Sparta2weekProject
                 instance = new DataManager();
             }
             return instance;
+        }
+
+        internal void SaveQuestToJson(Quest _quest)
+        {
+            string filePath1 = Path.Combine(userDocumentsFolder, "Quest.txt");
+            using (File.Create(filePath1)) { }
+            string json1 = JsonConvert.SerializeObject(_quest, Formatting.Indented);
+            File.WriteAllText(filePath1, json1);
+        }
+
+        // 데이터 불러오기
+        internal Quest LoadQuestFromJson()
+        {
+            // 읽어올 파일 경로.
+            string filePath1 = Path.Combine(userDocumentsFolder, "Quest.txt");
+
+            // 파일 있으면 불러오기.
+            string json1 = File.ReadAllText(filePath1);
+            Quest Loadquest = JsonConvert.DeserializeObject<Quest>(json1);
+            return Loadquest;
         }
 
         // Charactor 변수만 받아 변수의 데이터를 저장.
@@ -57,7 +78,7 @@ namespace Sparta2weekProject
         {
             // 읽어올 파일 경로.
             string filePath = Path.Combine(userDocumentsFolder, "Charactor.txt");
-            
+
             // 파일 없으면 캐릭터 생성 시작.
             if (!File.Exists(filePath))
             {
@@ -72,7 +93,7 @@ namespace Sparta2weekProject
             // 파일 있으면 불러오기.
             string json = File.ReadAllText(filePath);
             Charactor Loadcharactor = JsonConvert.DeserializeObject<Charactor>(json);
-            switch(Loadcharactor.Class)
+            switch (Loadcharactor.Class)
             {
                 case CharactorClass.전사:
                     Loadcharactor.SkillBook = new WarriorSkillBook();

@@ -15,11 +15,17 @@ namespace Sparta2weekProject.Menu
         EquipItem equip = new EquipItem();
         PowerUp power = new PowerUp();
 
-        public Quest()
+        // 새로시작 시 퀘스트 생성
+        public Quest(bool check)
         {   
             QuestInfos.Add(hunt);
             QuestInfos.Add(equip);
             QuestInfos.Add(power);
+        }
+        // 이어하기 시 퀘스트 로드
+        public Quest()
+        {
+            // 저장된 퀘스트의 오버로딩
         }
         // ShowQuest를 Quest클래스에서 사용하기 위해서
         public Quest(List<QuestInfo> quests)
