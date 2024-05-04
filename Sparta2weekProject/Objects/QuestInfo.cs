@@ -30,6 +30,7 @@ internal class QuestInfo : MenuHandler
 	{
         // 퀘스트 클리어 여부 확인
         QuestClear(charactor);
+
         // 해당 퀘스트의 정보 출력
         Console.WriteLine("Quest");
 		Console.WriteLine($"{questName}\n\n{questDescription}\n");
@@ -101,6 +102,15 @@ internal class QuestInfo : MenuHandler
         else if (access)
         {
             Console.WriteLine("0. 돌아가기");
+            Console.WriteLine($"attack:  {charactor.Attack}");
+            Console.WriteLine($"atkplus:  {charactor.PlusAttack}");
+            Console.WriteLine($"defend:  {charactor.Defend}");
+            Console.WriteLine($"defendplus:  {charactor.PlusDefend}");
+
+            Console.WriteLine($"atk: {atk}");
+            Console.WriteLine($"def: {def}\n");
+
+            Console.WriteLine("0. 돌아가기");
             // 선택에 따른 로직
             choice = base.Choice(0, true);
             Restart = true;
@@ -148,7 +158,46 @@ internal class QuestInfo : MenuHandler
     // 퀘스트마다 클리어 조건을 각 클래스 별로 상속으로 설정함
     public virtual void QuestClear(Charactor _charactor)
     {
+        // 임시 (퀘스트를 불러올 때 각 override가 실행이 되지 않아 같은 내용 추가함)
+        switch (questName)
+        {
+            case "마을을 위협하는 미니언 처치":
+                // 최대 횟수가 0이 아니고 currentCount가 maxCount가 아니라면
+                if (maxCount <= currentCount)
+                {
+                    clearCheak = true;
+                }
+                break;
 
+            case "장비를 장착해보자":
+                if (_charactor.Weapon != null && _charactor.Armor != null)
+                {
+                    if (_charactor.Weapon.IsEquiped && _charactor.Armor.IsEquiped)
+                    {
+                        clearCheak = true;
+                    }
+                    else
+                    {
+                        clearCheak = false;
+                    }
+                }
+                else
+                {
+                    clearCheak = false;
+                }
+                break;
+
+            case "더욱 더 강해지기":
+                if (_charactor.Attack + _charactor.PlusAttack >= atk && _charactor.Defend + _charactor.PlusDefend >= def)
+                {
+                    clearCheak = true;
+                }
+                else
+                {
+                    clearCheak = false;
+                }
+                break;
+        }
     }
 }
 

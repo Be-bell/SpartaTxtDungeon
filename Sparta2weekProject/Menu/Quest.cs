@@ -54,18 +54,13 @@ namespace Sparta2weekProject.Menu
             switch (choice)
             {
                 case 1:
-                    // 퀘스트 클리어 여부 확인
-                    QuestInfos[0].QuestClear(_charactor);
                     // 입력한 퀘스트 확인
                     Restart = QuestInfos[0].QuestShow(_charactor, _items, Restart);
                     break;
                 case 2:
-                    // 퀘스트 클리어 여부 확인
-                    QuestInfos[1].QuestClear(_charactor);
                     Restart = QuestInfos[1].QuestShow(_charactor, _items, Restart);
                     break;
                 case 3:
-                    // 퀘스트 클리어 여부 확인
                     QuestInfos[2].QuestClear(_charactor);
                     Restart = QuestInfos[2].QuestShow(_charactor, _items, Restart);
                     break;
