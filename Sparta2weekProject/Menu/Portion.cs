@@ -74,7 +74,7 @@ namespace Sparta2weekProject.Menu
             charactor.Attack += PlusAtk;
             charactor.PortionAtk.RemoveAt(0);
             Console.WriteLine("공격력 포션을 한개 마셨습니다 ");
-            Console.WriteLine($"플레이어의 체력 : {charactor.Attack}");
+            Console.WriteLine($"플레이어의 공격력 : {charactor.Attack}");
 
         }
         public PortionAtk(int hp, int atk, int Def, string name) : base(hp, atk, Def, name)

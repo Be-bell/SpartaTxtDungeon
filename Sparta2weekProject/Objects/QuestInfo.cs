@@ -102,15 +102,6 @@ internal class QuestInfo : MenuHandler
         else if (access)
         {
             Console.WriteLine("0. 돌아가기");
-            Console.WriteLine($"attack:  {charactor.Attack}");
-            Console.WriteLine($"atkplus:  {charactor.PlusAttack}");
-            Console.WriteLine($"defend:  {charactor.Defend}");
-            Console.WriteLine($"defendplus:  {charactor.PlusDefend}");
-
-            Console.WriteLine($"atk: {atk}");
-            Console.WriteLine($"def: {def}\n");
-
-            Console.WriteLine("0. 돌아가기");
             // 선택에 따른 로직
             choice = base.Choice(0, true);
             Restart = true;
