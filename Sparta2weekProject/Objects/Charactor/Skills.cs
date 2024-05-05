@@ -91,7 +91,7 @@ namespace Sparta2weekProject.Objects.Charactor
 
             Console.WriteLine($"{charactor.Name} 의 공격! {target.Name}에게 알파 스트라이크! {damage}의 피해를 입혔습니다.");
             charactor.MP -= requiredMP;
-            target.TakeDamage(damage);
+            target.TakeDamage(charactor, damage);
 
             return true;
         }
@@ -124,7 +124,7 @@ namespace Sparta2weekProject.Objects.Charactor
             {
                 Monster target = monsters[i];
                 Console.WriteLine($"{charactor.Name} 의 공격! {target.Name}에게 더블 스트라이크! {damage}의 피해를 입혔습니다.");
-                target.TakeDamage(damage);
+                target.TakeDamage(charactor, damage);
             }
             charactor.MP -= requiredMP;
 
@@ -196,7 +196,7 @@ namespace Sparta2weekProject.Objects.Charactor
 
             Console.WriteLine($"{charactor.Name} 의 공격! {target.Name}에게 비장의 한발! {damage}의 피해를 입혔습니다.");
             charactor.MP -= requiredMP;
-            target.TakeDamage(damage);
+            target.TakeDamage(charactor, damage);
 
             return true;
         }
@@ -221,7 +221,7 @@ namespace Sparta2weekProject.Objects.Charactor
             foreach (var target in monsters)
             {
                 Console.WriteLine($"{charactor.Name} 의 공격! {target.Name}에게 화살세례! {damage}의 피해를 입혔습니다.");
-                target.TakeDamage(damage);
+                target.TakeDamage(charactor, damage);
             }
             charactor.MP -= requiredMP;
 

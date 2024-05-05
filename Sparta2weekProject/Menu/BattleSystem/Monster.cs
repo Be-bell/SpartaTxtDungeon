@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Sparta2weekProject.Objects.Charactor;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -48,15 +50,29 @@ namespace Sparta2weekProject.Menu.BattleSystem
         */
 
         // 몬스터가 피해를 받는 메서드
-        public void TakeDamage(int damage)
+        public void TakeDamage(Charactor _charactor, int _damage)
         {
-            HP -= damage;
+            Charactor charactor = _charactor;
+            HP -= _damage;
             if (HP <= 0)
             {
                 HP = 0;
                 Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine($"{Name}이(가) 사망했습니다.");
                 Console.ResetColor();
+                switch (Name)
+                {
+                    case "미니언":
+                        charactor.MinionCount++;
+                        break;
+                    case "대포미니언":
+                        charactor.CannonCount++;
+                        break;
+                    case "공허충":
+                        charactor.vacuityCount++;
+                        break;
+                }
+                charactor.KillCount++;
             }
         }
 

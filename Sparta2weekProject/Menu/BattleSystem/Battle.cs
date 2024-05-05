@@ -144,23 +144,7 @@ namespace Sparta2weekProject.Menu.BattleSystem
             }
 
             // 공격 처리
-            monster.TakeDamage(damage);
-            if(monster.IsDead())
-            {
-                switch (monster.Name)
-                {
-                    case "미니언":
-                        charactor.MinionCount++;
-                        break;
-                    case "대포미니언":
-                        charactor.CannonCount++;
-                        break;
-                    case "공허충":
-                        charactor.vacuityCount++;
-                        break;
-                }
-                charactor.KillCount++;
-            }
+            monster.TakeDamage(charactor, damage);
 
             Thread.Sleep(500);
         }
