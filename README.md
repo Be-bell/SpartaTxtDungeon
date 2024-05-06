@@ -100,4 +100,4 @@
 # 이 게임에 대해 더 알고 싶으시다면...
 다음 링크를 들어가보세요! 저희의 모든 것이 담겨있습니다!
 </br>
-링크 바로가기 -> [Notion-팀프로젝트 관리]([https://teamsparta.notion.site/850ea5460bcd46d1a8985ecb066f8791](https://be-bell.notion.site/c5b72758245f485fa1a7f033f17896e7?pvs=25)](https://be-bell.notion.site/c5b72758245f485fa1a7f033f17896e7))
+링크 바로가기 -> [Notion-팀프로젝트 관리](https://be-bell.notion.site/c5b72758245f485fa1a7f033f17896e7)
