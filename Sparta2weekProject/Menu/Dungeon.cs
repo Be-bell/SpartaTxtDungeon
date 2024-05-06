@@ -214,7 +214,7 @@ namespace Sparta2weekProject.Menu
             else if (RandomPotion <= 9)
             {
                 Console.WriteLine("보상으로 방어 포션을 획득하였습니다!");
-                charactor.PortionAtk.Add(Desname);
+                charactor.PortionDef.Add(Desname);
             }
             #endregion Reward
 
