@@ -118,6 +118,7 @@ namespace Sparta2weekProject.Menu
         {
             Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
             Console.WriteLine("이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.\n");
+            Console.WriteLine("====================================================");
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
@@ -125,11 +126,8 @@ namespace Sparta2weekProject.Menu
             Console.WriteLine("5. 온천 : 휴식하기");
             Console.WriteLine("6. 저장하기");
             Console.WriteLine("7. 퀘스트");
-         
-
-            Console.WriteLine("");
-            Console.WriteLine("0. 게임종료");
-            Console.WriteLine("");
+            Console.WriteLine("====================================================");
+            Console.WriteLine("\n0. 게임종료\n");
 
             //선택
             choice = base.Choice(menu, true);
