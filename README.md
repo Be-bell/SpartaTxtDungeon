@@ -100,4 +100,4 @@
 # 이 게임에 대해 더 알고 싶으시다면...
 다음 링크를 들어가보세요! 저희의 모든 것이 담겨있습니다!
 </br>
-링크 바로가기 -> [Notion-팀프로젝트 관리](https://be-bell.notion.site/c5b72758245f485fa1a7f033f17896e7)
+프로젝트에 대한 모든 것 -> [Notion-프로젝트 관리](https://be-bell.notion.site/c5b72758245f485fa1a7f033f17896e7)
