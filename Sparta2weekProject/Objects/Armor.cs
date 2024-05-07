@@ -7,7 +7,7 @@ namespace Sparta2weekProject.Objects
         public Armor()
         {
             ItemName = "누더기옷";
-            Type = ItemType.방어구;
+            Type = ItemType.Armor;
             ItemState = 1;
             Description = "이 옷을 입을 바에는 벗는게 낫습니다.";
             Price = 50;

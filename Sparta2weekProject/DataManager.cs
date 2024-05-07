@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Sparta2weekProject.Objects;
+using Sparta2weekProject.Menu;
+using Sparta2weekProject.Objects.Charactor;
 using System.IO;
 
 namespace Sparta2weekProject
@@ -10,7 +11,7 @@ namespace Sparta2weekProject
         private static DataManager instance;
 
         // 각 시스템 Docu에 저장.
-        string userDocumentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CreateFolder";
+        String userDocumentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\CreateFolder";
 
         //싱글톤으로 생성
         private DataManager() { }
@@ -24,8 +25,28 @@ namespace Sparta2weekProject
             return instance;
         }
 
+        internal void SaveQuestToJson(Quest _quest)
+        {
+            string filePath1 = Path.Combine(userDocumentsFolder, "Quest.txt");
+            using (File.Create(filePath1)) { }
+            string json1 = JsonConvert.SerializeObject(_quest, Formatting.Indented);
+            File.WriteAllText(filePath1, json1);
+        }
+
+        // 데이터 불러오기
+        internal Quest LoadQuestFromJson()
+        {
+            // 읽어올 파일 경로.
+            string filePath1 = Path.Combine(userDocumentsFolder, "Quest.txt");
+
+            // 파일 있으면 불러오기.
+            string json1 = File.ReadAllText(filePath1);
+            Quest Loadquest = JsonConvert.DeserializeObject<Quest>(json1);
+            return Loadquest;
+        }
+
         // Charactor 변수만 받아 변수의 데이터를 저장.
-        public void SaveCharactorToJson(Charactors charactor)
+        public void SaveCharactorToJson(Charactor _charactor)
         {
             //디렉토리가 없으면 디렉토리 생성.
             DirectoryInfo directoryInfo = new DirectoryInfo(userDocumentsFolder);
@@ -35,14 +56,14 @@ namespace Sparta2weekProject
             }
 
             // 디렉토리에 파일이 없으면 파일 생성.
-            string filePath = Path.Combine(userDocumentsFolder, "Charactors.txt");
+            string filePath = Path.Combine(userDocumentsFolder, "Charactor.txt");
             if (!File.Exists(filePath))
             {
                 using (File.Create(filePath)) { }
             }
 
             // json으로 직렬화하여 데이터 저장.
-            string json = JsonConvert.SerializeObject(charactor, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(_charactor, Formatting.Indented);
             File.WriteAllText(filePath, json);
 
             // 저장 완료되면 나옴.
@@ -53,18 +74,17 @@ namespace Sparta2weekProject
         }
 
         // 데이터 불러오기
-        public Charactors LoadCharactorFromJson()
+        public Charactor LoadCharactorFromJson()
         {
             // 읽어올 파일 경로.
-            string filePath = Path.Combine(userDocumentsFolder, "Charactors.txt");
-            
+            string filePath = Path.Combine(userDocumentsFolder, "Charactor.txt");
+
             // 파일 없으면 캐릭터 생성 시작.
             if (!File.Exists(filePath))
             {
                 Console.WriteLine("저장된 파일이 없습니다.");
                 Console.WriteLine("캐릭터 생성을 시작합니다.");
                 Console.WriteLine("");
-                Console.Write("아무키나 입력하세요.");
                 Console.ReadLine();
                 Console.Clear();
                 return null;
@@ -72,8 +92,17 @@ namespace Sparta2weekProject
             
             // 파일 있으면 불러오기.
             string json = File.ReadAllText(filePath);
-            Charactors Loadchad = JsonConvert.DeserializeObject<Charactors>(json);
-            return Loadchad;
+            Charactor Loadcharactor = JsonConvert.DeserializeObject<Charactor>(json);
+            switch (Loadcharactor.Class)
+            {
+                case CharactorClass.전사:
+                    Loadcharactor.SkillBook = new WarriorSkillBook();
+                    break;
+                case CharactorClass.궁수:
+                    Loadcharactor.SkillBook = new ArchorSkillBook();
+                    break;
+            }
+            return Loadcharactor;
         }
 
     }

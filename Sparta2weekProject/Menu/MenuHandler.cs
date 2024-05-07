@@ -2,27 +2,35 @@
 
 namespace Sparta2weekProject.Menu
 {
-    internal abstract class MenuHandler : IMenu
+    internal class MenuHandler : IMenu
     {
-        protected int menu; // 각 메뉴 기본창에서 메뉴 선택지 개수
-        protected int choice = -1;  // Choice 메소드 실행 시 리턴받는 값. 초기값은 -1로 고정.
+        #region Field
+        // 각 메뉴 기본창에서 메뉴 선택지 개수
+        protected int menu;
+        private int choiceMinValue;
+
+        // Choice 메소드 실행 시 리턴받는 값. 초기값은 -1로 고정.
+        protected int choice = -1;
+        #endregion Field
 
         public int Choice(int _menuCount, bool _isZeroContain)
         {
-            bool res = false;
+            bool isNumber = false;
+
             // 0이 메뉴 상에 포함되나 포함이 안되나 검사.
-            int choiceMinValue = _isZeroContain ? 0 : 1;
+            // 0은 나가기로 해주세요!!
+            choiceMinValue = _isZeroContain ? 0 : 1;
+
+            // 숫자 입력받기
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.Write(">>");
+            isNumber = int.TryParse(Console.ReadLine(), out choice);
 
             // 입력받은 값이 숫자가 아니거나, 범위값에 포함이 되지 않으면 반복.
-            while(!res || (choice < choiceMinValue || choice > _menuCount))
+            if (isNumber == false || (choice < choiceMinValue || choice > _menuCount))
             {
-                Console.WriteLine("원하시는 행동을 입력해주세요.");
-                Console.Write(">>");
-                res = int.TryParse(Console.ReadLine(), out choice);
-                if(!res || (choice < choiceMinValue || choice > _menuCount))
-                {
-                    Console.WriteLine("잘못된 입력입니다.\n");
-                }
+                Console.WriteLine("잘못된 입력입니다.\n");
+                return Choice(_menuCount, _isZeroContain);
             }
 
             Console.Clear();
